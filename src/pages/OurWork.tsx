@@ -42,9 +42,9 @@ const OurWork = () => {
       />
       <PageBanner
         image={PAGE_BANNERS.work}
-        title="Our Work"
-        subtitle="Completed website projects for dental, healthcare, e-commerce, marketing, finance and business clients."
-        badge="Portfolio"
+        title="Selected Works & Website Portfolio"
+        subtitle="Explore our selected website design projects across dental clinics, healthcare practices, e-commerce stores, and high-growth businesses."
+        badge="Selected Portfolio"
       />
 
       {/* Projects Gallery */}
@@ -52,10 +52,10 @@ const OurWork = () => {
         <div className="container mx-auto px-5 sm:px-6">
           <FadeInView>
             <div className="text-center mb-12">
-              <p className="text-base font-semibold text-primary uppercase tracking-wider mb-3">Project Gallery</p>
-              <h2 className="text-foreground mb-4">Completed website projects</h2>
+              <p className="text-base font-semibold text-primary uppercase tracking-wider mb-3">Selected Portfolio</p>
+              <h2 className="text-foreground mb-4">Selected Works &amp; Website Projects</h2>
               <p className="text-base text-muted max-w-2xl mx-auto">
-                Explore our portfolio across dental clinics, medical healthcare, e-commerce brands, marketing platforms, and enterprise business solutions.
+                Explore our selected works and client websites across dental clinics, medical healthcare, e-commerce brands, marketing platforms, and enterprise business solutions.
               </p>
 
               {/* Category Filter Tabs */}

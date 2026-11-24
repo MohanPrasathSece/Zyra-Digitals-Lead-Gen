@@ -292,9 +292,9 @@ const WebDesign = () => (
         <FadeInView>
           <div className="mx-auto mb-12 max-w-2xl text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary sm:text-sm">
-              Recent Website Projects
+              Selected Works
             </p>
-            <h2 className="mb-4 text-foreground">Explore Our Completed Websites</h2>
+            <h2 className="mb-4 text-foreground">Explore Our Selected Works &amp; Websites</h2>
             <p className="text-muted">
               Live websites designed and engineered by Zyra Digitals. Click any case study to explore full page mockups, search rankings, and conversion analytics.
             </p>
