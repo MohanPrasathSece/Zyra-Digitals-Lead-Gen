@@ -2,6 +2,7 @@ import xivi from "@/assets/Portfolio_projects/xivi/image.png";
 import precision from "@/assets/Portfolio_projects/precision/precision.png";
 import apexRevOps from "@/assets/Portfolio_projects/Apex RevOps/Screenshot 2026-10-06 143908.png";
 import achyutam from "@/assets/Portfolio_projects/achyutam/Screenshot 2026-05-29 095505.png";
+import orchidCover from "@/assets/Portfolio_projects/orchid/cover image.png";
 
 export type ProjectCategory = "Dental" | "Healthcare" | "Ecommerce" | "Business";
 
@@ -131,6 +132,7 @@ export const PROJECTS: Project[] = [
       "Contact and appointment enquiries",
       "Local area targeting",
     ],
+    image: orchidCover,
   },
   {
     slug: "happy-dental-agency",
