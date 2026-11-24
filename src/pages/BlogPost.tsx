@@ -172,7 +172,7 @@ const BlogPost = () => {
         <header className="relative overflow-hidden py-12 sm:py-16">
           <img src={PAGE_BANNERS.blog} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-br from-blue-950/90 to-blue-800/75" />
-          <div className="container relative z-10 mx-auto max-w-3xl px-6">
+          <div className="container relative z-10 mx-auto max-w-5xl px-6">
             <nav aria-label="Breadcrumb" className="mb-5 flex flex-wrap items-center gap-2 text-xs text-white/70">
               <Link to="/" className="hover:text-white transition-colors">Home</Link>
               <span>/</span>
@@ -184,7 +184,7 @@ const BlogPost = () => {
             <span className="mb-4 inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
               {post.category}
             </span>
-            <h1 className="mb-5 text-3xl font-extrabold leading-tight text-white sm:text-4xl">
+            <h1 className="mb-5 text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
               {post.h1}
             </h1>
 
@@ -203,7 +203,7 @@ const BlogPost = () => {
         </header>
 
         {/* Featured image */}
-        <div className="container mx-auto max-w-3xl px-6">
+        <div className="container mx-auto max-w-5xl px-6">
           <img
             src={post.image}
             alt={post.imageAlt}
@@ -212,7 +212,7 @@ const BlogPost = () => {
         </div>
 
         {/* Body */}
-        <div className="container mx-auto max-w-3xl px-6 py-12">
+        <div className="container mx-auto max-w-5xl px-6 py-12">
           <FadeInView>
             <div className="text-[16px]">
               {post.blocks.map((block, i) => (
