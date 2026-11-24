@@ -82,7 +82,7 @@ app.post("/api/contact", async (req, res) => {
     FROM_EMAIL,
   } = process.env;
 
-  const adminRecipient = ADMIN_EMAIL || "zyradigitalsofficial@gmail.com";
+  const adminRecipient = ADMIN_EMAIL || "mohanprasathofficial@gmail.com";
   const fromAddress = FROM_EMAIL || (SMTP_USER ? `Zyra Digitals <${SMTP_USER}>` : "Zyra Digitals <zyradigitalsofficial@gmail.com>");
 
   // Check if SMTP is configured
@@ -208,7 +208,17 @@ app.post("/api/contact", async (req, res) => {
     return res.json({
       ok: true,
       messageId: adminResult.messageId,
-      message: "Lead processed and emails dispatched successfully to admin and customer."
+      message: "Lead processed and emails dispatched successfully to admin and customer.",
+      adminRecipient,
+      customerRecipient: email,
+      timestamp,
+      steps: [
+        "1. Validated incoming lead inputs (Name, Phone, Email, Message)",
+        `2. Connected to SMTP host ${SMTP_HOST}:${SMTP_PORT} via SSL/TLS`,
+        `3. Verified SMTP authentication for ${SMTP_USER}`,
+        `4. Admin lead notification dispatched to ${adminRecipient} (MessageId: ${adminResult.messageId})`,
+        `5. Customer confirmation receipt dispatched to ${email} (MessageId: ${customerResult.messageId})`
+      ]
     });
   } catch (smtpError) {
     console.error(`\n❌ [SMTP ERROR OCCURRED]`);
