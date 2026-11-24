@@ -121,7 +121,7 @@ const Seo = () => (
     />
     <PageBanner
       image={PAGE_BANNERS.seo}
-      title="SEO Packages Built Around Your Business Goals"
+      title={<span className="lg:whitespace-nowrap">SEO Packages Built Around Your Business Goals</span>}
       subtitle="Three clear plans - starting from ₹2,999 per month. Get found on Google by the customers already searching for your business, and turn that visibility into more enquiries and confirmed bookings."
       badge="Search Engine Optimisation"
     />

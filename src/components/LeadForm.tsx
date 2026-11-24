@@ -13,9 +13,9 @@ export const SERVICE_OPTIONS = [
 
 export const SERVICE_BUDGET_PACKAGES: Record<string, string[]> = {
   website: [
-    "Portfolio Website (₹7,999)",
+    "Professional Website (₹7,999)",
     "Business Website (₹11,999)",
-    "E-commerce Website (₹19,999)",
+    "Corporate Website (₹19,999)",
   ],
   seo: [
     "Starter SEO (₹2,999/mo)",
@@ -279,16 +279,9 @@ const LeadForm = ({
               </div>
 
               <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <label className="block text-[13px] font-medium text-foreground">
-                    Package / Budget <span className="text-destructive">*</span>
-                  </label>
-                  {!service && (
-                    <span className="text-[11px] font-semibold text-amber-600">
-                      Disabled until service is chosen
-                    </span>
-                  )}
-                </div>
+                <label className="block text-[13px] font-medium text-foreground mb-1.5">
+                  Package / Budget <span className="text-destructive">*</span>
+                </label>
                 <select
                   value={budget}
                   onChange={(e) => setBudget(e.target.value)}
@@ -300,26 +293,17 @@ const LeadForm = ({
                       : "bg-white border-gray-300 text-slate-900 focus:border-primary focus:ring-2 focus:ring-primary/20"
                   }`}
                 >
-                  {!service ? (
-                    <option value="">Select a service above first...</option>
-                  ) : (
-                    <>
-                      <option value="">Choose your package / budget...</option>
-                      {getBudgetPackagesForService(service).map((pkg) => (
-                        <option key={pkg} value={pkg}>
-                          {pkg}
-                        </option>
-                      ))}
-                    </>
-                  )}
+                  <option value="">Select a budget...</option>
+                  {service &&
+                    getBudgetPackagesForService(service).map((pkg) => (
+                      <option key={pkg} value={pkg}>
+                        {pkg}
+                      </option>
+                    ))}
                 </select>
-                {!service ? (
+                {!service && (
                   <p className="mt-1 text-[11px] text-slate-500">
                     Pick a service to unlock exact package pricing.
-                  </p>
-                ) : (
-                  <p className="mt-1 text-[11px] text-emerald-600 font-medium">
-                    ✓ Available packages loaded for {service}
                   </p>
                 )}
               </div>
@@ -380,7 +364,7 @@ const LeadForm = ({
               </button>
 
               <p className="text-center text-xs text-muted sm:col-span-2">
-                Your details will only be used to contact you about your enquiry. Guaranteed reply within 1 hour.
+                All websites include unlimited revisions till delivery • Guaranteed reply within 1 hour • No hidden charges.
               </p>
             </form>
           </div>

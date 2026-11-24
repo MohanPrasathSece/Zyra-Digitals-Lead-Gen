@@ -22,6 +22,48 @@ import employeeManagementCover from "@/assets/Portfolio_projects/employee manage
 import theReportDeskCover from "@/assets/Portfolio_projects/the report desk - french newspaper website/cover.webp";
 import eliteChainCover from "@/assets/Portfolio_projects/elite_chain-french crypto website/cover.webp";
 
+// Multi-page screenshot assets for comprehensive project galleries
+import achyutamAbout from "@/assets/Portfolio_projects/achyutam/about.webp";
+import achyutamShop from "@/assets/Portfolio_projects/achyutam/shop.webp";
+import achyutamProduct from "@/assets/Portfolio_projects/achyutam/product.webp";
+import achyutamOurProducts from "@/assets/Portfolio_projects/achyutam/our products.webp";
+import achyutamCart from "@/assets/Portfolio_projects/achyutam/cart.webp";
+import achyutamPayment from "@/assets/Portfolio_projects/achyutam/payment .webp";
+
+import apexRevOpsCRM from "@/assets/Portfolio_projects/Apex RevOps/Screenshot 2026-10-06 143805.webp";
+import apexRevOpsAnalytics from "@/assets/Portfolio_projects/Apex RevOps/Screenshot 2026-10-06 143815.webp";
+import apexRevOpsFunnels from "@/assets/Portfolio_projects/Apex RevOps/Screenshot 2026-10-06 143851.webp";
+import apexRevOpsOutreach from "@/assets/Portfolio_projects/Apex RevOps/Screenshot 2026-10-06 143908.webp";
+
+import precisionOverview from "@/assets/Portfolio_projects/precision/precision.png";
+import precisionTech from "@/assets/Portfolio_projects/precision/image.png";
+import precisionReviews from "@/assets/Portfolio_projects/precision/image copy.png";
+import precisionTeam from "@/assets/Portfolio_projects/precision/image copy 2.png";
+import precisionBooking from "@/assets/Portfolio_projects/precision/image copy 3.png";
+import precisionLocation from "@/assets/Portfolio_projects/precision/image copy 4.png";
+
+import xiviCollection from "@/assets/Portfolio_projects/xivi/image.png";
+import xiviProductDetail from "@/assets/Portfolio_projects/xivi/Screenshot 2026-05-29 100215 copy.webp";
+import xiviCart from "@/assets/Portfolio_projects/xivi/Screenshot 2026-05-29 100230 copy.webp";
+import xiviStory from "@/assets/Portfolio_projects/xivi/Screenshot 2026-05-29 100309 copy.webp";
+
+import launchCloseHero from "@/assets/Portfolio_projects/launch&close/Screenshot 2026-10-06 141349.webp";
+import launchClosePipeline from "@/assets/Portfolio_projects/launch&close/Screenshot 2026-10-06 141419.webp";
+import launchCloseReviews from "@/assets/Portfolio_projects/launch&close/Screenshot 2026-10-06 141445.webp";
+import launchCloseStrategy from "@/assets/Portfolio_projects/launch&close/Screenshot 2026-10-06 141456.webp";
+
+import lumiHero from "@/assets/Portfolio_projects/lumi/lumi.png";
+import lumiCollection from "@/assets/Portfolio_projects/lumi/image.png";
+import lumiCatalog from "@/assets/Portfolio_projects/lumi/image copy.png";
+import lumiSpecs from "@/assets/Portfolio_projects/lumi/image copy 2.png";
+import lumiContact from "@/assets/Portfolio_projects/lumi/image copy 3.png";
+
+import seekBuyLoveStore from "@/assets/Portfolio_projects/seekbuylove/image.png";
+import seekBuyLoveTrending from "@/assets/Portfolio_projects/seekbuylove/image copy.png";
+import seekBuyLoveProduct from "@/assets/Portfolio_projects/seekbuylove/image copy 2.png";
+import seekBuyLoveCheckout from "@/assets/Portfolio_projects/seekbuylove/image copy 3.png";
+import seekBuyLoveReviews from "@/assets/Portfolio_projects/seekbuylove/image copy 4.png";
+
 export type ProjectCategory = "Dental" | "Healthcare" | "Ecommerce" | "Business";
 
 /** One screenshot slot in a project's page gallery. */
@@ -535,6 +577,57 @@ export const PROJECTS: Project[] = [
     image: theReportDeskCover,
     imageScale: true,
   },
+  {
+    slug: "launch-close",
+    name: "Launch & Close",
+    category: "Business",
+    industry: "B2B Sales Consulting & Pipelines",
+    website: "launchandclose.com",
+    description:
+      "A conversion-focused agency website for high-ticket sales consulting, pipeline automation, and deal-closing frameworks engineered to convert cold prospects into booked discovery calls.",
+    features: [
+      "B2B sales closing systems",
+      "High-intent demo booking funnel",
+      "Client video case study showcase",
+      "Sales strategy & onboarding roadmap",
+    ],
+    image: launchCloseHero,
+    imageScale: true,
+  },
+  {
+    slug: "lumi-lighting",
+    name: "Lumi Lighting",
+    category: "Ecommerce",
+    industry: "Architectural & Designer Lighting",
+    website: "lumilighting.com",
+    description:
+      "A sophisticated digital storefront and trade specification platform for architectural luminaires, designer fixtures, photometric data downloads, and commercial project quotations.",
+    features: [
+      "Architectural fixture catalogue",
+      "Downloadable IES & photometric specs",
+      "Commercial contractor quote portal",
+      "Project installation showcase",
+    ],
+    image: lumiHero,
+    imageScale: true,
+  },
+  {
+    slug: "seek-buy-love",
+    name: "Seek Buy Love",
+    category: "Ecommerce",
+    industry: "Fashion & Lifestyle Apparel",
+    website: "seekbuylove.com",
+    description:
+      "A trend-driven fashion e-commerce destination with seamless collection browsing, interactive size guides, social lookbooks, and an ultra-fast mobile checkout experience.",
+    features: [
+      "Curated seasonal drop catalogue",
+      "Instant size & fit recommendations",
+      "Frictionless one-click mobile checkout",
+      "Community lookbook & verified reviews",
+    ],
+    image: seekBuyLoveStore,
+    imageScale: true,
+  },
 ];
 
 export const PROJECT_RANKINGS_MAP: Record<string, ProjectRanking[]> = {
@@ -831,11 +924,298 @@ export const PROJECT_METRICS_MAP: Record<string, ProjectMetric[]> = {
   ],
 };
 
+export const PROJECT_GALLERY_MAP: Record<string, ProjectGalleryItem[]> = {
+  "precision-root-canal": [
+    {
+      label: "Clinic Homepage (Hero & Trust Architecture)",
+      route: "www.precisionrct.co.uk/",
+      description: "Welcoming clinical design designed to alleviate patient anxiety and showcase specialist endodontic accreditation.",
+      image: precisionCover,
+      device: "desktop",
+    },
+    {
+      label: "Specialist Treatment Overview",
+      route: "www.precisionrct.co.uk/treatments",
+      description: "In-depth treatment pages explaining microscopic root canal therapy, retreatment, and preventive dental hygiene.",
+      image: precisionOverview,
+      device: "desktop",
+    },
+    {
+      label: "Modern Dental Technology & 3D CBCT",
+      route: "www.precisionrct.co.uk/technology",
+      description: "Showcase of operating microscopes, 3D CBCT imaging, and digital radiography inspiring clinical trust.",
+      image: precisionTech,
+      device: "desktop",
+    },
+    {
+      label: "Patient Reviews & Case Studies",
+      route: "www.precisionrct.co.uk/testimonials",
+      description: "Verified patient testimonials and clinical before-and-after x-ray imaging proving treatment success.",
+      image: precisionReviews,
+      device: "desktop",
+    },
+    {
+      label: "Dental Specialists & Team Credentials",
+      route: "www.precisionrct.co.uk/team",
+      description: "Specialist doctor credentials, GMC/GDC certifications, and clinical backgrounds fostering patient trust.",
+      image: precisionTeam,
+      device: "desktop",
+    },
+    {
+      label: "Online 24/7 Appointment Booking Flow",
+      route: "www.precisionrct.co.uk/book",
+      description: "Interactive calendar booking system allowing emergency and routine patients to schedule appointments instantly.",
+      image: precisionBooking,
+      device: "desktop",
+    },
+    {
+      label: "Clinic Location & Patient Parking Map",
+      route: "www.precisionrct.co.uk/contact",
+      description: "Interactive transit map, parking instructions, and direct emergency call buttons for urgent inquiries.",
+      image: precisionLocation,
+      device: "desktop",
+    },
+  ],
+  "achyutam-organics": [
+    {
+      label: "Storefront & Organic Heritage Hero",
+      route: "www.achyutamorganic.com/",
+      description: "Brand introduction communicating traditional Bilona churning, Gir cow heritage, and pure A2 certification.",
+      image: achyutamCover,
+      device: "desktop",
+    },
+    {
+      label: "Organic Shop & Catalogue Grid",
+      route: "www.achyutamorganic.com/shop",
+      description: "Grid catalogue with quick-add functionality, price per litre/jar, and purity verification badges.",
+      image: achyutamShop,
+      device: "desktop",
+    },
+    {
+      label: "Product Detail View (A2 Gir Cow Ghee)",
+      route: "www.achyutamorganic.com/product/gir-cow-ghee",
+      description: "High-conversion product page highlighting nutritional benefits, lab testing, customer reviews, and subscription options.",
+      image: achyutamProduct,
+      device: "desktop",
+    },
+    {
+      label: "Featured Dairy Products Showcase",
+      route: "www.achyutamorganic.com/products",
+      description: "Curated collection of pure A2 dairy products, seasonal organic offerings, and gift hamper boxes.",
+      image: achyutamOurProducts,
+      device: "desktop",
+    },
+    {
+      label: "Brand Story & Farm Heritage",
+      route: "www.achyutamorganic.com/about",
+      description: "Storytelling layout showcasing farm transparency, ethical milking practices, and quality assurance.",
+      image: achyutamAbout,
+      device: "desktop",
+    },
+    {
+      label: "Cart & Checkout Flow",
+      route: "www.achyutamorganic.com/cart",
+      description: "Frictionless shopping bag with free shipping progress, delivery date selection, and UPI payment gateways.",
+      image: achyutamCart,
+      device: "desktop",
+    },
+    {
+      label: "Payment & Order Confirmation",
+      route: "www.achyutamorganic.com/checkout",
+      description: "SSL encrypted checkout gateway with automated SMS order tracking and instant invoice generation.",
+      image: achyutamPayment,
+      device: "desktop",
+    },
+  ],
+  "apex-revops": [
+    {
+      label: "Homepage & B2B Hero Showcase",
+      route: "www.apex-revops.com/",
+      description: "High-impact agency positioning communicating AI-driven sales pipeline architecture and outbound scale.",
+      image: apexRevOpsCover,
+      device: "desktop",
+    },
+    {
+      label: "Revenue Pipeline & CRM Hub",
+      route: "www.apex-revops.com/pipeline",
+      description: "Interactive pipeline visualizer demonstrating automated lead routing, deal stage velocity, and CRM hygiene.",
+      image: apexRevOpsCRM,
+      device: "desktop",
+    },
+    {
+      label: "Analytics & Conversion Metrics Dashboard",
+      route: "www.apex-revops.com/analytics",
+      description: "Real-time performance dashboard tracking MQL-to-SQL conversion ratios, cost per booked demo, and pipeline value.",
+      image: apexRevOpsAnalytics,
+      device: "desktop",
+    },
+    {
+      label: "Outbound Lead Generation Systems",
+      route: "www.apex-revops.com/services",
+      description: "Multi-channel outbound engine layout covering LinkedIn automation, targeted email infrastructure, and ICP research.",
+      image: apexRevOpsFunnels,
+      device: "desktop",
+    },
+    {
+      label: "AI Automation & Case Studies",
+      route: "www.apex-revops.com/case-studies",
+      description: "Documented client ROI benchmarks and client video testimonials built to convert high-ticket B2B decision makers.",
+      image: apexRevOpsOutreach,
+      device: "desktop",
+    },
+  ],
+  "xivi": [
+    {
+      label: "Storefront & Luxury Editorial Hero",
+      route: "www.xivi.in/",
+      description: "High-end luxury aesthetic for 925 sterling silver jewellery with seasonal editorial campaigns and smooth transitions.",
+      image: xiviCover,
+      device: "desktop",
+    },
+    {
+      label: "Signature Collections & Lookbook",
+      route: "www.xivi.in/collections",
+      description: "Curated jewelry categories categorized by rings, bracelets, pendants, and bespoke silver craftsmanship.",
+      image: xiviCollection,
+      device: "desktop",
+    },
+    {
+      label: "Product Detail & Sizing Guide",
+      route: "www.xivi.in/products/silver-solitaire",
+      description: "Multi-angle photography zoom, silver hallmarking details, interactive ring size finder, and customer styling photos.",
+      image: xiviProductDetail,
+      device: "desktop",
+    },
+    {
+      label: "Gift Packaging & Express Cart",
+      route: "www.xivi.in/cart",
+      description: "Seamless gift box selection, personalized card messaging, and secure prepaid payment flow.",
+      image: xiviCart,
+      device: "desktop",
+    },
+    {
+      label: "Brand Craftsmanship & Purity Promise",
+      route: "www.xivi.in/about",
+      description: "Story of artisanal silversmithing, BIS hallmarking certification, and customer satisfaction guarantee.",
+      image: xiviStory,
+      device: "desktop",
+    },
+  ],
+  "launch-close": [
+    {
+      label: "Campaign Landing & Offer Hero",
+      route: "www.launchandclose.com/",
+      description: "Direct-response landing architecture designed for B2B executives and enterprise tech buyers.",
+      image: launchCloseHero,
+      device: "desktop",
+    },
+    {
+      label: "Sales Pipeline & Demo Scheduling",
+      route: "www.launchandclose.com/schedule",
+      description: "High-intent lead qualification matrix and calendar booking flow for enterprise consultations.",
+      image: launchClosePipeline,
+      device: "desktop",
+    },
+    {
+      label: "Client Case Studies & Video Reviews",
+      route: "www.launchandclose.com/case-studies",
+      description: "Social proof section highlighting real revenue increases, closing percentages, and client interviews.",
+      image: launchCloseReviews,
+      device: "desktop",
+    },
+    {
+      label: "Strategy Blueprint & Onboarding Roadmap",
+      route: "www.launchandclose.com/strategy",
+      description: "Step-by-step roadmap demonstrating the 90-day closing acceleration program and deliverables.",
+      image: launchCloseStrategy,
+      device: "desktop",
+    },
+  ],
+  "lumi-lighting": [
+    {
+      label: "Lighting Catalogue Storefront",
+      route: "www.lumilighting.com/",
+      description: "Architectural lighting portal featuring clean typography, luminaire collections, and commercial project showcases.",
+      image: lumiHero,
+      device: "desktop",
+    },
+    {
+      label: "Bespoke Fixture Collections",
+      route: "www.lumilighting.com/collections",
+      description: "Visual directory of track lighting, recessed linear lights, and statement pendant luminaires.",
+      image: lumiCollection,
+      device: "desktop",
+    },
+    {
+      label: "Architectural Project Gallery",
+      route: "www.lumilighting.com/projects",
+      description: "Photography showcase of hospitality, luxury retail, and high-end residential installations.",
+      image: lumiCatalog,
+      device: "desktop",
+    },
+    {
+      label: "Technical Specs & Photometrics",
+      route: "www.lumilighting.com/specs",
+      description: "Downloadable IES files, beam angle specifications, CRI ratings, and CAD dimension drawings.",
+      image: lumiSpecs,
+      device: "desktop",
+    },
+    {
+      label: "Trade Quote & Consultation Portal",
+      route: "www.lumilighting.com/trade",
+      description: "Dedicated portal for architects, interior designers, and electrical contractors to request project quotes.",
+      image: lumiContact,
+      device: "desktop",
+    },
+  ],
+  "seek-buy-love": [
+    {
+      label: "Fashion Storefront & Seasonal Drops",
+      route: "www.seekbuylove.com/",
+      description: "Vibrant lifestyle apparel e-commerce experience designed for fast browsing and seasonal campaign discovery.",
+      image: seekBuyLoveStore,
+      device: "desktop",
+    },
+    {
+      label: "Trending Apparel & New Arrivals",
+      route: "www.seekbuylove.com/trending",
+      description: "Dynamic product grid with instant hover preview, color swatches, and size availability tags.",
+      image: seekBuyLoveTrending,
+      device: "desktop",
+    },
+    {
+      label: "Product Detail & Size Recommendation",
+      route: "www.seekbuylove.com/products/linen-co-ord",
+      description: "Editorial photography, fabric composition details, model measurements, and direct cart drawer.",
+      image: seekBuyLoveProduct,
+      device: "desktop",
+    },
+    {
+      label: "Fast Mobile Checkout & Payments",
+      route: "www.seekbuylove.com/checkout",
+      description: "One-click checkout with Apple Pay, Google Pay, UPI, and instant order tracking notifications.",
+      image: seekBuyLoveCheckout,
+      device: "desktop",
+    },
+    {
+      label: "Customer Lookbook & Community Reviews",
+      route: "www.seekbuylove.com/community",
+      description: "User-generated Instagram gallery featuring customer outfits, tagged styles, and verified buyer reviews.",
+      image: seekBuyLoveReviews,
+      device: "desktop",
+    },
+  ],
+};
+
 export const getProject = (slug?: string) => PROJECTS.find((project) => project.slug === slug);
 
 export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
   if (project.gallery && project.gallery.length > 0) {
     return project.gallery;
+  }
+
+  if (PROJECT_GALLERY_MAP[project.slug]) {
+    return PROJECT_GALLERY_MAP[project.slug];
   }
 
   const domain = project.website ? `www.${project.website}` : "www.clientdomain.com";

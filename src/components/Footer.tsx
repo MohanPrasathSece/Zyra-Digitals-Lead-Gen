@@ -16,11 +16,12 @@ const COMPANY_LINKS = [
   { to: "/about", label: "About Us" },
   { to: "/blogs", label: "Blog & Insights" },
   { to: "/contact", label: "Contact Us" },
+  { to: "/accessibility", label: "Accessibility" },
 ];
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0b1220] pb-12 pt-14 text-white sm:pt-16 border-t border-slate-800">
+    <footer className="bg-[#0b1220] pb-24 sm:pb-28 pt-14 text-white sm:pt-16 border-t border-slate-800">
       <div className="container mx-auto px-5 sm:px-6">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12 pb-12">
           {/* Brand & Contact Column */}
@@ -104,17 +105,41 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-slate-400 sm:flex-row">
-          <p>&copy; {new Date().getFullYear()} Zyra Digitals. All Rights Reserved.</p>
-          <div className="flex items-center gap-6">
-            <Link to="/privacy-policy" className="hover:text-slate-300 transition-colors">
+        {/* Bottom bar - Centered Legal Policies & Copyright */}
+        <div className="border-t border-white/10 pt-8 flex flex-col items-center justify-center text-center gap-4 text-xs text-slate-400">
+          <nav aria-label="Legal & Policies" className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-5 gap-y-2 text-xs text-slate-300 font-medium">
+            <Link to="/privacy-policy" className="hover:text-white transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms-of-use" className="hover:text-slate-300 transition-colors">
+            <span className="text-slate-600 hidden sm:inline" aria-hidden="true">•</span>
+            <Link to="/terms-of-use" className="hover:text-white transition-colors">
               Terms of Use
             </Link>
-          </div>
+            <span className="text-slate-600 hidden sm:inline" aria-hidden="true">•</span>
+            <Link to="/service-agreement" className="hover:text-white transition-colors">
+              Service Agreement
+            </Link>
+            <span className="text-slate-600 hidden sm:inline" aria-hidden="true">•</span>
+            <Link to="/refund-policy" className="hover:text-white transition-colors">
+              Refund &amp; Cancellation Policy
+            </Link>
+            <span className="text-slate-600 hidden sm:inline" aria-hidden="true">•</span>
+            <Link to="/disclaimer" className="hover:text-white transition-colors">
+              Disclaimer
+            </Link>
+            <span className="text-slate-600 hidden sm:inline" aria-hidden="true">•</span>
+            <Link to="/cookie-policy" className="hover:text-white transition-colors">
+              Cookie Policy
+            </Link>
+            <span className="text-slate-600 hidden sm:inline" aria-hidden="true">•</span>
+            <Link to="/accessibility" className="hover:text-white transition-colors">
+              Accessibility
+            </Link>
+          </nav>
+
+          <p className="text-slate-500 text-[11px] sm:text-xs">
+            &copy; {new Date().getFullYear()} Zyra Digitals. All Rights Reserved. • Coimbatore, Tamil Nadu, India.
+          </p>
         </div>
       </div>
     </footer>

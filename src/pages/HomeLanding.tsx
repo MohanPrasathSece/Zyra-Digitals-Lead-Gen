@@ -40,14 +40,15 @@ const services = [
 
 const websitePackages = [
   {
-    name: "Portfolio",
-    tag: "Portfolio Website",
+    name: "Professional",
+    tag: "Professional Website",
     price: "₹7,999",
     period: "onwards",
-    summary: "For freelancers, designers, clinics and personal brands",
+    summary: "For professionals, doctors, clinics and growing personal brands",
     features: [
       "Up to 5 pages",
       "Custom, mobile-first design",
+      "Unlimited revisions till delivery",
       "Project / work gallery",
       "Enquiry form with email alerts",
       "Basic on-page SEO",
@@ -64,6 +65,7 @@ const websitePackages = [
     features: [
       "Up to 12 pages",
       "Conversion-focused layouts",
+      "Unlimited revisions till delivery",
       "Service pages + landing pages",
       "Blog & content setup",
       "Full on-page SEO & schema",
@@ -73,14 +75,15 @@ const websitePackages = [
     featured: true,
   },
   {
-    name: "E-commerce",
-    tag: "E-commerce Website",
+    name: "Corporate",
+    tag: "Corporate Website",
     price: "₹19,999",
     period: "onwards",
-    summary: "For brands ready to sell products online",
+    summary: "For established businesses, corporate firms & online stores",
     features: [
       "Unlimited products & categories",
       "Secure payment gateway",
+      "Unlimited revisions till delivery",
       "Cart, checkout & order emails",
       "Product SEO & fast loading",
       "Shipping & tax configuration",
@@ -91,12 +94,30 @@ const websitePackages = [
 ];
 
 const whyPoints = [
-  "Fast turnarounds with clear milestones",
-  "Transparent pricing with no hidden charges",
-  "Direct communication with the founder",
-  "Built with clean, modern code - no slow templates",
-  "Free quote and website audit within 1 hour",
-  "Ongoing support after launch",
+  {
+    title: "Affordable Pricing",
+    desc: "Starting from ₹7,999 with no hidden charges",
+  },
+  {
+    title: "Creative Designs",
+    desc: "Custom, modern layouts built around your goals",
+  },
+  {
+    title: "On-Time Delivery",
+    desc: "Fast turnarounds with clear project milestones",
+  },
+  {
+    title: "Quality Work",
+    desc: "Clean, modern code engineered for speed & SEO",
+  },
+  {
+    title: "Client Satisfaction",
+    desc: "Unlimited revisions till delivery for all websites",
+  },
+  {
+    title: "Reliable Support",
+    desc: "Direct communication with founder & ongoing care",
+  },
 ];
 
 const HomeLanding = () => (
@@ -142,6 +163,20 @@ const HomeLanding = () => (
                 >
                   View Our Work
                 </Link>
+              </div>
+
+              <div className="mt-8 flex flex-wrap items-center gap-3 text-xs font-medium text-sky-200">
+                <span className="inline-flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Starts from ₹7,999
+                </span>
+                <span>•</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Unlimited revisions till delivery
+                </span>
+                <span>•</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> 1-Hour Guaranteed Reply
+                </span>
               </div>
             </div>
           </FadeInView>
@@ -330,16 +365,18 @@ const HomeLanding = () => (
     <section className="py-16 sm:py-20 bg-gradient-to-br from-blue-950 to-blue-700">
       <div className="container mx-auto px-5 sm:px-6">
         <FadeInView>
-          <div className="max-w-2xl mx-auto text-center mb-12">
-            <h2 className="text-white">Why Work With Us?</h2>
+          <div className="max-w-2xl mx-auto text-center mb-10 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Why Work With Us?</h2>
           </div>
         </FadeInView>
         <div className="grid sm:grid-cols-2 gap-4 sm:gap-5 max-w-4xl mx-auto">
-          {whyPoints.map((point, index) => (
-            <FadeInView key={point} delay={index * 0.06} className="h-full">
-              <div className="flex h-full items-center gap-3 rounded-xl bg-white/10 p-4 sm:p-5 ring-1 ring-white/15">
+          {whyPoints.map((item, index) => (
+            <FadeInView key={item.title} delay={index * 0.05} className="h-full">
+              <div className="flex h-full items-center gap-3.5 rounded-2xl bg-white/10 p-4 sm:p-5 ring-1 ring-white/15 backdrop-blur-xs transition-colors hover:bg-white/[0.14]">
                 <CheckCircle2 size={20} className="shrink-0 text-sky-200" />
-                <p className="text-sm font-medium text-white sm:text-base">{point}</p>
+                <p className="text-sm font-medium text-white sm:text-base leading-snug">
+                  <span className="font-bold text-white">{item.title}</span> – {item.desc}
+                </p>
               </div>
             </FadeInView>
           ))}

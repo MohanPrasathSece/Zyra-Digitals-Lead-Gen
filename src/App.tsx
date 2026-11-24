@@ -64,6 +64,11 @@ const App = () => (
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/privacy-policy" element={<LegalPage />} />
                   <Route path="/terms-of-use" element={<LegalPage />} />
+                  <Route path="/service-agreement" element={<LegalPage />} />
+                  <Route path="/refund-policy" element={<LegalPage />} />
+                  <Route path="/refund-and-cancellation-policy" element={<LegalPage />} />
+                  <Route path="/disclaimer" element={<LegalPage />} />
+                  <Route path="/cookie-policy" element={<LegalPage />} />
                   <Route path="/accessibility" element={<LegalPage />} />
                   {/* Service and location landing pages: flat, root-level URLs.
                       Placed last so the fixed routes above always win. */}

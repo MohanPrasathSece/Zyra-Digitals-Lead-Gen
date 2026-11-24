@@ -28,6 +28,10 @@ export const generalFaqs = [
 
 export const serviceFaqs = [
   {
+    q: "How many revisions do I get on my website design?",
+    a: "We provide unlimited revisions till delivery for websites. You can request adjustments to text, images, colour schemes, layout structures, and design elements until the project is delivered and live.",
+  },
+  {
     q: "Do you build responsive, mobile-friendly websites?",
     a: "Always. We design mobile-first, because most of your visitors will browse on a phone. Every site we deliver is fast, responsive and tested across mobile, tablet and desktop.",
   },

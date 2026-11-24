@@ -42,6 +42,7 @@ export default defineConfig(({ mode }) => ({
     },
     assetsInlineLimit: 4096,
   },
+  assetsInclude: ["**/*.PNG", "**/*.JPG", "**/*.JPEG", "**/*.WEBP"],
   plugins: [react()],
   resolve: {
     alias: {

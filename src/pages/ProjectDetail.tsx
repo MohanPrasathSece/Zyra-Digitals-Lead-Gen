@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   ArrowLeft,
@@ -18,7 +19,10 @@ import {
   BarChart3,
   Eye,
   LineChart,
+  Maximize2,
+  X,
 } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import FadeInView from "@/components/FadeInView";
 import CTASection from "@/components/CTASection";
 import SEO from "@/components/SEO";
@@ -48,6 +52,7 @@ const ProjectDetail = () => {
   const related = getRelatedProjects(project, 3);
 
   const categoryLabel = PROJECT_CATEGORY_LABELS[project.category] || project.category;
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string; label: string } | null>(null);
 
   const breadcrumbs = [
     { name: "Home", path: "/" },
@@ -210,16 +215,36 @@ const ProjectDetail = () => {
                     </div>
 
                     {/* Screenshot Display or Placeholder */}
-                    <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                    <div
+                      onClick={() =>
+                        hasRealImage &&
+                        setLightboxImage({
+                          src: slot.image!,
+                          alt: `${project.name} - ${slot.label}`,
+                          label: slot.label,
+                        })
+                      }
+                      className={`relative aspect-[16/10] overflow-hidden bg-slate-100 ${
+                        hasRealImage ? "cursor-zoom-in" : ""
+                      }`}
+                    >
                       {hasRealImage ? (
-                        <img
-                          src={slot.image}
-                          alt={`${project.name} - ${slot.label}`}
-                          loading="lazy"
-                          className={`h-full w-full object-cover object-top ${
-                            slot.imageScale || project.imageScale ? "scale-[1.075]" : ""
-                          }`}
-                        />
+                        <>
+                          <img
+                            src={slot.image}
+                            alt={`${project.name} - ${slot.label}`}
+                            loading="lazy"
+                            className={`h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03] ${
+                              slot.imageScale || project.imageScale ? "scale-[1.075]" : ""
+                            }`}
+                          />
+                          {/* Hover Overlay */}
+                          <div className="absolute inset-0 bg-slate-900/0 transition-colors group-hover:bg-slate-900/25 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-900/85 px-3 py-1 text-xs font-semibold text-white shadow-lg backdrop-blur-xs">
+                              <Maximize2 size={13} /> View Full Layout
+                            </span>
+                          </div>
+                        </>
                       ) : (
                         <div className="relative flex h-full w-full flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-blue-50/70 via-slate-50 to-indigo-50/40">
                           {/* Mockup Wireframe Graphic */}
@@ -245,7 +270,7 @@ const ProjectDetail = () => {
                       )}
 
                       {/* Corner Badge */}
-                      <div className="absolute top-3 left-3">
+                      <div className="absolute top-3 left-3 pointer-events-none">
                         <span className="rounded-md bg-white/95 px-2 py-0.5 text-[11px] font-bold text-slate-700 shadow-xs backdrop-blur-xs">
                           Page {index + 1}
                         </span>
@@ -262,7 +287,7 @@ const ProjectDetail = () => {
                       </p>
                       <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-primary">
                         <span>{hasRealImage ? "Verified Screenshot" : "Ready for Photo Upload"}</span>
-                        <span className="text-slate-400 font-normal">Page {index + 1} of 6</span>
+                        <span className="text-slate-400 font-normal">Page {index + 1} of {gallery.length}</span>
                       </div>
                     </div>
                   </div>
@@ -702,6 +727,26 @@ const ProjectDetail = () => {
         buttonText="Get a Free Proposal"
         to="/contact"
       />
+
+      {/* Lightbox Dialog for Full Resolution Layout View */}
+      <Dialog open={!!lightboxImage} onOpenChange={() => setLightboxImage(null)}>
+        <DialogContent className="max-w-5xl w-[95vw] p-2 sm:p-4 bg-slate-950/95 border-slate-800 text-white overflow-hidden">
+          <DialogHeader className="px-2 pt-2 pb-1">
+            <DialogTitle className="text-sm sm:text-base font-semibold text-slate-200">
+              {lightboxImage?.label || project.name}
+            </DialogTitle>
+          </DialogHeader>
+          {lightboxImage && (
+            <div className="relative max-h-[80vh] overflow-y-auto rounded-lg bg-slate-900/50 p-1">
+              <img
+                src={lightboxImage.src}
+                alt={lightboxImage.alt}
+                className="w-full h-auto object-contain rounded-md"
+              />
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

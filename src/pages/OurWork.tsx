@@ -12,7 +12,20 @@ import {
   PROJECT_CATEGORY_LABELS,
   type ProjectCategory,
 } from "@/lib/projects";
-import { TrendingUp, Target, Smile, ExternalLink, ArrowRight, Sparkles } from "lucide-react";
+import {
+  TrendingUp,
+  Target,
+  Smile,
+  ExternalLink,
+  ArrowRight,
+  Sparkles,
+  BadgePercent,
+  Palette,
+  Clock,
+  ShieldCheck,
+  ThumbsUp,
+  Headphones,
+} from "lucide-react";
 
 const CATEGORY_ORDER: ProjectCategory[] = ["Dental", "Healthcare", "Ecommerce", "Business"];
 
@@ -105,22 +118,52 @@ const OurWork = () => {
       <section className="py-20 bg-card">
         <div className="container mx-auto px-5 sm:px-6">
           <FadeInView>
-            <div className="max-w-3xl mx-auto text-center">
+            <div className="max-w-5xl mx-auto text-center">
               <p className="text-base font-semibold text-primary uppercase tracking-wider mb-3">Why Work With Us</p>
-              <h2 className="text-foreground mb-6">What drives every project</h2>
-              <div className="grid sm:grid-cols-3 gap-6">
+              <h2 className="text-foreground mb-4">What Drives Every Project We Build</h2>
+              <p className="text-muted text-base max-w-2xl mx-auto mb-10">
+                We combine creative craft with dependable engineering so your website turns clicks into long-term clients.
+              </p>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
                 {[
-                  { icon: Target, title: "Results First", desc: "We measure success by the leads, calls and sales your website generates - not just how it looks." },
-                  { icon: TrendingUp, title: "Built to Rank", desc: "Every website is optimised for search engines so the right customers can actually find you." },
-                  { icon: Smile, title: "Easy to Work With", desc: "Clear communication, honest timelines and support you can rely on - online, wherever you are." },
+                  {
+                    icon: BadgePercent,
+                    title: "Affordable Pricing",
+                    desc: "Clear upfront quotes starting from ₹7,999 with zero hidden fees and full cost transparency.",
+                  },
+                  {
+                    icon: Palette,
+                    title: "Creative Designs",
+                    desc: "Custom, modern UI/UX layouts tailored around your brand identity to convert visitors into enquiries.",
+                  },
+                  {
+                    icon: Clock,
+                    title: "On-Time Delivery",
+                    desc: "Disciplined milestone schedules and rapid execution so your website launches without delays.",
+                  },
+                  {
+                    icon: ShieldCheck,
+                    title: "Quality Work",
+                    desc: "High-performance code built for lightning load times, responsive perfection, and built-in Google SEO.",
+                  },
+                  {
+                    icon: ThumbsUp,
+                    title: "Client Satisfaction",
+                    desc: "Unlimited revisions till delivery on all websites until you are completely confident in the result.",
+                  },
+                  {
+                    icon: Headphones,
+                    title: "Reliable Support",
+                    desc: "Direct communication with the founder, guaranteed 1-hour replies, and ongoing care after launch.",
+                  },
                 ].map((value) => (
                   <FadeInView key={value.title}>
-                    <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-md h-full">
-                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                        <value.icon size={22} className="text-primary" />
+                    <div className="bg-white rounded-2xl p-6 sm:p-7 shadow-xs ring-1 ring-slate-200/80 h-full flex flex-col hover:shadow-md transition-shadow">
+                      <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4 text-primary">
+                        <value.icon size={22} />
                       </div>
-                      <h3 className="font-semibold text-foreground mb-3 text-base sm:text-lg">{value.title}</h3>
-                      <p className="text-muted text-base">{value.desc}</p>
+                      <h3 className="font-bold text-foreground mb-2 text-base sm:text-lg">{value.title}</h3>
+                      <p className="text-muted text-xs sm:text-sm leading-relaxed flex-1">{value.desc}</p>
                     </div>
                   </FadeInView>
                 ))}

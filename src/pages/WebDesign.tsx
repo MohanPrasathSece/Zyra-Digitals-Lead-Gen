@@ -46,14 +46,15 @@ const websiteTypes = [
 
 const packages = [
   {
-    name: "Portfolio",
-    tag: "Portfolio Website",
+    name: "Professional",
+    tag: "Professional Website",
     price: "₹7,999",
     period: "onwards",
-    summary: "For freelancers, designers and personal brands",
+    summary: "For freelancers, professionals and personal brands",
     features: [
       "Up to 5 pages",
       "Custom, mobile-first design",
+      "Unlimited revisions till delivery",
       "Project / work gallery",
       "Enquiry form with email alerts",
       "Basic on-page SEO",
@@ -70,6 +71,7 @@ const packages = [
     features: [
       "Up to 12 pages",
       "Conversion-focused layouts",
+      "Unlimited revisions till delivery",
       "Service pages + landing pages",
       "Blog & content setup",
       "Full on-page SEO & schema",
@@ -79,14 +81,15 @@ const packages = [
     featured: true,
   },
   {
-    name: "E-commerce",
-    tag: "E-commerce Website",
+    name: "Corporate",
+    tag: "Corporate Website",
     price: "₹19,999",
     period: "onwards",
-    summary: "For brands ready to sell online",
+    summary: "For established businesses, corporate firms & online stores",
     features: [
       "Unlimited products & categories",
       "Secure payment gateway",
+      "Unlimited revisions till delivery",
       "Cart, checkout & order emails",
       "Product SEO & fast loading",
       "Shipping & tax configuration",
@@ -96,7 +99,12 @@ const packages = [
   },
 ];
 
-const checklist = ["Conversion-focused layouts & CTAs", "SEO-friendly structure and content", "Guaranteed fast, secure, mobile-first build"];
+const checklist = [
+  "Conversion-focused layouts & CTAs",
+  "SEO-friendly structure and content",
+  "Guaranteed fast, secure, mobile-first build",
+  "Unlimited revisions till delivery",
+];
 
 const WebDesign = () => (
   <div>
@@ -114,9 +122,9 @@ const WebDesign = () => (
           serviceType: "Website design and development",
           path: "/web-design",
           offers: [
-            { name: "Portfolio Website", price: "7999" },
+            { name: "Professional Website", price: "7999" },
             { name: "Business Website", price: "11999" },
-            { name: "E-commerce Website", price: "19999" },
+            { name: "Corporate Website", price: "19999" },
           ],
         }),
         faqSchema(serviceFaqs),
@@ -124,7 +132,7 @@ const WebDesign = () => (
     />
     <PageBanner
       image={PAGE_BANNERS.website}
-      title="Website Design in Coimbatore"
+      title={<span className="sm:whitespace-nowrap">Website Design in Coimbatore</span>}
       subtitle="Portfolio, business, e-commerce, SaaS and landing page websites - designed for businesses in Coimbatore and across India to turn visitors into enquiries."
       badge="Web Design & Development"
     />
@@ -164,7 +172,7 @@ const WebDesign = () => (
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary sm:text-sm">Website Packages</p>
             <h2 className="mb-4 text-foreground">Three packages, transparent starting prices</h2>
             <p className="text-muted">
-              Final quote is confirmed after a free consultation - based on your pages, features and content.
+              All website packages include unlimited revisions till delivery, mobile-first responsiveness, and full ownership handover.
             </p>
           </div>
         </FadeInView>

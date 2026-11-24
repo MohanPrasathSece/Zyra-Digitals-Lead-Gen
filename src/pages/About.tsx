@@ -7,7 +7,8 @@ import LeadForm from "@/components/LeadForm";
 import SEO from "@/components/SEO";
 import { SITE } from "@/lib/site";
 import { PAGE_BANNERS } from "@/lib/banners";
-import founderImage from "@/assets/zyra/hero-1.jpg";
+import storyImage from "@/assets/zyra/hero-1.jpg";
+import founderPhoto from "@/assets/founder-image.webp";
 
 const capabilities = [
   {
@@ -31,12 +32,30 @@ const capabilities = [
 ];
 
 const principles = [
-  "You deal directly with the person building your website.",
-  "Every build starts from your business goals, not a template.",
-  "Guaranteed mobile-first and fast by default, on every screen size.",
-  "SEO fundamentals are built in, not sold as an afterthought.",
-  "Guaranteed clear, honest timelines and communication throughout.",
-  "Support continues after your website goes live.",
+  {
+    title: "Affordable Pricing",
+    desc: "Fixed starting packages from ₹7,999 with zero hidden charges or unexpected agency markups.",
+  },
+  {
+    title: "Creative Designs",
+    desc: "Custom UI layouts designed around your brand's unique positioning and conversion goals.",
+  },
+  {
+    title: "On-Time Delivery",
+    desc: "Strict project milestones, rapid execution, and clear communication from day one.",
+  },
+  {
+    title: "Quality Work",
+    desc: "Modern, clean codebase built for lightning speed, mobile perfection, and Google search rankings.",
+  },
+  {
+    title: "Client Satisfaction",
+    desc: "Unlimited revisions till delivery on all websites until you are completely thrilled with the result.",
+  },
+  {
+    title: "Reliable Support",
+    desc: "Direct communication with the founder and prompt technical guidance even after your site is live.",
+  },
 ];
 
 const About = () => (
@@ -79,8 +98,8 @@ const About = () => (
           <FadeInView delay={0.15}>
             <div className="overflow-hidden rounded-2xl shadow-medical-lg">
               <img
-                src={founderImage}
-                alt="Zyra Digitals website design work"
+                src={storyImage}
+                alt="Zyra Digitals website design studio"
                 loading="lazy"
                 className="h-[320px] w-full object-cover"
               />
@@ -93,23 +112,32 @@ const About = () => (
     {/* Founder */}
     <section id="founder" className="py-16 sm:py-20 bg-blue-50/80">
       <div className="container mx-auto px-6">
-        <div className="mx-auto grid max-w-5xl items-center gap-12 lg:grid-cols-[1fr_1.2fr]">
+        <div className="mx-auto grid max-w-5xl items-center gap-10 sm:gap-14 lg:grid-cols-[340px_1fr]">
           <FadeInView>
-            <div className="h-32 w-32 rounded-2xl bg-primary/10 flex items-center justify-center">
-              <span className="text-4xl font-extrabold text-primary">MP</span>
+            <div className="relative mx-auto max-w-sm overflow-hidden rounded-2xl shadow-medical-lg ring-1 ring-slate-200/80 bg-white group">
+              <img
+                src={founderPhoto}
+                alt={`${SITE.founderName} - Founder of Zyra Digitals`}
+                loading="lazy"
+                className="w-full aspect-[3/4] object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <p className="text-base font-bold text-white drop-shadow-sm">{SITE.founderName}</p>
+                <p className="text-xs text-sky-200 font-medium">Founder &amp; Principal Web Architect</p>
+              </div>
             </div>
           </FadeInView>
           <FadeInView delay={0.1}>
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary sm:text-sm">Founder</p>
             <h2 className="mb-2 text-foreground">{SITE.founderName}</h2>
-            <p className="mb-5 font-medium text-muted">Founder, Zyra Digitals</p>
+            <p className="mb-5 font-semibold text-primary">Founder &amp; Lead Web Developer, Zyra Digitals</p>
             <p className="mb-4 leading-relaxed text-muted">
-              Zyra Digitals was founded by {SITE.founderName} to give businesses in Coimbatore access to
-              professional website design and SEO without agency overheads or confusing processes.
+              Zyra Digitals was founded by {SITE.founderName} to give businesses in Coimbatore and across India access to
+              high-calibre website design, custom software engineering, and Google SEO without agency overheads or confusing communication.
             </p>
             <p className="leading-relaxed text-muted">
-              He works directly with every client - planning the website, designing and developing it, and
-              making sure it is fast, mobile-friendly and ready to be found on Google.
+              He works directly with every client from day one—architecting high-converting layouts, writing clean modern code, ensuring sub-second performance, and positioning your business to win organic enquiries on Google.
             </p>
             <p className="mt-5 flex items-center gap-2 text-sm font-medium text-foreground">
               <MapPin size={16} className="text-primary" />
@@ -156,16 +184,20 @@ const About = () => (
       <div className="container mx-auto px-6">
         <FadeInView>
           <div className="mx-auto mb-12 max-w-2xl text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary sm:text-sm">How We Work</p>
-            <h2 className="mb-4 text-foreground">Simple, direct and accountable</h2>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary sm:text-sm">Why Work With Us</p>
+            <h2 className="mb-4 text-foreground">Our 6 Core Commitments to Every Client</h2>
+            <p className="text-muted text-sm sm:text-base">Built to give your business high-calibre digital execution without agency overheads.</p>
           </div>
         </FadeInView>
-        <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
+        <div className="mx-auto grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {principles.map((point, i) => (
-            <FadeInView key={point} delay={i * 0.06}>
-              <div className="flex items-start gap-3 rounded-xl bg-blue-50/80 p-4 sm:p-5 ring-1 ring-primary/10">
-                <CheckCircle2 size={20} className="mt-0.5 shrink-0 text-primary" />
-                <p className="text-sm font-medium text-foreground sm:text-base">{point}</p>
+            <FadeInView key={point.title} delay={i * 0.06}>
+              <div className="flex flex-col h-full rounded-2xl bg-blue-50/70 p-5 sm:p-6 ring-1 ring-primary/10 transition-shadow hover:shadow-medical">
+                <div className="flex items-center gap-2.5 mb-2.5">
+                  <CheckCircle2 size={18} className="shrink-0 text-primary" />
+                  <h3 className="font-bold text-foreground text-base sm:text-lg">{point.title}</h3>
+                </div>
+                <p className="text-xs sm:text-sm leading-relaxed text-muted flex-1">{point.desc}</p>
               </div>
             </FadeInView>
           ))}

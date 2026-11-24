@@ -91,7 +91,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         t: "p",
-        c: "At Zyra Digitals, our own published starting prices are **₹7,999 for a portfolio website**, **₹11,999 for a business website** and **₹19,999 for an e-commerce website**, excluding domain and hosting. Those numbers are deliberately transparent so you can compare us with anyone else in Coimbatore before you enquire.",
+        c: "At Zyra Digitals, our own published starting prices are **₹7,999 for a professional website**, **₹11,999 for a business website** and **₹19,999 for a corporate website**, excluding domain and hosting. Those numbers are deliberately transparent so you can compare us with anyone else in Coimbatore before you enquire.",
       },
       {
         t: "note",

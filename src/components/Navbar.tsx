@@ -9,8 +9,33 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
 
-  const isActive = (to: string, hasChildren?: boolean) =>
-    hasChildren ? location.pathname.startsWith(to) : location.pathname === to;
+  const isActive = (to: string, hasChildren?: boolean) => {
+    const currentPath = location.pathname;
+    if (to === "/our-work") {
+      return (
+        currentPath === "/our-work" ||
+        currentPath.startsWith("/our-work/") ||
+        currentPath.startsWith("/projects/")
+      );
+    }
+    if (to === "/blogs") {
+      return (
+        currentPath === "/blogs" ||
+        currentPath.startsWith("/blogs/") ||
+        currentPath.startsWith("/blog/")
+      );
+    }
+    if (to === "/industries") {
+      return (
+        currentPath === "/industries" ||
+        currentPath.startsWith("/industries/")
+      );
+    }
+    if (to === "/web-design") {
+      return currentPath === "/web-design" || currentPath === "/branding" || currentPath === "/logo-design";
+    }
+    return hasChildren ? currentPath.startsWith(to) : currentPath === to;
+  };
 
   const handleNavClick = (to: string) => {
     if (location.pathname === to) {

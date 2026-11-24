@@ -93,6 +93,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       "Secure checkout with Indian payment gateways",
       "Cart, tax and shipping rules set up",
       "Mobile-first product and category pages",
+      "Unlimited revisions till delivery",
       "Order confirmation emails to buyers",
       "Basic on-page SEO for product pages",
     ],
@@ -115,6 +116,10 @@ export const SERVICE_PAGES: ServicePage[] = [
       },
     ],
     faqs: [
+      {
+        q: "How many revisions do I get during the build?",
+        a: "We provide unlimited revisions till delivery for websites. We adjust design details, banners, colours, copy, and layout elements until you are fully satisfied before the store goes live.",
+      },
       {
         q: "Which payment gateways can you integrate?",
         a: "We usually set up popular Indian gateways such as Razorpay, PayU or Cashfree, and can integrate others if you already have a preference. The gateway charges are set by the provider, not by us. We will confirm what fits your business before the build begins.",
@@ -152,6 +157,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       "Audit of your current website and pages",
       "Retention of existing URLs and content",
       "Fresh, modern layout on every page",
+      "Unlimited revisions till delivery",
       "Faster loading images and scripts",
       "Mobile-friendly design throughout",
       "Redirect plan for any changed URLs",
@@ -212,6 +218,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       "Single-page layout focused on one offer",
       "Headline and section copy guidance",
       "Lead form with email notifications",
+      "Unlimited revisions till delivery",
       "Click-to-call and WhatsApp buttons",
       "Mobile-first responsive design",
       "Basic on-page SEO and page title",
@@ -631,6 +638,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     included: [
       "Custom design built on WordPress",
       "Simple editing workflow for your team",
+      "Unlimited revisions till delivery",
       "A sensible, minimal plugin setup",
       "Home, service and contact pages",
       "Basic on-page SEO setup",
