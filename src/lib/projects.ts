@@ -1168,11 +1168,11 @@ export const getProject = (slug?: string) => PROJECTS.find((project) => project.
 
 export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
   if (project.gallery && project.gallery.length > 0) {
-    return project.gallery;
+    return project.gallery.filter((item) => Boolean(item.image));
   }
 
   if (PROJECT_GALLERY_MAP[project.slug]) {
-    return PROJECT_GALLERY_MAP[project.slug];
+    return PROJECT_GALLERY_MAP[project.slug].filter((item) => Boolean(item.image));
   }
 
   const domain = project.website ? `www.${project.website}` : "www.clientdomain.com";
@@ -1294,23 +1294,25 @@ export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
         },
       ];
 
-      return filtered.map(([filePath, imageUrl], idx) => {
-        const config = slotConfigs[idx] || {
-          label: `Extended Page View ${idx + 1}`,
-          route: `${domain}/view-${idx + 1}`,
-          description: `Custom engineered interface element and interactive workflow for ${project.name}.`,
-          device: "desktop" as const,
-        };
+      return filtered
+        .map(([filePath, imageUrl], idx) => {
+          const config = slotConfigs[idx] || {
+            label: `Extended Page View ${idx + 1}`,
+            route: `${domain}/view-${idx + 1}`,
+            description: `Custom engineered interface element and interactive workflow for ${project.name}.`,
+            device: "desktop" as const,
+          };
 
-        return {
-          label: config.label,
-          route: config.route,
-          description: config.description,
-          image: imageUrl,
-          imageScale: project.imageScale,
-          device: config.device,
-        };
-      });
+          return {
+            label: config.label,
+            route: config.route,
+            description: config.description,
+            image: imageUrl,
+            imageScale: project.imageScale,
+            device: config.device,
+          };
+        })
+        .filter((item) => Boolean(item.image));
     }
   }
 
@@ -1322,36 +1324,6 @@ export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
       image: project.image,
       imageScale: project.imageScale,
       device: "desktop",
-    },
-    {
-      label: "About Practice & Credibility Architecture",
-      route: `${domain}/about`,
-      description: "Trust-building storytelling highlighting doctor/founder credentials, clinic heritage, certifications, and customer reassurance.",
-      device: "desktop",
-    },
-    {
-      label: "Services & Solution Matrix",
-      route: `${domain}/services`,
-      description: "Comprehensive breakdown of key services, individual treatment guides, transparent pricing indicators, and FAQ schema integration.",
-      device: "desktop",
-    },
-    {
-      label: "Clinical Cases & Social Proof Gallery",
-      route: `${domain}/gallery`,
-      description: "Visual evidence of previous client transformations, verified Google review highlights, and video case summaries.",
-      device: "desktop",
-    },
-    {
-      label: "Frictionless Booking & Lead Capture Funnel",
-      route: `${domain}/contact`,
-      description: "Multi-channel conversion page featuring quick forms, instant WhatsApp routing, click-to-call buttons, and Google Map sync.",
-      device: "desktop",
-    },
-    {
-      label: "Ultra-Fast Mobile View (iOS & Android)",
-      route: `${domain}/mobile`,
-      description: "Mobile-first responsive layout with sub-second LCP, thumb-friendly tap targets, sticky contact bar, and 100/100 Core Web Vitals score.",
-      device: "mobile",
     },
   ];
 };
