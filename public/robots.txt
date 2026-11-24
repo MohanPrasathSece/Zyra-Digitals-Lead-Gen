@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Search and answer-engine crawlers explicitly allowed (discoverability).
+# Training crawlers such as GPTBot / CCBot are intentionally NOT listed here,
+# so their access remains governed by "User-agent: *" above.
+
+User-agent: Googlebot
+Allow: /
+User-agent: Googlebot-Image
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://www.zyradigitals.com/sitemap.xml

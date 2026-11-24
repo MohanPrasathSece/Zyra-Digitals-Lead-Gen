@@ -1,0 +1,15 @@
+{
+  "short_name": "Zyra Digitals",
+  "name": "Zyra Digitals - Web Design, SEO & Branding Agency",
+  "icons": [
+    {
+      "src": "zyra-digitals-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#2563EB",
+  "background_color": "#ffffff"
+}

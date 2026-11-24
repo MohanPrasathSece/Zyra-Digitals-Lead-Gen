@@ -1,0 +1,42 @@
+import { Link } from "react-router-dom";
+import FadeInView from "@/components/FadeInView";
+import { PAGE_BANNERS } from "@/lib/banners";
+
+interface CTASectionProps {
+  title?: string;
+  subtitle?: string;
+  buttonText?: string;
+  to?: string;
+  image?: string;
+}
+
+const CTASection = ({
+  title = "Ready to grow your business online?",
+  subtitle = "Get a free website audit and a custom proposal built to bring you more enquiries and confirmed bookings.",
+  buttonText = "Get a Free Quote",
+  to = "/contact",
+  image = PAGE_BANNERS.website,
+}: CTASectionProps) => (
+  <section className="relative py-12 overflow-hidden">
+    <div className="absolute inset-0 z-0">
+      <img src={image} alt="Background" className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/60" />
+    </div>
+    
+    <div className="container relative z-10 mx-auto px-6 text-center">
+      <FadeInView>
+        <h2 className="text-white mb-4 tracking-tight">{title}</h2>
+        <p className="text-white/90 text-base sm:text-lg mb-8 max-w-2xl mx-auto leading-relaxed">{subtitle}</p>
+        <Link
+          to={to}
+          className="inline-flex items-center px-6 py-3 sm:px-8 sm:py-4 rounded-xl bg-white text-primary font-bold text-base sm:text-lg hover:bg-gray-100 active:scale-95 transition-all duration-300 shadow-xl"
+        >
+          {buttonText}
+        </Link>
+      </FadeInView>
+    </div>
+  </section>
+);
+
+export default CTASection;
