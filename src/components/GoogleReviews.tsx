@@ -68,7 +68,7 @@ const Stars = () => (
 );
 
 const GoogleReviews = () => (
-  <section className="overflow-hidden bg-blue-50 py-16 sm:py-20">
+  <section className="bg-blue-50 py-16 sm:py-20">
     <div className="container mx-auto px-5 sm:px-6">
       <div className="mx-auto mb-10 max-w-2xl text-center">
         <h2 className="text-foreground">What Our Clients Say</h2>
@@ -81,17 +81,12 @@ const GoogleReviews = () => (
       </div>
     </div>
 
-    {/* Single row scrolling right-to-left */}
-    <div className="relative w-full overflow-hidden">
-      {/* Subtle edge fades */}
-      <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-12 sm:w-28 bg-gradient-to-r from-blue-50 to-transparent" />
-      <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-12 sm:w-28 bg-gradient-to-l from-blue-50 to-transparent" />
-
-      <div className="animate-marquee-slow flex items-stretch gap-5 py-3">
-        {[...reviews, ...reviews].map((review, idx) => (
+    <div className="container mx-auto px-5 sm:px-6">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {reviews.map((review) => (
           <article
-            key={`${review.name}-${idx}`}
-            className="flex h-[280px] w-[310px] sm:w-[350px] shrink-0 flex-col rounded-2xl bg-card p-6 shadow-medical ring-1 ring-primary/10 transition-shadow hover:shadow-lg"
+            key={review.name}
+            className="flex h-full flex-col rounded-2xl bg-card p-6 shadow-medical ring-1 ring-primary/10"
           >
             <div className="flex items-center justify-between gap-3">
               <Stars />

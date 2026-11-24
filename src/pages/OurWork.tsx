@@ -154,4 +154,48 @@ const OurWork = () => {
       {/* Values Section */}
       <section className="py-20 bg-card">
         <div className="container mx-auto px-5 sm:px-6">
-      
+          <FadeInView>
+            <div className="max-w-3xl mx-auto text-center">
+              <p className="text-base font-semibold text-primary uppercase tracking-wider mb-3">Why Work With Us</p>
+              <h2 className="text-foreground mb-6">What drives every project</h2>
+              <div className="grid sm:grid-cols-3 gap-6">
+                {[
+                  { icon: Target, title: "Results First", desc: "We measure success by the leads, calls and sales your website generates - not just how it looks." },
+                  { icon: TrendingUp, title: "Built to Rank", desc: "Every website is optimised for search engines so the right customers can actually find you." },
+                  { icon: Smile, title: "Easy to Work With", desc: "Clear communication, honest timelines and support you can rely on - online, wherever you are." },
+                ].map((value) => (
+                  <FadeInView key={value.title}>
+                    <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-md h-full">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                        <value.icon size={22} className="text-primary" />
+                      </div>
+                      <h3 className="font-semibold text-foreground mb-3 text-base sm:text-lg">{value.title}</h3>
+                      <p className="text-muted text-base">{value.desc}</p>
+                    </div>
+                  </FadeInView>
+                ))}
+              </div>
+            </div>
+          </FadeInView>
+        </div>
+      </section>
+
+      {/* Lead generation form */}
+      <LeadForm
+        title="Planning a website for your business?"
+        subtitle="Tell us what you need and we will discuss a clear scope, timeline and quote."
+        buttonText="Request My Free Quote"
+        badge="Start Your Project"
+      />
+
+      <CTASection
+        title="Need a website for your business?"
+        subtitle="Get a free website audit and a proposal based on your goals."
+        buttonText="Get a Free Quote"
+        to="/contact"
+      />
+    </div>
+  );
+};
+
+export default OurWork;
