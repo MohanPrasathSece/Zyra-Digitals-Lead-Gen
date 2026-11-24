@@ -23,46 +23,38 @@ import theReportDeskCover from "@/assets/Portfolio_projects/the report desk - fr
 import eliteChainCover from "@/assets/Portfolio_projects/elite_chain-french crypto website/cover.webp";
 
 // Multi-page screenshot assets for comprehensive project galleries
-import achyutamAbout from "@/assets/Portfolio_projects/achyutam/about.webp";
 import achyutamShop from "@/assets/Portfolio_projects/achyutam/shop.webp";
-import achyutamProduct from "@/assets/Portfolio_projects/achyutam/product.webp";
+import achyutamProduct from "@/assets/Portfolio_projects/achyutam/image.png";
 import achyutamOurProducts from "@/assets/Portfolio_projects/achyutam/our products.webp";
-import achyutamCart from "@/assets/Portfolio_projects/achyutam/cart.webp";
-import achyutamPayment from "@/assets/Portfolio_projects/achyutam/payment .webp";
+import achyutamAbout from "@/assets/Portfolio_projects/achyutam/image copy.png";
+import achyutamCart from "@/assets/Portfolio_projects/achyutam/image copy 2.png";
+import achyutamPayment from "@/assets/Portfolio_projects/achyutam/cover.webp";
 
-import apexRevOpsCRM from "@/assets/Portfolio_projects/Apex RevOps/Screenshot 2026-10-06 143805.webp";
-import apexRevOpsAnalytics from "@/assets/Portfolio_projects/Apex RevOps/Screenshot 2026-10-06 143815.webp";
-import apexRevOpsFunnels from "@/assets/Portfolio_projects/Apex RevOps/Screenshot 2026-10-06 143851.webp";
-import apexRevOpsOutreach from "@/assets/Portfolio_projects/Apex RevOps/Screenshot 2026-10-06 143908.webp";
+import apexRevOpsCRM from "@/assets/Portfolio_projects/Apex RevOps/image.png";
+import apexRevOpsAnalytics from "@/assets/Portfolio_projects/Apex RevOps/image copy.png";
+import apexRevOpsFunnels from "@/assets/Portfolio_projects/Apex RevOps/image copy 2.png";
+import apexRevOpsOutreach from "@/assets/Portfolio_projects/Apex RevOps/image copy 3.png";
 
-import precisionOverview from "@/assets/Portfolio_projects/precision/precision.png";
 import precisionTech from "@/assets/Portfolio_projects/precision/image.png";
 import precisionReviews from "@/assets/Portfolio_projects/precision/image copy.png";
 import precisionTeam from "@/assets/Portfolio_projects/precision/image copy 2.png";
 import precisionBooking from "@/assets/Portfolio_projects/precision/image copy 3.png";
-import precisionLocation from "@/assets/Portfolio_projects/precision/image copy 4.png";
+
+import orchidTreatments from "@/assets/Portfolio_projects/orchid/image.png";
+import orchidTeam from "@/assets/Portfolio_projects/orchid/image copy.png";
+import orchidMission from "@/assets/Portfolio_projects/orchid/image copy 2.png";
+import orchidTestimonials from "@/assets/Portfolio_projects/orchid/image copy 3.png";
+import orchidFees from "@/assets/Portfolio_projects/orchid/image copy 4.png";
 
 import xiviCollection from "@/assets/Portfolio_projects/xivi/image.png";
 import xiviProductDetail from "@/assets/Portfolio_projects/xivi/Screenshot 2026-05-29 100215 copy.webp";
 import xiviCart from "@/assets/Portfolio_projects/xivi/Screenshot 2026-05-29 100230 copy.webp";
-import xiviStory from "@/assets/Portfolio_projects/xivi/Screenshot 2026-05-29 100309 copy.webp";
+import xiviStory from "@/assets/Portfolio_projects/xivi/image copy.png";
 
 import launchCloseHero from "@/assets/Portfolio_projects/launch&close/Screenshot 2026-10-06 141349.webp";
 import launchClosePipeline from "@/assets/Portfolio_projects/launch&close/Screenshot 2026-10-06 141419.webp";
 import launchCloseReviews from "@/assets/Portfolio_projects/launch&close/Screenshot 2026-10-06 141445.webp";
 import launchCloseStrategy from "@/assets/Portfolio_projects/launch&close/Screenshot 2026-10-06 141456.webp";
-
-import lumiHero from "@/assets/Portfolio_projects/lumi/lumi.png";
-import lumiCollection from "@/assets/Portfolio_projects/lumi/image.png";
-import lumiCatalog from "@/assets/Portfolio_projects/lumi/image copy.png";
-import lumiSpecs from "@/assets/Portfolio_projects/lumi/image copy 2.png";
-import lumiContact from "@/assets/Portfolio_projects/lumi/image copy 3.png";
-
-import seekBuyLoveStore from "@/assets/Portfolio_projects/seekbuylove/image.png";
-import seekBuyLoveTrending from "@/assets/Portfolio_projects/seekbuylove/image copy.png";
-import seekBuyLoveProduct from "@/assets/Portfolio_projects/seekbuylove/image copy 2.png";
-import seekBuyLoveCheckout from "@/assets/Portfolio_projects/seekbuylove/image copy 3.png";
-import seekBuyLoveReviews from "@/assets/Portfolio_projects/seekbuylove/image copy 4.png";
 
 export type ProjectCategory = "Dental" | "Healthcare" | "Ecommerce" | "Business";
 
@@ -594,40 +586,6 @@ export const PROJECTS: Project[] = [
     image: launchCloseHero,
     imageScale: true,
   },
-  {
-    slug: "lumi-lighting",
-    name: "Lumi Lighting",
-    category: "Ecommerce",
-    industry: "Architectural & Designer Lighting",
-    website: "lumilighting.com",
-    description:
-      "A sophisticated digital storefront and trade specification platform for architectural luminaires, designer fixtures, photometric data downloads, and commercial project quotations.",
-    features: [
-      "Architectural fixture catalogue",
-      "Downloadable IES & photometric specs",
-      "Commercial contractor quote portal",
-      "Project installation showcase",
-    ],
-    image: lumiHero,
-    imageScale: true,
-  },
-  {
-    slug: "seek-buy-love",
-    name: "Seek Buy Love",
-    category: "Ecommerce",
-    industry: "Fashion & Lifestyle Apparel",
-    website: "seekbuylove.com",
-    description:
-      "A trend-driven fashion e-commerce destination with seamless collection browsing, interactive size guides, social lookbooks, and an ultra-fast mobile checkout experience.",
-    features: [
-      "Curated seasonal drop catalogue",
-      "Instant size & fit recommendations",
-      "Frictionless one-click mobile checkout",
-      "Community lookbook & verified reviews",
-    ],
-    image: seekBuyLoveStore,
-    imageScale: true,
-  },
 ];
 
 export const PROJECT_RANKINGS_MAP: Record<string, ProjectRanking[]> = {
@@ -925,19 +883,56 @@ export const PROJECT_METRICS_MAP: Record<string, ProjectMetric[]> = {
 };
 
 export const PROJECT_GALLERY_MAP: Record<string, ProjectGalleryItem[]> = {
+  "orchid-dental": [
+    {
+      label: "Home Page (Hero & Patient Welcome)",
+      route: "www.orchiddental.co.uk/",
+      description: "Welcoming clinical homepage with instant appointment booking CTAs, practice accreditation, and dental emergency care.",
+      image: orchidCover,
+      device: "desktop",
+    },
+    {
+      label: "Dental Treatments & Services",
+      route: "www.orchiddental.co.uk/treatments",
+      description: "Full directory of dental treatments including Invisalign, cosmetic dentistry, routine exams, and dental implants.",
+      image: orchidTreatments,
+      device: "desktop",
+    },
+    {
+      label: "Our Team & Dental Specialists",
+      route: "www.orchiddental.co.uk/team",
+      description: "Specialist dentist profiles, clinical qualifications, GDC accreditations, and gentle patient care philosophy.",
+      image: orchidTeam,
+      device: "desktop",
+    },
+    {
+      label: "About Us & Our Mission",
+      route: "www.orchiddental.co.uk/about",
+      description: "Our Mission: Guided by deep commitment to patient care, sterile clinical standards, and gentle dentistry for the whole family.",
+      image: orchidMission,
+      device: "desktop",
+    },
+    {
+      label: "Patient Testimonials & Reviews",
+      route: "www.orchiddental.co.uk/testimonials",
+      description: "What our patients say: Verified patient feedback and reviews highlighting comfortable, friendly, and pain-free care.",
+      image: orchidTestimonials,
+      device: "desktop",
+    },
+    {
+      label: "Our Fees & Transparent Pricing",
+      route: "www.orchiddental.co.uk/fees",
+      description: "Transparent dental fee guide with no hidden costs, clear treatment fees, and flexible payment options.",
+      image: orchidFees,
+      device: "desktop",
+    },
+  ],
   "precision-root-canal": [
     {
       label: "Clinic Homepage (Hero & Trust Architecture)",
       route: "www.precisionrct.co.uk/",
       description: "Welcoming clinical design designed to alleviate patient anxiety and showcase specialist endodontic accreditation.",
       image: precisionCover,
-      device: "desktop",
-    },
-    {
-      label: "Specialist Treatment Overview",
-      route: "www.precisionrct.co.uk/treatments",
-      description: "In-depth treatment pages explaining microscopic root canal therapy, retreatment, and preventive dental hygiene.",
-      image: precisionOverview,
       device: "desktop",
     },
     {
@@ -966,13 +961,6 @@ export const PROJECT_GALLERY_MAP: Record<string, ProjectGalleryItem[]> = {
       route: "www.precisionrct.co.uk/book",
       description: "Interactive calendar booking system allowing emergency and routine patients to schedule appointments instantly.",
       image: precisionBooking,
-      device: "desktop",
-    },
-    {
-      label: "Clinic Location & Patient Parking Map",
-      route: "www.precisionrct.co.uk/contact",
-      description: "Interactive transit map, parking instructions, and direct emergency call buttons for urgent inquiries.",
-      image: precisionLocation,
       device: "desktop",
     },
   ],
@@ -1131,80 +1119,49 @@ export const PROJECT_GALLERY_MAP: Record<string, ProjectGalleryItem[]> = {
       device: "desktop",
     },
   ],
-  "lumi-lighting": [
-    {
-      label: "Lighting Catalogue Storefront",
-      route: "www.lumilighting.com/",
-      description: "Architectural lighting portal featuring clean typography, luminaire collections, and commercial project showcases.",
-      image: lumiHero,
-      device: "desktop",
-    },
-    {
-      label: "Bespoke Fixture Collections",
-      route: "www.lumilighting.com/collections",
-      description: "Visual directory of track lighting, recessed linear lights, and statement pendant luminaires.",
-      image: lumiCollection,
-      device: "desktop",
-    },
-    {
-      label: "Architectural Project Gallery",
-      route: "www.lumilighting.com/projects",
-      description: "Photography showcase of hospitality, luxury retail, and high-end residential installations.",
-      image: lumiCatalog,
-      device: "desktop",
-    },
-    {
-      label: "Technical Specs & Photometrics",
-      route: "www.lumilighting.com/specs",
-      description: "Downloadable IES files, beam angle specifications, CRI ratings, and CAD dimension drawings.",
-      image: lumiSpecs,
-      device: "desktop",
-    },
-    {
-      label: "Trade Quote & Consultation Portal",
-      route: "www.lumilighting.com/trade",
-      description: "Dedicated portal for architects, interior designers, and electrical contractors to request project quotes.",
-      image: lumiContact,
-      device: "desktop",
-    },
-  ],
-  "seek-buy-love": [
-    {
-      label: "Fashion Storefront & Seasonal Drops",
-      route: "www.seekbuylove.com/",
-      description: "Vibrant lifestyle apparel e-commerce experience designed for fast browsing and seasonal campaign discovery.",
-      image: seekBuyLoveStore,
-      device: "desktop",
-    },
-    {
-      label: "Trending Apparel & New Arrivals",
-      route: "www.seekbuylove.com/trending",
-      description: "Dynamic product grid with instant hover preview, color swatches, and size availability tags.",
-      image: seekBuyLoveTrending,
-      device: "desktop",
-    },
-    {
-      label: "Product Detail & Size Recommendation",
-      route: "www.seekbuylove.com/products/linen-co-ord",
-      description: "Editorial photography, fabric composition details, model measurements, and direct cart drawer.",
-      image: seekBuyLoveProduct,
-      device: "desktop",
-    },
-    {
-      label: "Fast Mobile Checkout & Payments",
-      route: "www.seekbuylove.com/checkout",
-      description: "One-click checkout with Apple Pay, Google Pay, UPI, and instant order tracking notifications.",
-      image: seekBuyLoveCheckout,
-      device: "desktop",
-    },
-    {
-      label: "Customer Lookbook & Community Reviews",
-      route: "www.seekbuylove.com/community",
-      description: "User-generated Instagram gallery featuring customer outfits, tagged styles, and verified buyer reviews.",
-      image: seekBuyLoveReviews,
-      device: "desktop",
-    },
-  ],
+};
+
+const projectAssetModules = import.meta.glob<string>(
+  "../assets/Portfolio_projects/**/*.{png,webp,jpg,PNG,WEBP,JPG}",
+  { eager: true, import: "default" }
+);
+
+export const PROJECT_FOLDER_MAP: Record<string, string> = {
+  "precision-root-canal": "precision",
+  "orchid-dental": "orchid",
+  "happy-dental-agency": "happy dental",
+  "career-upgrade-dental-nursing-school": "career upgrade",
+  "nirvana-spine-pain-clinic": "nirvana",
+  "phoenix-mediclinic": "phoenix",
+  "qualitech-connectronics": "qualitech",
+  "achyutam-organics": "achyutam",
+  "xivi": "xivi",
+  "amzcoz": "amzcoz",
+  "apex-revops": "Apex RevOps",
+  "autodigix": "autodigix",
+  "e-com-elevate-solutions": "e com elevate",
+  "the-asset-office": "theassetoffice",
+  "the-investor-office": "theinvestoroffice",
+  "elite-chain": "elite_chain-french crypto website",
+  "kpj-advocates": "kpj",
+  "filizat-metals": "filizat",
+  "skr-metal-suppliers": "skr",
+  "big-bang-tech-solutions": "big bang",
+  "chakrabyte-security": "chakrabyte",
+  "employee-management-saas": "employee management sys - saas",
+  "the-report-desk": "the report desk - french newspaper website",
+  "launch-close": "launch&close",
+};
+
+const getFilePriority = (fileName: string): number => {
+  const lower = fileName.toLowerCase();
+  if (lower.includes("cover") || lower.includes("141349")) return 0;
+  if (lower === "image.png") return 1;
+  if (lower === "image copy.png") return 2;
+  if (lower === "image copy 2.png") return 3;
+  if (lower === "image copy 3.png") return 4;
+  if (lower === "image copy 4.png") return 5;
+  return 6;
 };
 
 export const getProject = (slug?: string) => PROJECTS.find((project) => project.slug === slug);
@@ -1219,6 +1176,143 @@ export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
   }
 
   const domain = project.website ? `www.${project.website}` : "www.clientdomain.com";
+  const folder = PROJECT_FOLDER_MAP[project.slug];
+
+  if (folder) {
+    // Collect all matched images for this folder
+    const folderEntries = Object.entries(projectAssetModules).filter(([filePath]) => {
+      const normalized = filePath.replace(/\\/g, "/");
+      return normalized.includes(`/Portfolio_projects/${folder}/`);
+    });
+
+    // Check if cover.webp exists to exclude redundant uncompressed cover.png
+    const hasCoverWebp = folderEntries.some(([p]) => p.endsWith("/cover.webp"));
+
+    const filtered = folderEntries.filter(([p]) => {
+      if (hasCoverWebp && p.endsWith("/cover.png")) return false;
+      return true;
+    });
+
+    if (filtered.length > 0) {
+      // Sort in standard order: Cover -> image -> image copy -> image copy 2...
+      filtered.sort(([pathA], [pathB]) => {
+        const fileA = pathA.split("/").pop() || "";
+        const fileB = pathB.split("/").pop() || "";
+        const priorityA = getFilePriority(fileA);
+        const priorityB = getFilePriority(fileB);
+        if (priorityA !== priorityB) return priorityA - priorityB;
+        return fileA.localeCompare(fileB);
+      });
+
+      const isMedical = project.category === "Dental" || project.category === "Healthcare";
+      const isEcommerce = project.category === "Ecommerce";
+
+      const slotConfigs = [
+        {
+          label: isEcommerce
+            ? "Storefront Hero & Featured Drops"
+            : isMedical
+            ? "Home Page (Hero & Patient Welcome)"
+            : "Home Page (Hero & Value Proposition)",
+          route: `${domain}/`,
+          description: isEcommerce
+            ? "High-impact storefront hero showcasing featured collections, promotions, and brand value."
+            : isMedical
+            ? "Welcoming clinic hero with online appointment booking CTAs, certifications, and care overview."
+            : "High-impact conversion hero, clear value proposition, and frictionless CTA elements engineered to capture leads.",
+          device: "desktop" as const,
+        },
+        {
+          label: isEcommerce
+            ? "Product Catalogue & Collections Grid"
+            : isMedical
+            ? "Dental Treatments & Clinical Services"
+            : "Services & Capabilities Matrix",
+          route: `${domain}/services`,
+          description: isEcommerce
+            ? "Filterable product grid with instant preview, pricing, customer ratings, and category filters."
+            : isMedical
+            ? "Comprehensive breakdown of key treatments, clinical procedures, patient benefits, and specialist care."
+            : "Comprehensive breakdown of key services, individual offerings, transparent pricing indicators, and structured navigation.",
+          device: "desktop" as const,
+        },
+        {
+          label: isEcommerce
+            ? "Product Details & Sizing Guide"
+            : isMedical
+            ? "Our Team & Healthcare Specialists"
+            : "About Company & Leadership Team",
+          route: `${domain}/about`,
+          description: isEcommerce
+            ? "High-resolution photography, detailed specifications, sizing recommendations, and direct cart drawer."
+            : isMedical
+            ? "Doctor profiles, clinical qualifications, specialist certifications, and patient care commitment."
+            : "Executive background, company heritage, certifications, and customer trust badges.",
+          device: "desktop" as const,
+        },
+        {
+          label: isEcommerce
+            ? "Brand Heritage & Ethical Sourcing"
+            : isMedical
+            ? "Our Mission & Patient Care Philosophy"
+            : "Our Mission & Core Capabilities",
+          route: `${domain}/mission`,
+          description: isEcommerce
+            ? "Storytelling layout highlighting authentic sourcing, ethical craftsmanship, and quality guarantee."
+            : isMedical
+            ? "Our Mission: Guided by deep commitment to patient care, sterile clinical standards, and gentle treatment."
+            : "Corporate mission, quality assurance standards, and operational excellence.",
+          device: "desktop" as const,
+        },
+        {
+          label: isEcommerce
+            ? "Customer Reviews & Social Proof"
+            : isMedical
+            ? "Patient Testimonials & Reviews"
+            : "Client Reviews & Testimonials",
+          route: `${domain}/testimonials`,
+          description: isEcommerce
+            ? "Verified buyer reviews, unboxing photos, and community feedback confirming product quality."
+            : isMedical
+            ? "What our patients say: Verified patient feedback and reviews highlighting comfortable, friendly care."
+            : "Documented client feedback, verified reviews, and ratings from industry decision makers.",
+          device: "desktop" as const,
+        },
+        {
+          label: isEcommerce
+            ? "Express Cart & Secure Checkout"
+            : isMedical
+            ? "Our Fees & Transparent Pricing"
+            : "Pricing Plans & Engagement Options",
+          route: `${domain}/pricing`,
+          description: isEcommerce
+            ? "Frictionless checkout gateway with multiple payment methods, free delivery badges, and instant receipts."
+            : isMedical
+            ? "Transparent fee guide with no hidden costs, clear treatment fees, and flexible payment options."
+            : "Transparent tier pricing, detailed deliverables breakdown, and flexible engagement terms.",
+          device: "desktop" as const,
+        },
+      ];
+
+      return filtered.map(([filePath, imageUrl], idx) => {
+        const config = slotConfigs[idx] || {
+          label: `Extended Page View ${idx + 1}`,
+          route: `${domain}/view-${idx + 1}`,
+          description: `Custom engineered interface element and interactive workflow for ${project.name}.`,
+          device: "desktop" as const,
+        };
+
+        return {
+          label: config.label,
+          route: config.route,
+          description: config.description,
+          image: imageUrl,
+          imageScale: project.imageScale,
+          device: config.device,
+        };
+      });
+    }
+  }
 
   return [
     {

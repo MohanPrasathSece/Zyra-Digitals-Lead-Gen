@@ -96,11 +96,11 @@ const websitePackages = [
 const whyPoints = [
   {
     title: "Affordable Pricing",
-    desc: "Starting from ₹7,999 with no hidden charges",
+    desc: "Transparent rates with zero hidden charges",
   },
   {
     title: "Creative Designs",
-    desc: "Custom, modern layouts built around your goals",
+    desc: "Custom modern designs built to convert visitors",
   },
   {
     title: "On-Time Delivery",
@@ -108,7 +108,7 @@ const whyPoints = [
   },
   {
     title: "Quality Work",
-    desc: "Clean, modern code engineered for speed & SEO",
+    desc: "Clean, modern code — no slow or rigid templates",
   },
   {
     title: "Client Satisfaction",
@@ -116,7 +116,7 @@ const whyPoints = [
   },
   {
     title: "Reliable Support",
-    desc: "Direct communication with founder & ongoing care",
+    desc: "Direct founder communication & ongoing care",
   },
 ];
 
@@ -362,20 +362,22 @@ const HomeLanding = () => (
     </section>
 
     {/* Why Zyra Digitals */}
-    <section className="py-16 sm:py-20 bg-gradient-to-br from-blue-950 to-blue-700">
+    <section className="py-20 sm:py-24 bg-gradient-to-b from-[#183ec2] via-[#1434a4] to-[#0f257a]">
       <div className="container mx-auto px-5 sm:px-6">
         <FadeInView>
-          <div className="max-w-2xl mx-auto text-center mb-10 sm:mb-12">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Why Work With Us?</h2>
+          <div className="max-w-2xl mx-auto text-center mb-10 sm:mb-14">
+            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight">
+              Why Work With Us?
+            </h2>
           </div>
         </FadeInView>
         <div className="grid sm:grid-cols-2 gap-4 sm:gap-5 max-w-4xl mx-auto">
           {whyPoints.map((item, index) => (
             <FadeInView key={item.title} delay={index * 0.05} className="h-full">
-              <div className="flex h-full items-center gap-3.5 rounded-2xl bg-white/10 p-4 sm:p-5 ring-1 ring-white/15 backdrop-blur-xs transition-colors hover:bg-white/[0.14]">
-                <CheckCircle2 size={20} className="shrink-0 text-sky-200" />
-                <p className="text-sm font-medium text-white sm:text-base leading-snug">
-                  <span className="font-bold text-white">{item.title}</span> – {item.desc}
+              <div className="flex h-full items-center gap-3.5 sm:gap-4 rounded-2xl bg-white/[0.08] px-5 sm:px-6 py-4 sm:py-5 border border-white/[0.08] backdrop-blur-xs transition-all duration-200 hover:bg-white/[0.12] hover:border-white/15">
+                <CheckCircle2 size={22} className="shrink-0 text-white/90" strokeWidth={1.5} />
+                <p className="text-[15px] sm:text-base font-normal text-white/95 leading-snug">
+                  <span className="font-semibold text-white">{item.title}</span> – {item.desc}
                 </p>
               </div>
             </FadeInView>

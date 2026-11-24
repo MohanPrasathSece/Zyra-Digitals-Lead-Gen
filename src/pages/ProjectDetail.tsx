@@ -7,7 +7,6 @@ import {
   MapPin,
   CheckCircle2,
   TrendingUp,
-  Search,
   MousePointerClick,
   FileCheck,
   Globe,
@@ -34,7 +33,6 @@ import {
   getProject,
   getProjectGallery,
   getProjectMetrics,
-  getProjectRankings,
   getRelatedProjects,
 } from "@/lib/projects";
 
@@ -48,7 +46,6 @@ const ProjectDetail = () => {
 
   const gallery = getProjectGallery(project);
   const metrics = getProjectMetrics(project);
-  const rankings = getProjectRankings(project);
   const related = getRelatedProjects(project, 3);
 
   const categoryLabel = PROJECT_CATEGORY_LABELS[project.category] || project.category;
@@ -70,13 +67,13 @@ const ProjectDetail = () => {
   return (
     <div className="bg-slate-50/60 min-h-screen">
       <SEO
-        title={`${project.name} - Case Study, Web Design & SEO Results | Zyra Digitals`}
-        description={`Case study for ${project.name} (${project.industry}). Explore full page screenshots, performance analytics (CTR, form fills, organic traffic), and Google search rankings.`}
-        keywords={`${project.name}, ${project.industry} website design, ${project.industry} SEO case study, dental website design, lead generation website, Zyra Digitals portfolio`}
+        title={`${project.name} - Case Study & Web Design Architecture | Zyra Digitals`}
+        description={`Case study for ${project.name} (${project.industry}). Explore full page screenshots, website performance analytics (CTR, form fills, organic traffic), and architecture deliverables.`}
+        keywords={`${project.name}, ${project.industry} website design, ${project.industry} case study, dental website design, lead generation website, Zyra Digitals portfolio`}
         canonical={`/our-work/${project.slug}`}
         breadcrumbs={breadcrumbs}
         schema={caseStudySchema({
-          headline: `${project.name} - Website Design & SEO Case Study`,
+          headline: `${project.name} - Website Design Case Study`,
           description: project.description,
           path: `/our-work/${project.slug}`,
           image: project.image ? `https://www.zyradigitals.com${project.image}` : undefined,
@@ -191,10 +188,11 @@ const ProjectDetail = () => {
             </div>
           </FadeInView>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid items-start gap-8 md:grid-cols-2 lg:grid-cols-3">
             {gallery.map((slot, index) => {
               const hasRealImage = Boolean(slot.image);
               const isMobile = slot.device === "mobile";
+              const isCoverCard = index === 0;
 
               return (
                 <FadeInView key={slot.label} delay={index * 0.08}>
@@ -224,9 +222,9 @@ const ProjectDetail = () => {
                           label: slot.label,
                         })
                       }
-                      className={`relative aspect-[16/10] overflow-hidden bg-slate-100 ${
-                        hasRealImage ? "cursor-zoom-in" : ""
-                      }`}
+                      className={`relative w-full overflow-hidden bg-slate-100 ${
+                        hasRealImage ? "cursor-zoom-in" : "aspect-[16/10]"
+                      } ${isCoverCard ? "aspect-[16/10] max-h-[235px] sm:max-h-[245px]" : ""}`}
                     >
                       {hasRealImage ? (
                         <>
@@ -234,13 +232,15 @@ const ProjectDetail = () => {
                             src={slot.image}
                             alt={`${project.name} - ${slot.label}`}
                             loading="lazy"
-                            className={`h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03] ${
-                              slot.imageScale || project.imageScale ? "scale-[1.075]" : ""
-                            }`}
+                            className={`w-full ${
+                              isCoverCard
+                                ? "h-full w-full object-cover object-center"
+                                : "h-auto block object-contain"
+                            } transition-transform duration-300 group-hover:scale-[1.01]`}
                           />
                           {/* Hover Overlay */}
-                          <div className="absolute inset-0 bg-slate-900/0 transition-colors group-hover:bg-slate-900/25 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                            <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-900/85 px-3 py-1 text-xs font-semibold text-white shadow-lg backdrop-blur-xs">
+                          <div className="absolute inset-0 bg-slate-900/0 transition-colors group-hover:bg-slate-900/20 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-900/85 px-3.5 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur-xs">
                               <Maximize2 size={13} /> View Full Layout
                             </span>
                           </div>
@@ -509,103 +509,7 @@ const ProjectDetail = () => {
           </FadeInView>
         </section>
 
-        {/* Section 3: Google Search Rankings (SEO Showcase) */}
-        <section id="rankings" className="scroll-mt-24">
-          <FadeInView>
-            <div className="max-w-3xl mb-12">
-              <span className="rounded-full bg-blue-500/10 px-3 py-1 text-xs font-bold text-primary uppercase tracking-wider">
-                Search Engine Optimization
-              </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-foreground mt-3 mb-4">
-                Google search rankings & SERP positions
-              </h2>
-              <p className="text-base text-muted leading-relaxed">
-                Organic search rankings achieved for high-commercial-intent search queries. These keywords bring a predictable stream of ready-to-book customers directly from Google.
-              </p>
-            </div>
-          </FadeInView>
-
-          {/* Rankings Table */}
-          <FadeInView>
-            <div className="overflow-hidden rounded-2xl bg-white shadow-medical ring-1 ring-slate-200">
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-sm border-collapse">
-                  <thead>
-                    <tr className="border-b border-slate-200 bg-slate-50/80 text-xs font-bold text-slate-600 uppercase tracking-wider">
-                      <th className="py-4 px-6">Target Search Phrase (Keyword)</th>
-                      <th className="py-4 px-4 text-center">Google Position</th>
-                      <th className="py-4 px-4 hidden sm:table-cell">Search Intent</th>
-                      <th className="py-4 px-4 hidden md:table-cell">Target Location</th>
-                      <th className="py-4 px-6 text-right">Visibility Status</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100">
-                    {rankings.map((row, i) => (
-                      <tr key={i} className="hover:bg-blue-50/40 transition-colors">
-                        <td className="py-4 px-6 font-semibold text-slate-900 flex items-center gap-2.5">
-                          <Search size={15} className="text-primary shrink-0" />
-                          <span>{row.keyword}</span>
-                        </td>
-                        <td className="py-4 px-4 text-center">
-                          <span
-                            className={`inline-flex items-center justify-center px-2.5 py-1 rounded-full text-xs font-extrabold ${
-                              row.position === "#1"
-                                ? "bg-amber-100 text-amber-800 ring-1 ring-amber-300"
-                                : row.position === "#2"
-                                ? "bg-slate-100 text-slate-800 ring-1 ring-slate-300"
-                                : "bg-sky-100 text-sky-800 ring-1 ring-sky-300"
-                            }`}
-                          >
-                            {row.position}
-                          </span>
-                        </td>
-                        <td className="py-4 px-4 hidden sm:table-cell text-slate-600 text-xs font-medium">
-                          {row.intent || "Commercial"}
-                        </td>
-                        <td className="py-4 px-4 hidden md:table-cell text-slate-600 text-xs font-medium">
-                          {row.location || project.location || "India"}
-                        </td>
-                        <td className="py-4 px-6 text-right">
-                          <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full">
-                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                            {row.status || "Page 1 Top Spotlight"}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-              {/* SEO Strategy Checklist */}
-              <div className="border-t border-slate-100 bg-slate-50/50 p-6 sm:p-8">
-                <h4 className="font-bold text-slate-900 text-sm mb-3 uppercase tracking-wider">
-                  SEO Architecture Delivered:
-                </h4>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs text-slate-700">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
-                    <span>Schema.org Rich Snippets JSON-LD</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
-                    <span>Intent-Driven H1-H3 Heading Hierarchy</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
-                    <span>Google Business Profile & NAP Sync</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
-                    <span>100% Core Web Vitals Pass (Mobile & Desktop)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </FadeInView>
-        </section>
-
-        {/* Section 4: Project Features & Deliverables */}
+        {/* Section 3: Project Features & Deliverables */}
         <section id="features" className="scroll-mt-24">
           <FadeInView>
             <div className="rounded-3xl bg-white p-8 sm:p-10 shadow-medical ring-1 ring-slate-200/80">

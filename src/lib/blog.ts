@@ -1,4 +1,7 @@
 import { SITE } from "@/lib/site";
+import blog1Cover from "@/assets/blogs/covers/blog1.webp";
+import blog2Cover from "@/assets/blogs/covers/blog2.webp";
+import blog3Cover from "@/assets/blogs/covers/blog3.webp";
 
 /**
  * Blog content model.
@@ -68,10 +71,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Web Design",
     datePublished: "2026-11-24",
     dateModified: "2026-11-24",
-    image: img(
-      "flat%20illustration%20of%20a%20website%20cost%20estimator%20dashboard%20with%20Indian%20rupee%20symbol%2C%20website%20wireframe%2C%20bar%20chart%2C%20clean%20blue%20and%20white%20palette%2C%20professional%20editorial%20blog%20header%2C%20no%20text",
-      "landscape_16_9"
-    ),
+    image: blog1Cover,
     imageAlt:
       "Illustration of a website cost estimator with a rupee symbol and a website layout, representing website design pricing in Coimbatore",
     blocks: [
@@ -314,10 +314,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "SEO",
     datePublished: "2026-11-24",
     dateModified: "2026-11-24",
-    image: img(
-      "flat%20illustration%20of%20a%20small%20business%20storefront%20on%20a%20map%20with%20a%20location%20pin%20and%20local%20search%20result%20cards%2C%20clean%20blue%20and%20white%20palette%2C%20professional%20editorial%20blog%20header%2C%20no%20text",
-      "landscape_16_9"
-    ),
+    image: blog2Cover,
     imageAlt:
       "Illustration of a local business on a map with a location pin and search results, representing local SEO for Coimbatore businesses",
     blocks: [
@@ -534,10 +531,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "AI Search",
     datePublished: "2026-11-24",
     dateModified: "2026-11-24",
-    image: img(
-      "flat%20illustration%20comparing%20three%20panels%3A%20search%20result%20list%2C%20a%20featured%20answer%20box%2C%20and%20an%20AI%20chat%20assistant%20answer%2C%20clean%20blue%20and%20white%20palette%2C%20professional%20editorial%20blog%20header%2C%20no%20text",
-      "landscape_16_9"
-    ),
+    image: blog3Cover,
     imageAlt:
       "Illustration comparing search results, an answer box and an AI chat answer, representing SEO, AEO and GEO",
     blocks: [
