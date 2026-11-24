@@ -286,4 +286,32 @@ export const blogCollectionSchema = (
   })),
 });
 
+/** Schema for individual website design and SEO project case studies. */
+export const caseStudySchema = ({
+  headline,
+  description,
+  path,
+  image,
+  about,
+}: {
+  headline: string;
+  description: string;
+  path: string;
+  image?: string;
+  about?: string;
+}) => ({
+  "@type": "CreativeWork",
+  "@id": `${SITE_URL}${path}#case-study`,
+  headline,
+  name: headline,
+  description,
+  ...(image ? { image: [image] } : {}),
+  author: { "@id": ORG_ID },
+  publisher: { "@id": ORG_ID },
+  isPartOf: { "@id": WEBSITE_ID },
+  mainEntityOfPage: { "@id": `${SITE_URL}${path}#webpage` },
+  inLanguage: "en",
+  ...(about ? { about: { "@type": "Thing", name: about } } : {}),
+});
+
 export type SchemaNode = Record<string, unknown>;

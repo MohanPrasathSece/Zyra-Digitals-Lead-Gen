@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import CTASection from "@/components/CTASection";
 import FadeInView from "@/components/FadeInView";
@@ -11,7 +12,7 @@ import {
   PROJECT_CATEGORY_LABELS,
   type ProjectCategory,
 } from "@/lib/projects";
-import { TrendingUp, Target, Smile, ExternalLink } from "lucide-react";
+import { TrendingUp, Target, Smile, ExternalLink, ArrowRight, Sparkles } from "lucide-react";
 
 const CATEGORY_ORDER: ProjectCategory[] = ["Dental", "Healthcare", "Business"];
 
@@ -22,11 +23,16 @@ const CATEGORY_BLURBS: Record<ProjectCategory, string> = {
 };
 
 const OurWork = () => {
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [featured, ...gallery] = PROJECTS;
-  const grouped = CATEGORY_ORDER.map((category) => ({
+
+  const filteredGroups = CATEGORY_ORDER.map((category) => ({
     category,
     items: gallery.filter((project) => project.category === category),
-  })).filter((group) => group.items.length > 0);
+  })).filter((group) => {
+    if (selectedCategory === "All") return group.items.length > 0;
+    return group.category === selectedCategory && group.items.length > 0;
+  });
 
   return (
     <div>
@@ -91,10 +97,10 @@ const OurWork = () => {
                     </ul>
                     <div className="flex flex-wrap items-center gap-4">
                       <Link
-                        to="/contact"
-                        className="inline-flex items-center px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:brightness-110 transition-colors duration-200"
+                        to={`/our-work/${featured.slug}`}
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:brightness-110 transition-colors duration-200"
                       >
-                        Start Your Project
+                        View Full Case Study & Rankings <ArrowRight size={16} />
                       </Link>
                       {featured.website && (
                         <a
@@ -119,16 +125,39 @@ const OurWork = () => {
       <section className="py-20">
         <div className="container mx-auto px-5 sm:px-6">
           <FadeInView>
-            <div className="text-center mb-16">
+            <div className="text-center mb-10">
               <p className="text-base font-semibold text-primary uppercase tracking-wider mb-3">Project Gallery</p>
               <h2 className="text-foreground mb-4">Completed website projects</h2>
               <p className="text-base text-muted max-w-2xl mx-auto">
                 15 website projects delivered for dental, healthcare and business clients.
               </p>
+
+              {/* Category Filter Tabs */}
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+                {["All", ...CATEGORY_ORDER].map((cat) => {
+                  const label = cat === "All" ? "All Projects (15)" : PROJECT_CATEGORY_LABELS[cat as ProjectCategory];
+                  const isActive = selectedCategory === cat;
+
+                  return (
+                    <button
+                      key={cat}
+                      type="button"
+                      onClick={() => setSelectedCategory(cat)}
+                      className={`rounded-full px-4 py-2 text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
+                        isActive
+                          ? "bg-primary text-white shadow-md shadow-primary/25"
+                          : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </FadeInView>
 
-          {grouped.map((group, groupIndex) => (
+          {filteredGroups.map((group, groupIndex) => (
             <div key={group.category} className={groupIndex === 0 ? "" : "mt-16"}>
               <FadeInView>
                 <div className="mb-8">

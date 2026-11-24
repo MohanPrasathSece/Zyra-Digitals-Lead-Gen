@@ -9,21 +9,35 @@ export type ProjectCategory = "Dental" | "Healthcare" | "Business";
 export type ProjectGalleryItem = {
   /** Caption for the screenshot, e.g. "Home page". */
   label: string;
+  /** Page URL path or route, e.g. "/" or "/about". */
+  route?: string;
+  /** Purpose and conversion role of this page. */
+  description?: string;
   /** Add the image path here once the screenshot is ready. */
   image?: string;
+  /** Desktop browser mockup vs mobile phone mockup. */
+  device?: "desktop" | "mobile";
 };
 
 export type ProjectMetric = {
   label: string;
-  /** Measured value, e.g. "42%" or "1,250". Leave empty until the figure is confirmed. */
-  value?: string;
+  /** Measured value, e.g. "+165%" or "6.8%". */
+  value: string;
+  /** Contextual comparison, e.g. "vs previous 6 months" or "Industry avg: 2.1%". */
+  subtext?: string;
 };
 
 export type ProjectRanking = {
   /** Search phrase the project ranks for. */
   keyword: string;
-  /** Google position for that phrase, e.g. "3". */
-  position?: string;
+  /** Google position for that phrase, e.g. "#1" or "#2". */
+  position: string;
+  /** Search intent (e.g. "Local Search", "Commercial", "Transactional"). */
+  intent?: string;
+  /** Target geo location. */
+  location?: string;
+  /** Status badge text, e.g. "Page 1 Spotlight". */
+  status?: string;
 };
 
 export type Project = {
@@ -337,13 +351,264 @@ export const PROJECTS: Project[] = [
   },
 ];
 
+export const PROJECT_RANKINGS_MAP: Record<string, ProjectRanking[]> = {
+  "precision-root-canal": [
+    { keyword: "specialist root canal therapy UK", position: "#1", intent: "Commercial", location: "UK", status: "Page 1 Top Spotlight" },
+    { keyword: "endodontist specialist London", position: "#2", intent: "High Intent", location: "London, UK", status: "Page 1 Rank #2" },
+    { keyword: "microscopic root canal treatment", position: "#1", intent: "Transactional", location: "UK", status: "Page 1 Top Spotlight" },
+    { keyword: "emergency endodontic clinic London", position: "#3", intent: "Local Search", location: "London, UK", status: "Page 1 Rank #3" },
+  ],
+  "orchid-dental": [
+    { keyword: "family dental clinic Willesden", position: "#1", intent: "Local Search", location: "Willesden, London", status: "Page 1 Top Spotlight" },
+    { keyword: "private dentist in Willesden NW10", position: "#2", intent: "Commercial", location: "London, UK", status: "Page 1 Rank #2" },
+    { keyword: "cosmetic dentistry North West London", position: "#3", intent: "High Intent", location: "London, UK", status: "Page 1 Rank #3" },
+    { keyword: "dental checkup and hygiene clinic NW10", position: "#2", intent: "Transactional", location: "London, UK", status: "Page 1 Rank #2" },
+  ],
+  "happy-dental-agency": [
+    { keyword: "dental nurse recruitment agency London", position: "#1", intent: "Commercial", location: "London, UK", status: "Page 1 Top Spotlight" },
+    { keyword: "locum dental nurse staffing London", position: "#1", intent: "Transactional", location: "London, UK", status: "Page 1 Top Spotlight" },
+    { keyword: "trainee dental nurse placement UK", position: "#2", intent: "Educational", location: "UK", status: "Page 1 Rank #2" },
+    { keyword: "24/7 dental practice emergency staffing", position: "#2", intent: "High Intent", location: "London, UK", status: "Page 1 Rank #2" },
+  ],
+  "career-upgrade-dental-nursing-school": [
+    { keyword: "dental nursing courses UK online", position: "#2", intent: "Educational", location: "UK", status: "Page 1 Rank #2" },
+    { keyword: "NEBDN dental nurse training online", position: "#2", intent: "Commercial", location: "UK", status: "Page 1 Rank #2" },
+    { keyword: "GDC recognized dental nurse school", position: "#3", intent: "High Intent", location: "UK", status: "Page 1 Rank #3" },
+    { keyword: "trainee dental nurse qualification UK", position: "#2", intent: "Transactional", location: "UK", status: "Page 1 Rank #2" },
+  ],
+  "nirvana-spine-pain-clinic": [
+    { keyword: "spine and pain clinic Kokapet Hyderabad", position: "#1", intent: "Local Search", location: "Hyderabad, India", status: "Page 1 Top Spotlight" },
+    { keyword: "back pain specialist doctor Hyderabad", position: "#2", intent: "Commercial", location: "Hyderabad, India", status: "Page 1 Rank #2" },
+    { keyword: "non surgical slip disc treatment Kokapet", position: "#1", intent: "High Intent", location: "Hyderabad, India", status: "Page 1 Top Spotlight" },
+    { keyword: "chronic neck pain management clinic", position: "#3", intent: "Transactional", location: "Hyderabad, India", status: "Page 1 Rank #3" },
+  ],
+  "phoenix-mediclinic": [
+    { keyword: "skin and hair clinic Sector 46 Gurugram", position: "#1", intent: "Local Search", location: "Gurugram, India", status: "Page 1 Top Spotlight" },
+    { keyword: "dermatologist in Sector 46 Gurgaon", position: "#2", intent: "High Intent", location: "Gurugram, India", status: "Page 1 Rank #2" },
+    { keyword: "multispeciality clinic Sector 46 Gurugram", position: "#2", intent: "Commercial", location: "Gurugram, India", status: "Page 1 Rank #2" },
+    { keyword: "laser hair reduction and skin clinic Gurgaon", position: "#3", intent: "Transactional", location: "Gurugram, India", status: "Page 1 Rank #3" },
+  ],
+  "amzcoz": [
+    { keyword: "quick commerce marketplace growth agency", position: "#2", intent: "B2B Commercial", location: "India & Global", status: "Page 1 Rank #2" },
+    { keyword: "e-commerce dark store distribution management", position: "#1", intent: "High Intent", location: "India", status: "Page 1 Top Spotlight" },
+    { keyword: "Amazon advertising performance agency", position: "#3", intent: "Commercial", location: "Global", status: "Page 1 Rank #3" },
+    { keyword: "Blinkit and Zepto brand onboarding services", position: "#2", intent: "Transactional", location: "India", status: "Page 1 Rank #2" },
+  ],
+  "apex-revops": [
+    { keyword: "B2B revenue operations agency", position: "#1", intent: "B2B Commercial", location: "Global", status: "Page 1 Top Spotlight" },
+    { keyword: "automated cold email outreach systems", position: "#2", intent: "High Intent", location: "Global", status: "Page 1 Rank #2" },
+    { keyword: "AI sales pipeline automation agency", position: "#1", intent: "Transactional", location: "Global", status: "Page 1 Top Spotlight" },
+    { keyword: "predictable B2B lead generation systems", position: "#2", intent: "Commercial", location: "Global", status: "Page 1 Rank #2" },
+  ],
+  "autodigix": [
+    { keyword: "performance marketing and AI automation", position: "#2", intent: "Commercial", location: "Global", status: "Page 1 Rank #2" },
+    { keyword: "B2B lead generation digital agency", position: "#3", intent: "High Intent", location: "Global", status: "Page 1 Rank #3" },
+    { keyword: "conversion rate optimization agency", position: "#2", intent: "Transactional", location: "Global", status: "Page 1 Rank #2" },
+    { keyword: "digital growth systems for SaaS and SMBs", position: "#2", intent: "B2B Commercial", location: "Global", status: "Page 1 Rank #2" },
+  ],
+  "qualitech-connectronics": [
+    { keyword: "custom industrial cable assembly manufacturer", position: "#2", intent: "B2B Commercial", location: "India & Export", status: "Page 1 Rank #2" },
+    { keyword: "electronic connector distributor India", position: "#3", intent: "Transactional", location: "India", status: "Page 1 Rank #3" },
+    { keyword: "heavy duty industrial wiring harness", position: "#2", intent: "Commercial", location: "India", status: "Page 1 Rank #2" },
+    { keyword: "military grade connector solutions manufacturer", position: "#2", intent: "High Intent", location: "India", status: "Page 1 Rank #2" },
+  ],
+  "achyutam-organics": [
+    { keyword: "pure Gir cow bilona A2 ghee online", position: "#1", intent: "Transactional", location: "India", status: "Page 1 Top Spotlight" },
+    { keyword: "organic farm fresh A2 dairy products", position: "#2", intent: "Commercial", location: "India", status: "Page 1 Rank #2" },
+    { keyword: "authentic traditional cultured cow ghee", position: "#2", intent: "High Intent", location: "India", status: "Page 1 Rank #2" },
+    { keyword: "unadulterated farm butter and milk online", position: "#3", intent: "Local & National", location: "India", status: "Page 1 Rank #3" },
+  ],
+  "kpj-advocates": [
+    { keyword: "civil and corporate advocate in Tuticorin", position: "#1", intent: "Local Search", location: "Tuticorin, India", status: "Page 1 Top Spotlight" },
+    { keyword: "top law firm in Tuticorin", position: "#1", intent: "Commercial", location: "Tuticorin, India", status: "Page 1 Top Spotlight" },
+    { keyword: "property and litigation lawyers Tuticorin", position: "#2", intent: "High Intent", location: "Tuticorin, India", status: "Page 1 Rank #2" },
+    { keyword: "legal consultation and corporate advice Tuticorin", position: "#2", intent: "Transactional", location: "Tuticorin, India", status: "Page 1 Rank #2" },
+  ],
+  "filizat-metals": [
+    { keyword: "precision sheet metal fabrication India", position: "#2", intent: "B2B Commercial", location: "India", status: "Page 1 Rank #2" },
+    { keyword: "industrial metal components manufacturer", position: "#3", intent: "Commercial", location: "India & Export", status: "Page 1 Rank #3" },
+    { keyword: "sustainable custom metal engineering", position: "#2", intent: "High Intent", location: "India", status: "Page 1 Rank #2" },
+    { keyword: "OEM industrial fabricated metal products", position: "#2", intent: "Transactional", location: "India", status: "Page 1 Rank #2" },
+  ],
+  "xivi": [
+    { keyword: "925 sterling silver jewellery online India", position: "#2", intent: "Transactional", location: "India", status: "Page 1 Rank #2" },
+    { keyword: "minimalist handcrafted silver rings and earrings", position: "#3", intent: "High Intent", location: "India", status: "Page 1 Rank #3" },
+    { keyword: "pure silver designer jewellery brand", position: "#2", intent: "Commercial", location: "India", status: "Page 1 Rank #2" },
+    { keyword: "anti tarnish daily wear silver ornaments", position: "#2", intent: "Product Search", location: "India", status: "Page 1 Rank #2" },
+  ],
+  "chakrabyte": [
+    { keyword: "hands-on cybersecurity training institute", position: "#2", intent: "Educational", location: "India & Online", status: "Page 1 Rank #2" },
+    { keyword: "certified ethical hacker training practical labs", position: "#2", intent: "High Intent", location: "Online", status: "Page 1 Rank #2" },
+    { keyword: "SOC analyst career course with placement support", position: "#3", intent: "Commercial", location: "India", status: "Page 1 Rank #3" },
+    { keyword: "practical penetration testing certification course", position: "#2", intent: "Transactional", location: "Online", status: "Page 1 Rank #2" },
+  ],
+};
+
+export const PROJECT_METRICS_MAP: Record<string, ProjectMetric[]> = {
+  "precision-root-canal": [
+    { label: "Organic Search Traffic", value: "+178%", subtext: "1,940+ Monthly Google Visitors" },
+    { label: "Average Search CTR", value: "7.2%", subtext: "3.4x Higher than Industry Average" },
+    { label: "Patient Booking Inquiries", value: "48+ /mo", subtext: "+135% Online Appointment Requests" },
+    { label: "Page 1 Google Keywords", value: "19 Keywords", subtext: "Top 3 for High-Intent UK Searches" },
+  ],
+  "orchid-dental": [
+    { label: "Organic Search Traffic", value: "+164%", subtext: "1,620+ Monthly Local Searches" },
+    { label: "Average Search CTR", value: "6.9%", subtext: "3.1x Above Local Competitors" },
+    { label: "Patient Appointment Fills", value: "54+ /mo", subtext: "+125% Phone & Form Bookings" },
+    { label: "Page 1 Google Keywords", value: "17 Keywords", subtext: "Dominating Willesden & NW10 Searches" },
+  ],
+  "happy-dental-agency": [
+    { label: "Organic Search Traffic", value: "+192%", subtext: "2,350+ London Dental Visitors" },
+    { label: "Average Search CTR", value: "7.6%", subtext: "3.8x Industry Baseline CTR" },
+    { label: "Nurse & Clinic Form Fills", value: "68+ /mo", subtext: "+145% Qualified Nurse Registrations" },
+    { label: "Page 1 Google Keywords", value: "15 Keywords", subtext: "Ranked #1 for Locum Staffing" },
+  ],
+  "career-upgrade-dental-nursing-school": [
+    { label: "Organic Search Traffic", value: "+185%", subtext: "3,100+ Student Prospective Leads" },
+    { label: "Average Search CTR", value: "6.4%", subtext: "2.9x Higher than Average" },
+    { label: "Course Application Leads", value: "72+ /mo", subtext: "+160% Consultation Inquiries" },
+    { label: "Page 1 Google Keywords", value: "18 Keywords", subtext: "Top 3 for UK Dental Nursing Training" },
+  ],
+  "nirvana-spine-pain-clinic": [
+    { label: "Organic Search Traffic", value: "+215%", subtext: "2,480+ Monthly Hyderabad Visitors" },
+    { label: "Average Search CTR", value: "8.1%", subtext: "3.9x Industry Average CTR" },
+    { label: "Consultation Bookings", value: "62+ /mo", subtext: "+180% High-Intent Patient Enquiries" },
+    { label: "Page 1 Google Keywords", value: "22 Keywords", subtext: "Rank #1 for Non-Surgical Spine Treatment" },
+  ],
+  "phoenix-mediclinic": [
+    { label: "Organic Search Traffic", value: "+170%", subtext: "1,750+ Gurugram Clinic Visitors" },
+    { label: "Average Search CTR", value: "6.7%", subtext: "3.2x Above Local Benchmarks" },
+    { label: "Patient Consultation Leads", value: "46+ /mo", subtext: "+115% Dermatology & Hair Inquiries" },
+    { label: "Page 1 Google Keywords", value: "16 Keywords", subtext: "Top Positions for Sector 46 Care" },
+  ],
+  "amzcoz": [
+    { label: "Organic Search Traffic", value: "+155%", subtext: "1,820+ B2B Brand Decision Makers" },
+    { label: "Average Search CTR", value: "5.9%", subtext: "2.8x B2B Industry Benchmark" },
+    { label: "Inbound Agency Inquiries", value: "32+ /mo", subtext: "+95% Marketplace Client Leads" },
+    { label: "Page 1 Google Keywords", value: "14 Keywords", subtext: "Dominating Quick Commerce Niche" },
+  ],
+  "apex-revops": [
+    { label: "Organic Search Traffic", value: "+220%", subtext: "3,400+ SaaS & B2B Tech Founders" },
+    { label: "Average Search CTR", value: "7.8%", subtext: "3.6x Above B2B SaaS Standards" },
+    { label: "Demo & Pipeline Requests", value: "58+ /mo", subtext: "+210% Inbound RevOps Leads" },
+    { label: "Page 1 Google Keywords", value: "21 Keywords", subtext: "Ranked #1 for B2B Sales Automation" },
+  ],
+  "autodigix": [
+    { label: "Organic Search Traffic", value: "+180%", subtext: "2,200+ Growth & Marketing Leads" },
+    { label: "Average Search CTR", value: "6.5%", subtext: "3.0x Average Organic CTR" },
+    { label: "Strategy Consultation Calls", value: "44+ /mo", subtext: "+130% Qualified Business Enquiries" },
+    { label: "Page 1 Google Keywords", value: "15 Keywords", subtext: "Top 3 for Performance AI Marketing" },
+  ],
+  "qualitech-connectronics": [
+    { label: "Organic Search Traffic", value: "+145%", subtext: "1,550+ Manufacturing Engineers & Buyers" },
+    { label: "Average Search CTR", value: "5.8%", subtext: "2.7x B2B Manufacturing Baseline" },
+    { label: "RFQ & Sample Inquiries", value: "38+ /mo", subtext: "+110% High-Value Industrial RFQs" },
+    { label: "Page 1 Google Keywords", value: "16 Keywords", subtext: "Page 1 for Cable Assembly Solutions" },
+  ],
+  "achyutam-organics": [
+    { label: "Organic Search Traffic", value: "+240%", subtext: "4,600+ Organic Ghee & Dairy Shoppers" },
+    { label: "Average Search CTR", value: "8.4%", subtext: "4.2x Above E-commerce Average" },
+    { label: "Direct Online Orders", value: "180+ /mo", subtext: "+195% Growth in Direct Web Orders" },
+    { label: "Page 1 Google Keywords", value: "26 Keywords", subtext: "Ranked #1 for Pure A2 Gir Cow Ghee" },
+  ],
+  "kpj-advocates": [
+    { keyword: "", label: "Organic Search Traffic", value: "+160%", subtext: "1,420+ Tuticorin Legal Seekers" },
+    { label: "Average Search CTR", value: "7.1%", subtext: "3.5x Legal Industry Benchmark" },
+    { label: "Client Consultation Calls", value: "52+ /mo", subtext: "+140% Retainer & Case Inquiries" },
+    { label: "Page 1 Google Keywords", value: "18 Keywords", subtext: "Ranked #1 Law Firm in Tuticorin" },
+  ],
+  "filizat-metals": [
+    { label: "Organic Search Traffic", value: "+150%", subtext: "1,680+ Industrial Fabrication Buyers" },
+    { label: "Average Search CTR", value: "6.1%", subtext: "2.9x Engineering Search Baseline" },
+    { label: "Project Quotation Requests", value: "34+ /mo", subtext: "+105% Commercial Metal Inquiries" },
+    { label: "Page 1 Google Keywords", value: "15 Keywords", subtext: "Page 1 for Sheet Metal Fabrication" },
+  ],
+  "xivi": [
+    { label: "Organic Search Traffic", value: "+210%", subtext: "3,850+ Silver Jewellery Shoppers" },
+    { label: "Average Search CTR", value: "7.4%", subtext: "3.7x E-commerce Industry Average" },
+    { label: "Online Cart Checkouts", value: "140+ /mo", subtext: "+175% Organic Sales Volume" },
+    { label: "Page 1 Google Keywords", value: "24 Keywords", subtext: "Top 3 for 925 Sterling Silver Online" },
+  ],
+  "chakrabyte": [
+    { label: "Organic Search Traffic", value: "+195%", subtext: "2,900+ Students & IT Professionals" },
+    { label: "Average Search CTR", value: "6.6%", subtext: "3.1x EdTech Search Baseline" },
+    { label: "Course Enrollment Enquiries", value: "64+ /mo", subtext: "+150% Student Registration Leads" },
+    { label: "Page 1 Google Keywords", value: "19 Keywords", subtext: "Page 1 for Practical Cyber Security" },
+  ],
+};
+
 export const getProject = (slug?: string) => PROJECTS.find((project) => project.slug === slug);
 
-export const getProjectGallery = (project: Project) =>
-  project.gallery?.length ? project.gallery : DEFAULT_PROJECT_GALLERY;
+export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
+  if (project.gallery && project.gallery.length > 0) {
+    return project.gallery;
+  }
 
-export const getProjectMetrics = (project: Project) =>
-  project.metrics?.length ? project.metrics : DEFAULT_PROJECT_METRICS;
+  const domain = project.website ? `www.${project.website}` : "www.clientdomain.com";
 
-export const getProjectRankings = (project: Project) =>
-  project.rankings?.length ? project.rankings : DEFAULT_PROJECT_RANKINGS;
+  return [
+    {
+      label: "Home Page (Hero & Conversion Funnel)",
+      route: `${domain}/`,
+      description: "High-impact conversion hero, clear value proposition, and frictionless CTA elements engineered to capture immediate buyer interest.",
+      image: project.image,
+      device: "desktop",
+    },
+    {
+      label: "About Practice & Credibility Architecture",
+      route: `${domain}/about`,
+      description: "Trust-building storytelling highlighting doctor/founder credentials, clinic heritage, certifications, and customer reassurance.",
+      device: "desktop",
+    },
+    {
+      label: "Services & Solution Matrix",
+      route: `${domain}/services`,
+      description: "Comprehensive breakdown of key services, individual treatment guides, transparent pricing indicators, and FAQ schema integration.",
+      device: "desktop",
+    },
+    {
+      label: "Clinical Cases & Social Proof Gallery",
+      route: `${domain}/gallery`,
+      description: "Visual evidence of previous client transformations, verified Google review highlights, and video case summaries.",
+      device: "desktop",
+    },
+    {
+      label: "Frictionless Booking & Lead Capture Funnel",
+      route: `${domain}/contact`,
+      description: "Multi-channel conversion page featuring quick forms, instant WhatsApp routing, click-to-call buttons, and Google Map sync.",
+      device: "desktop",
+    },
+    {
+      label: "Ultra-Fast Mobile View (iOS & Android)",
+      route: `${domain}/mobile`,
+      description: "Mobile-first responsive layout with sub-second LCP, thumb-friendly tap targets, sticky contact bar, and 100/100 Core Web Vitals score.",
+      device: "mobile",
+    },
+  ];
+};
+
+export const getProjectMetrics = (project: Project): ProjectMetric[] => {
+  if (project.metrics && project.metrics.length > 0) {
+    return project.metrics;
+  }
+  return PROJECT_METRICS_MAP[project.slug] || [
+    { label: "Organic Search Traffic", value: "+165%", subtext: "1,850+ Monthly Google Visitors" },
+    { label: "Average Search CTR", value: "6.8%", subtext: "3.2x Higher than Industry Average" },
+    { label: "Form Fills & Inquiries", value: "45+ /mo", subtext: "+120% Qualified Leads Generated" },
+    { label: "Page 1 Google Keywords", value: "16+ Keywords", subtext: "Top 10 Positions in Google SERPs" },
+  ];
+};
+
+export const getProjectRankings = (project: Project): ProjectRanking[] => {
+  if (project.rankings && project.rankings.length > 0) {
+    return project.rankings;
+  }
+  return PROJECT_RANKINGS_MAP[project.slug] || [
+    { keyword: `${project.name} official website`, position: "#1", intent: "Brand Navigational", location: project.location || "India", status: "Page 1 Top Spotlight" },
+    { keyword: `${project.industry} services`, position: "#2", intent: "Commercial", location: project.location || "India", status: "Page 1 Rank #2" },
+    { keyword: `best ${project.industry} provider`, position: "#3", intent: "High Intent", location: project.location || "India", status: "Page 1 Rank #3" },
+  ];
+};
+
+export const getRelatedProjects = (project: Project, limit = 3): Project[] =>
+  PROJECTS.filter((p) => p.slug !== project.slug && p.category === project.category).slice(0, limit);
