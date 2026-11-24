@@ -42,19 +42,24 @@ const ClientLogos = () => {
         </FadeInView>
       </div>
 
-      <div className="container mx-auto px-5 sm:px-6">
-        <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 sm:gap-5 lg:grid-cols-6">
-          {CLIENTS.map((client) => (
+      {/* Infinite scrolling logo row (right to left) */}
+      <div className="relative w-full overflow-hidden">
+        {/* Subtle gradient masks on left and right edges */}
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-16 sm:w-32 bg-gradient-to-r from-slate-50/90 to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-16 sm:w-32 bg-gradient-to-l from-slate-50/90 to-transparent" />
+
+        <div className="animate-marquee flex items-center gap-10 sm:gap-14 py-3">
+          {[...CLIENTS, ...CLIENTS].map((client, idx) => (
             <div
-              key={client.name}
-              className="flex h-20 items-center justify-center rounded-xl bg-white px-4 py-3 shadow-sm ring-1 ring-slate-200/70"
+              key={`${client.name}-${idx}`}
+              className="flex h-16 w-36 sm:h-20 sm:w-44 shrink-0 items-center justify-center rounded-xl bg-white px-5 py-3 shadow-sm ring-1 ring-slate-200/70 transition-all duration-300 hover:scale-105 hover:shadow-md"
               title={client.name}
             >
               <img
                 src={client.logo}
                 alt={`${client.name} logo`}
                 loading="lazy"
-                className="max-h-12 w-auto max-w-full object-contain"
+                className="max-h-12 sm:max-h-14 w-auto max-w-full object-contain transition-all duration-200"
               />
             </div>
           ))}

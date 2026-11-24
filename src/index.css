@@ -95,6 +95,44 @@
   }
 }
 
+/* Infinite marquee animation for logos and reviews (right to left) */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 42s linear infinite;
+}
+
+.animate-marquee-slow:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-slow {
+    animation: none;
+    overflow-x: auto;
+  }
+}
+
 /* Keep Calendly's badge clear of the site's sticky contact bar and actions. */
 body .calendly-badge-widget {
   bottom: 72px !important;
