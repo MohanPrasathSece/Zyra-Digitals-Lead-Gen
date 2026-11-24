@@ -45,6 +45,7 @@ import orchidTeam from "@/assets/Portfolio_projects/orchid/image copy.png";
 import orchidMission from "@/assets/Portfolio_projects/orchid/image copy 2.png";
 import orchidTestimonials from "@/assets/Portfolio_projects/orchid/image copy 3.png";
 import orchidFees from "@/assets/Portfolio_projects/orchid/image copy 4.png";
+import orchidGSC from "@/assets/Portfolio_projects/orchid/gsc.png";
 
 import xiviCollection from "@/assets/Portfolio_projects/xivi/image.png";
 import xiviProductDetail from "@/assets/Portfolio_projects/xivi/Screenshot 2026-05-29 100215 copy.webp";
@@ -909,6 +910,13 @@ export const PROJECT_GALLERY_MAP: Record<string, ProjectGalleryItem[]> = {
       image: orchidFees,
       device: "desktop",
     },
+    {
+      label: "Google Search Console (GSC) Verified Results",
+      route: "search.google.com/search-console",
+      description: "Verified Google Search Console performance data demonstrating organic impressions, search clicks, and top Google keyword rankings for Orchid Dental.",
+      image: orchidGSC,
+      device: "desktop",
+    },
   ],
   "precision-root-canal": [
     {
@@ -1113,6 +1121,7 @@ const getFilePriority = (fileName: string): number => {
   if (lower === "image copy 2.png") return 3;
   if (lower === "image copy 3.png") return 4;
   if (lower === "image copy 4.png") return 5;
+  if (lower.includes("gsc")) return 10;
   return 6;
 };
 
@@ -1246,11 +1255,24 @@ export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
         },
       ];
 
+      let regularIdx = 0;
       return filtered
-        .map(([filePath, imageUrl], idx) => {
-          const config = slotConfigs[idx] || {
-            label: `Extended Page View ${idx + 1}`,
-            route: `${domain}/view-${idx + 1}`,
+        .map(([filePath, imageUrl]) => {
+          const lower = filePath.toLowerCase();
+          if (lower.includes("gsc")) {
+            return {
+              label: "Google Search Console (GSC) Verified Results",
+              route: "search.google.com/search-console",
+              description: `Verified Google Search Console performance data showing real organic search impressions, clicks, search query rankings, and sustained traffic growth for ${project.name}.`,
+              image: imageUrl,
+              imageScale: false,
+              device: "desktop" as const,
+            };
+          }
+
+          const config = slotConfigs[regularIdx++] || {
+            label: `Extended Page View ${regularIdx}`,
+            route: `${domain}/view-${regularIdx}`,
             description: `Custom engineered interface element and interactive workflow for ${project.name}.`,
             device: "desktop" as const,
           };
