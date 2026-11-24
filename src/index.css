@@ -56,9 +56,23 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased text-[15px] leading-6 sm:text-base sm:leading-7;
     letter-spacing: 0.012em;
+    overflow-x: hidden;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Hardware-accelerated image and media rendering */
+  img, svg, video {
+    content-visibility: auto;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -92,6 +106,10 @@
   }
   .max-w-prose {
     max-width: 65ch;
+  }
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 360px;
   }
 }
 

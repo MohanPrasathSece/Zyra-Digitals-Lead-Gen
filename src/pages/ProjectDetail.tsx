@@ -98,8 +98,8 @@ const ProjectDetail = () => {
 
       {/* Hero Header */}
       <section className="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white py-10 sm:py-16 lg:py-20">
-        <div className="pointer-events-none absolute -right-24 top-0 h-96 w-96 rounded-full bg-blue-500/20 blur-3xl" />
-        <div className="pointer-events-none absolute left-0 bottom-0 h-72 w-72 rounded-full bg-indigo-500/20 blur-2xl" />
+        <div className="pointer-events-none absolute -right-24 top-0 hidden sm:block h-96 w-96 rounded-full bg-blue-500/20 blur-3xl" />
+        <div className="pointer-events-none absolute left-0 bottom-0 hidden sm:block h-72 w-72 rounded-full bg-indigo-500/20 blur-2xl" />
 
         <div className="container relative z-10 mx-auto px-5 sm:px-6">
           {/* Back link & breadcrumbs */}
@@ -211,7 +211,7 @@ const ProjectDetail = () => {
 
               return (
                 <FadeInView key={slot.label} delay={index * 0.08}>
-                  <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-medical ring-1 ring-slate-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-medical-lg">
+                  <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-medical ring-1 ring-slate-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-medical-lg cv-auto">
                     {/* Device Chrome Header */}
                     <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/90 px-4 py-2.5">
                       <div className="flex items-center gap-1.5">
