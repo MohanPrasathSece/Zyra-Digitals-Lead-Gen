@@ -51,11 +51,6 @@ import xiviProductDetail from "@/assets/Portfolio_projects/xivi/Screenshot 2026-
 import xiviCart from "@/assets/Portfolio_projects/xivi/Screenshot 2026-05-29 100230 copy.webp";
 import xiviStory from "@/assets/Portfolio_projects/xivi/image copy.png";
 
-import launchCloseHero from "@/assets/Portfolio_projects/launch&close/Screenshot 2026-10-06 141349.webp";
-import launchClosePipeline from "@/assets/Portfolio_projects/launch&close/Screenshot 2026-10-06 141419.webp";
-import launchCloseReviews from "@/assets/Portfolio_projects/launch&close/Screenshot 2026-10-06 141445.webp";
-import launchCloseStrategy from "@/assets/Portfolio_projects/launch&close/Screenshot 2026-10-06 141456.webp";
-
 export type ProjectCategory = "Dental" | "Healthcare" | "Ecommerce" | "Business";
 
 /** One screenshot slot in a project's page gallery. */
@@ -574,23 +569,6 @@ export const PROJECTS: Project[] = [
     image: theReportDeskCover,
     imageScale: true,
   },
-  {
-    slug: "launch-close",
-    name: "Launch & Close",
-    category: "Business",
-    industry: "B2B Marketing & Sales Pipelines",
-    website: "launch-and-close-2-0-dadu.vercel.app",
-    description:
-      "B2B marketing agency specializing in paid advertising, lead qualification, prospect follow-ups and generating qualified sales meetings.",
-    features: [
-      "Paid advertising campaigns",
-      "Lead qualification funnels",
-      "Prospect follow-up systems",
-      "Qualified sales meeting booking",
-    ],
-    image: launchCloseHero,
-    imageScale: true,
-  },
 ];
 
 export const PROJECT_RANKINGS_MAP: Record<string, ProjectRanking[]> = {
@@ -1094,36 +1072,6 @@ export const PROJECT_GALLERY_MAP: Record<string, ProjectGalleryItem[]> = {
       device: "desktop",
     },
   ],
-  "launch-close": [
-    {
-      label: "Campaign Landing & Offer Hero",
-      route: "launch-and-close-2-0-dadu.vercel.app/",
-      description: "Direct-response landing architecture designed for B2B executives and enterprise tech buyers.",
-      image: launchCloseHero,
-      device: "desktop",
-    },
-    {
-      label: "Sales Pipeline & Demo Scheduling",
-      route: "launch-and-close-2-0-dadu.vercel.app/schedule",
-      description: "High-intent lead qualification matrix and calendar booking flow for enterprise consultations.",
-      image: launchClosePipeline,
-      device: "desktop",
-    },
-    {
-      label: "Client Case Studies & Video Reviews",
-      route: "launch-and-close-2-0-dadu.vercel.app/case-studies",
-      description: "Social proof section highlighting real revenue increases, closing percentages, and client interviews.",
-      image: launchCloseReviews,
-      device: "desktop",
-    },
-    {
-      label: "Strategy Blueprint & Onboarding Roadmap",
-      route: "launch-and-close-2-0-dadu.vercel.app/strategy",
-      description: "Step-by-step roadmap demonstrating the 90-day closing acceleration program and deliverables.",
-      image: launchCloseStrategy,
-      device: "desktop",
-    },
-  ],
 };
 
 const projectAssetModules = import.meta.glob<string>(
@@ -1155,7 +1103,6 @@ export const PROJECT_FOLDER_MAP: Record<string, string> = {
   "chakrabyte-security": "chakrabyte",
   "employee-management-saas": "employee management sys - saas",
   "the-report-desk": "the report desk - french newspaper website",
-  "launch-close": "launch&close",
 };
 
 const getFilePriority = (fileName: string): number => {
