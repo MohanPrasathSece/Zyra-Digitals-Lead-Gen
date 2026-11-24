@@ -1,5 +1,5 @@
-import desktopShot from "@/assets/zyra/banner-home.jpg";
-import mobileShot from "@/assets/zyra/banner-web-design.jpg";
+import desktopShot from "@/assets/banners/images/home/herosecrighttab.png";
+import mobileShot from "@/assets/banners/images/home/hero_Sec_mobile.png";
 
 /**
  * Static preview built from the site's existing website imagery.
@@ -23,28 +23,28 @@ const HeroShowcase = () => (
       <img
         src={desktopShot}
         alt="Website design preview displayed on desktop"
-        width={1200}
-        height={760}
+        width={1586}
+        height={917}
         loading="eager"
         {...({ fetchpriority: "high" } as Record<string, string>)}
         decoding="async"
-        className="h-[160px] w-full rounded-b-2xl object-cover sm:h-[240px] lg:h-[280px]"
+        className="h-[180px] w-full rounded-b-2xl object-cover object-top sm:h-[260px] lg:h-[300px]"
       />
     </div>
 
     {/* Mobile phone mockup overlapping bottom-left */}
-    <div className="absolute bottom-10 left-1 w-[78px] sm:bottom-14 sm:left-3 sm:w-[120px] lg:w-[130px]">
+    <div className="absolute bottom-6 left-0 w-[88px] sm:bottom-8 sm:left-2 sm:w-[130px] lg:w-[145px]">
       <div className="rounded-[1.2rem] border-[4px] border-slate-900 bg-slate-900 shadow-2xl sm:rounded-[1.7rem] sm:border-[6px]">
         <div className="relative overflow-hidden rounded-[0.9rem] sm:rounded-[1.2rem]">
           <span className="absolute left-1/2 top-1 z-10 h-1 w-7 -translate-x-1/2 rounded-full bg-slate-900/70 sm:h-1.5 sm:w-11" />
           <img
             src={mobileShot}
             alt="Website design preview displayed on mobile"
-            width={390}
-            height={680}
+            width={557}
+            height={807}
             loading="eager"
             decoding="async"
-            className="h-[128px] w-full object-cover sm:h-[200px] lg:h-[220px]"
+            className="h-[140px] w-full object-cover object-top sm:h-[210px] lg:h-[235px]"
           />
         </div>
       </div>
