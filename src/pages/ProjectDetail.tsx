@@ -33,6 +33,7 @@ import {
   getProject,
   getProjectGallery,
   getProjectMetrics,
+  getProjectGSCImage,
   getRelatedProjects,
 } from "@/lib/projects";
 
@@ -46,6 +47,7 @@ const ProjectDetail = () => {
 
   const gallery = getProjectGallery(project);
   const metrics = getProjectMetrics(project);
+  const gscImage = getProjectGSCImage(project);
   const related = getRelatedProjects(project, 3);
 
   const categoryLabel = PROJECT_CATEGORY_LABELS[project.category] || project.category;
@@ -373,97 +375,130 @@ const ProjectDetail = () => {
                 </div>
               </div>
 
-              {/* Console Graphic / Image Placeholder */}
-              <div className="relative aspect-[21/9] min-h-[260px] sm:min-h-[340px] w-full overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 p-6 sm:p-10 flex flex-col justify-between">
-                {/* Background Grid Pattern */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b20_1px,transparent_1px),linear-gradient(to_bottom,#1e293b20_1px,transparent_1px)] bg-[size:28px_28px] opacity-40 pointer-events-none" />
-
-                {/* Top Metrics Bar Mockup */}
-                <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-4xl">
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-3 sm:p-4 backdrop-blur-md">
-                    <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Total Clicks</p>
-                    <p className="mt-1 text-xl sm:text-2xl font-extrabold text-white">+14,800</p>
-                    <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-emerald-400">
-                      <TrendingUp size={11} /> +175% vs Prev Period
-                    </span>
-                  </div>
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-3 sm:p-4 backdrop-blur-md">
-                    <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Total Impressions</p>
-                    <p className="mt-1 text-xl sm:text-2xl font-extrabold text-white">218,000+</p>
-                    <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-emerald-400">
-                      <TrendingUp size={11} /> +240% Growth
-                    </span>
-                  </div>
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-3 sm:p-4 backdrop-blur-md">
-                    <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Average CTR</p>
-                    <p className="mt-1 text-xl sm:text-2xl font-extrabold text-white">6.8% - 7.9%</p>
-                    <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-sky-400">
-                      3.4x Industry Benchmark
-                    </span>
-                  </div>
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-3 sm:p-4 backdrop-blur-md">
-                    <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Average Position</p>
-                    <p className="mt-1 text-xl sm:text-2xl font-extrabold text-white">Top 3 SERPs</p>
-                    <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-amber-400">
-                      Page 1 Dominance
-                    </span>
+              {/* Console Graphic / Real GSC Screenshot */}
+              {gscImage ? (
+                <div className="relative group overflow-hidden bg-slate-950 border-b border-slate-100">
+                  <img
+                    src={gscImage}
+                    alt={`${project.name} Google Search Console Performance Report`}
+                    className="w-full h-auto block object-contain cursor-pointer transition-transform duration-300 group-hover:scale-[1.008]"
+                    onClick={() =>
+                      setLightboxImage({
+                        src: gscImage,
+                        alt: `${project.name} Google Search Console Performance Report`,
+                        label: `${project.name} • Google Search Console Performance Report`,
+                      })
+                    }
+                  />
+                  <div className="absolute top-4 right-4 z-10">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setLightboxImage({
+                          src: gscImage,
+                          alt: `${project.name} Google Search Console Performance Report`,
+                          label: `${project.name} • Google Search Console Performance Report`,
+                        })
+                      }
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900/85 px-3 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur-md transition-all hover:bg-primary active:scale-95"
+                    >
+                      <Maximize2 size={13} />
+                      <span>View Full Report</span>
+                    </button>
                   </div>
                 </div>
+              ) : (
+                <div className="relative aspect-[21/9] min-h-[260px] sm:min-h-[340px] w-full overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 p-6 sm:p-10 flex flex-col justify-between">
+                  {/* Background Grid Pattern */}
+                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b20_1px,transparent_1px),linear-gradient(to_bottom,#1e293b20_1px,transparent_1px)] bg-[size:28px_28px] opacity-40 pointer-events-none" />
 
-                {/* Decorative Vector Line Chart SVG */}
-                <div className="relative z-10 my-4 sm:my-6 w-full">
-                  <svg viewBox="0 0 900 160" className="w-full h-24 sm:h-36 overflow-visible" preserveAspectRatio="none">
-                    <defs>
-                      <linearGradient id={`gradient-${project.slug}`} x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.45" />
-                        <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.0" />
-                      </linearGradient>
-                      <linearGradient id={`gradient-purple-${project.slug}`} x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#a855f7" stopOpacity="0.35" />
-                        <stop offset="100%" stopColor="#a855f7" stopOpacity="0.0" />
-                      </linearGradient>
-                    </defs>
-                    {/* Impressions Area (Purple) */}
-                    <path
-                      d="M0,130 Q120,110 240,95 T480,65 T720,40 T900,18 L900,160 L0,160 Z"
-                      fill={`url(#gradient-purple-${project.slug})`}
-                    />
-                    <path
-                      d="M0,130 Q120,110 240,95 T480,65 T720,40 T900,18"
-                      fill="none"
-                      stroke="#c084fc"
-                      strokeWidth="2.5"
-                    />
-                    {/* Clicks Area (Blue) */}
-                    <path
-                      d="M0,145 Q120,135 240,115 T480,85 T720,55 T900,28 L900,160 L0,160 Z"
-                      fill={`url(#gradient-${project.slug})`}
-                    />
-                    <path
-                      d="M0,145 Q120,135 240,115 T480,85 T720,55 T900,28"
-                      fill="none"
-                      stroke="#60a5fa"
-                      strokeWidth="3.5"
-                    />
-                  </svg>
-                </div>
+                  {/* Top Metrics Bar Mockup */}
+                  <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-4xl">
+                    <div className="rounded-xl border border-white/10 bg-white/5 p-3 sm:p-4 backdrop-blur-md">
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Total Clicks</p>
+                      <p className="mt-1 text-xl sm:text-2xl font-extrabold text-white">+14,800</p>
+                      <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-emerald-400">
+                        <TrendingUp size={11} /> +175% vs Prev Period
+                      </span>
+                    </div>
+                    <div className="rounded-xl border border-white/10 bg-white/5 p-3 sm:p-4 backdrop-blur-md">
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Total Impressions</p>
+                      <p className="mt-1 text-xl sm:text-2xl font-extrabold text-white">218,000+</p>
+                      <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-emerald-400">
+                        <TrendingUp size={11} /> +240% Growth
+                      </span>
+                    </div>
+                    <div className="rounded-xl border border-white/10 bg-white/5 p-3 sm:p-4 backdrop-blur-md">
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Average CTR</p>
+                      <p className="mt-1 text-xl sm:text-2xl font-extrabold text-white">6.8% - 7.9%</p>
+                      <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-sky-400">
+                        3.4x Industry Benchmark
+                      </span>
+                    </div>
+                    <div className="rounded-xl border border-white/10 bg-white/5 p-3 sm:p-4 backdrop-blur-md">
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Average Position</p>
+                      <p className="mt-1 text-xl sm:text-2xl font-extrabold text-white">Top 3 SERPs</p>
+                      <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-amber-400">
+                        Page 1 Dominance
+                      </span>
+                    </div>
+                  </div>
 
-                {/* Bottom Placeholder Badge */}
-                <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-white/10 text-xs">
-                  <div className="flex items-center gap-3">
-                    <span className="flex items-center gap-1.5 text-blue-300 font-semibold">
-                      <span className="h-2 w-2 rounded-full bg-blue-400" /> Total Clicks (Traffic)
-                    </span>
-                    <span className="flex items-center gap-1.5 text-purple-300 font-semibold">
-                      <span className="h-2 w-2 rounded-full bg-purple-400" /> Impressions (Search Views)
-                    </span>
+                  {/* Decorative Vector Line Chart SVG */}
+                  <div className="relative z-10 my-4 sm:my-6 w-full">
+                    <svg viewBox="0 0 900 160" className="w-full h-24 sm:h-36 overflow-visible" preserveAspectRatio="none">
+                      <defs>
+                        <linearGradient id={`gradient-${project.slug}`} x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.45" />
+                          <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.0" />
+                        </linearGradient>
+                        <linearGradient id={`gradient-purple-${project.slug}`} x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#a855f7" stopOpacity="0.35" />
+                          <stop offset="100%" stopColor="#a855f7" stopOpacity="0.0" />
+                        </linearGradient>
+                      </defs>
+                      {/* Impressions Area (Purple) */}
+                      <path
+                        d="M0,130 Q120,110 240,95 T480,65 T720,40 T900,18 L900,160 L0,160 Z"
+                        fill={`url(#gradient-purple-${project.slug})`}
+                      />
+                      <path
+                        d="M0,130 Q120,110 240,95 T480,65 T720,40 T900,18"
+                        fill="none"
+                        stroke="#c084fc"
+                        strokeWidth="2.5"
+                      />
+                      {/* Clicks Area (Blue) */}
+                      <path
+                        d="M0,145 Q120,135 240,115 T480,85 T720,55 T900,28 L900,160 L0,160 Z"
+                        fill={`url(#gradient-${project.slug})`}
+                      />
+                      <path
+                        d="M0,145 Q120,135 240,115 T480,85 T720,55 T900,28"
+                        fill="none"
+                        stroke="#60a5fa"
+                        strokeWidth="3.5"
+                      />
+                    </svg>
                   </div>
-                  <div className="inline-flex items-center gap-1.5 rounded-full border border-dashed border-white/40 bg-white/10 px-3 py-1 font-semibold text-white backdrop-blur-md">
-                    <BarChart3 size={13} className="text-sky-300" />
-                    <span>Google Search Console Screenshot Placeholder (Upload Ready)</span>
+
+                  {/* Bottom Metrics Legend */}
+                  <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-white/10 text-xs">
+                    <div className="flex items-center gap-3">
+                      <span className="flex items-center gap-1.5 text-blue-300 font-semibold">
+                        <span className="h-2 w-2 rounded-full bg-blue-400" /> Total Clicks (Traffic)
+                      </span>
+                      <span className="flex items-center gap-1.5 text-purple-300 font-semibold">
+                        <span className="h-2 w-2 rounded-full bg-purple-400" /> Impressions (Search Views)
+                      </span>
+                    </div>
+                    <div className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 font-semibold text-white/90 backdrop-blur-md">
+                      <BarChart3 size={13} className="text-sky-300" />
+                      <span>Google Search Console Data Stream</span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
               {/* Bottom footer explaining methodology */}
               <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-50 px-6 py-3.5 text-xs text-slate-600">

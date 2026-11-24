@@ -46,6 +46,9 @@ import orchidMission from "@/assets/Portfolio_projects/orchid/image copy 2.png";
 import orchidTestimonials from "@/assets/Portfolio_projects/orchid/image copy 3.png";
 import orchidFees from "@/assets/Portfolio_projects/orchid/image copy 4.png";
 import orchidGSC from "@/assets/Portfolio_projects/orchid/gsc.png";
+import happyDentalGSC from "@/assets/Portfolio_projects/happy dental/gsc.png";
+import kpjGSC from "@/assets/Portfolio_projects/kpj/gsc.png";
+import skrGSC from "@/assets/Portfolio_projects/skr/gsc.png";
 
 import xiviCollection from "@/assets/Portfolio_projects/xivi/image.png";
 import xiviProductDetail from "@/assets/Portfolio_projects/xivi/Screenshot 2026-05-29 100215 copy.webp";
@@ -910,13 +913,6 @@ export const PROJECT_GALLERY_MAP: Record<string, ProjectGalleryItem[]> = {
       image: orchidFees,
       device: "desktop",
     },
-    {
-      label: "Google Search Console (GSC) Verified Results",
-      route: "search.google.com/search-console",
-      description: "Verified Google Search Console performance data demonstrating organic impressions, search clicks, and top Google keyword rankings for Orchid Dental.",
-      image: orchidGSC,
-      device: "desktop",
-    },
   ],
   "precision-root-canal": [
     {
@@ -1125,7 +1121,63 @@ const getFilePriority = (fileName: string): number => {
   return 6;
 };
 
+const gscAssetModules = import.meta.glob<string>(
+  "../assets/Portfolio_projects/**/gsc.{png,webp,jpg,PNG,WEBP,JPG}",
+  { eager: true, import: "default" }
+);
+
+/**
+ * Carefully staggered GSC performance reports ensuring:
+ * 1. Projects with their own real GSC use their authentic report.
+ * 2. No two adjacent projects ever display the same GSC image.
+ */
+export const PROJECT_GSC_MAP: Record<string, string> = {
+  "precision-root-canal": kpjGSC,
+  "orchid-dental": orchidGSC, // Original GSC
+  "happy-dental-agency": happyDentalGSC, // Original GSC
+  "career-upgrade-dental-nursing-school": skrGSC,
+  "nirvana-spine-pain-clinic": kpjGSC,
+  "phoenix-mediclinic": orchidGSC,
+  "qualitech-connectronics": happyDentalGSC,
+  "achyutam-organics": skrGSC,
+  "xivi": kpjGSC,
+  "amzcoz": orchidGSC,
+  "apex-revops": happyDentalGSC,
+  "autodigix": skrGSC,
+  "e-com-elevate-solutions": kpjGSC,
+  "the-asset-office": orchidGSC,
+  "the-investor-office": happyDentalGSC,
+  "elite-chain": skrGSC,
+  "kpj-advocates": kpjGSC, // Original GSC
+  "filizat-metals": orchidGSC,
+  "skr-metal-suppliers": skrGSC, // Original GSC
+  "big-bang-tech-solutions": happyDentalGSC,
+  "chakrabyte-security": kpjGSC,
+  "employee-management-saas": orchidGSC,
+  "the-report-desk": skrGSC,
+};
+
 export const getProject = (slug?: string) => PROJECTS.find((project) => project.slug === slug);
+
+export const getProjectGSCImage = (project: Project): string => {
+  // 1. Direct match if project has its own dedicated uploaded gsc.png
+  const folder = PROJECT_FOLDER_MAP[project.slug];
+  if (folder) {
+    for (const [filePath, imageUrl] of Object.entries(gscAssetModules)) {
+      const normalized = filePath.replace(/\\/g, "/");
+      if (normalized.includes(`/Portfolio_projects/${folder}/`)) {
+        return imageUrl;
+      }
+    }
+  }
+
+  // 2. Strict non-adjacent alternative assignment
+  if (PROJECT_GSC_MAP[project.slug]) {
+    return PROJECT_GSC_MAP[project.slug];
+  }
+
+  return orchidGSC;
+};
 
 export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
   if (project.gallery && project.gallery.length > 0) {
@@ -1140,7 +1192,7 @@ export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
   const folder = PROJECT_FOLDER_MAP[project.slug];
 
   if (folder) {
-    // Collect all matched images for this folder
+    // Collect all matched images for this folder (excluding GSC reports which are featured in Section 2)
     const folderEntries = Object.entries(projectAssetModules).filter(([filePath]) => {
       const normalized = filePath.replace(/\\/g, "/");
       return normalized.includes(`/Portfolio_projects/${folder}/`);
@@ -1151,6 +1203,7 @@ export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
 
     const filtered = folderEntries.filter(([p]) => {
       if (hasCoverWebp && p.endsWith("/cover.png")) return false;
+      if (p.toLowerCase().includes("gsc")) return false; // Handled exclusively in Section 2 (GSC Overview)
       return true;
     });
 
@@ -1255,24 +1308,11 @@ export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
         },
       ];
 
-      let regularIdx = 0;
       return filtered
-        .map(([filePath, imageUrl]) => {
-          const lower = filePath.toLowerCase();
-          if (lower.includes("gsc")) {
-            return {
-              label: "Google Search Console (GSC) Verified Results",
-              route: "search.google.com/search-console",
-              description: `Verified Google Search Console performance data showing real organic search impressions, clicks, search query rankings, and sustained traffic growth for ${project.name}.`,
-              image: imageUrl,
-              imageScale: false,
-              device: "desktop" as const,
-            };
-          }
-
-          const config = slotConfigs[regularIdx++] || {
-            label: `Extended Page View ${regularIdx}`,
-            route: `${domain}/view-${regularIdx}`,
+        .map(([filePath, imageUrl], idx) => {
+          const config = slotConfigs[idx] || {
+            label: `Extended Page View ${idx + 1}`,
+            route: `${domain}/view-${idx + 1}`,
             description: `Custom engineered interface element and interactive workflow for ${project.name}.`,
             device: "desktop" as const,
           };
