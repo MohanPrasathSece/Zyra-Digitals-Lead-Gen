@@ -5,7 +5,29 @@ import achyutam from "@/assets/Portfolio_projects/achyutam/Screenshot 2026-05-29
 
 export type ProjectCategory = "Dental" | "Healthcare" | "Business";
 
+/** One screenshot slot in a project's page gallery. */
+export type ProjectGalleryItem = {
+  /** Caption for the screenshot, e.g. "Home page". */
+  label: string;
+  /** Add the image path here once the screenshot is ready. */
+  image?: string;
+};
+
+export type ProjectMetric = {
+  label: string;
+  /** Measured value, e.g. "42%" or "1,250". Leave empty until the figure is confirmed. */
+  value?: string;
+};
+
+export type ProjectRanking = {
+  /** Search phrase the project ranks for. */
+  keyword: string;
+  /** Google position for that phrase, e.g. "3". */
+  position?: string;
+};
+
 export type Project = {
+  slug: string;
   name: string;
   category: ProjectCategory;
   industry: string;
@@ -14,6 +36,12 @@ export type Project = {
   description: string;
   features: string[];
   image?: string;
+  /** Page-by-page screenshots. Falls back to the default slots below. */
+  gallery?: ProjectGalleryItem[];
+  /** Analytics tiles. Falls back to the default slots below. */
+  metrics?: ProjectMetric[];
+  /** Search position rows. Falls back to the default slots below. */
+  rankings?: ProjectRanking[];
 };
 
 export const PROJECT_CATEGORY_LABELS: Record<ProjectCategory, string> = {
@@ -22,9 +50,40 @@ export const PROJECT_CATEGORY_LABELS: Record<ProjectCategory, string> = {
   Business: "Other Business Websites",
 };
 
+/** Gallery slots used until real screenshots are added for a project. */
+export const DEFAULT_PROJECT_GALLERY: ProjectGalleryItem[] = [
+  { label: "Home page" },
+  { label: "About page" },
+  { label: "Services page" },
+  { label: "Gallery page" },
+  { label: "Contact page" },
+  { label: "Mobile view" },
+];
+
+/** Analytics tiles used until real figures are added for a project. */
+export const DEFAULT_PROJECT_METRICS: ProjectMetric[] = [
+  { label: "Monthly organic traffic" },
+  { label: "Average CTR (Search Console)" },
+  { label: "Form fills / enquiries" },
+  { label: "Keywords in Google top 10" },
+];
+
+/** Ranking rows used until real search positions are added for a project. */
+export const DEFAULT_PROJECT_RANKINGS: ProjectRanking[] = [
+  { keyword: "" },
+  { keyword: "" },
+  { keyword: "" },
+];
+
+/**
+ * Completed projects. Add screenshots to `gallery`, figures to `metrics` and
+ * verified search positions to `rankings` as they become available - the page
+ * shows clean placeholders until then.
+ */
 export const PROJECTS: Project[] = [
   // Dental websites
   {
+    slug: "precision-root-canal",
     name: "Precision Root Canal Therapy & Hygiene",
     category: "Dental",
     industry: "Specialist Dental Care",
@@ -42,6 +101,7 @@ export const PROJECTS: Project[] = [
     image: precision,
   },
   {
+    slug: "orchid-dental",
     name: "Orchid Dental",
     category: "Dental",
     industry: "General & Family Dentistry",
@@ -58,6 +118,7 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: "happy-dental-agency",
     name: "Happy Dental Agency",
     category: "Dental",
     industry: "Dental Recruitment & Staffing",
@@ -74,6 +135,7 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: "career-upgrade-dental-nursing-school",
     name: "Career Upgrade Dental Nursing School",
     category: "Dental",
     industry: "Dental Education & Training",
@@ -93,6 +155,7 @@ export const PROJECTS: Project[] = [
 
   // Medical clinics & healthcare
   {
+    slug: "nirvana-spine-pain-clinic",
     name: "Nirvana Spine & Pain Clinic",
     category: "Healthcare",
     industry: "Spine & Pain Management",
@@ -109,6 +172,7 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: "phoenix-mediclinic",
     name: "Phoenix Mediclinic",
     category: "Healthcare",
     industry: "Multispeciality Healthcare",
@@ -128,6 +192,7 @@ export const PROJECTS: Project[] = [
 
   // Other business websites
   {
+    slug: "amzcoz",
     name: "AMZCOZ",
     category: "Business",
     industry: "Marketplace & Quick Commerce",
@@ -141,6 +206,7 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: "apex-revops",
     name: "Apex RevOps",
     category: "Business",
     industry: "B2B Lead Generation & Automation",
@@ -157,6 +223,7 @@ export const PROJECTS: Project[] = [
     image: apexRevOps,
   },
   {
+    slug: "autodigix",
     name: "AutoDigiX",
     category: "Business",
     industry: "Digital Marketing & AI Automation",
@@ -172,6 +239,7 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: "qualitech-connectronics",
     name: "Qualitech Connectronics",
     category: "Business",
     industry: "Electronics & Manufacturing",
@@ -185,6 +253,7 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: "achyutam-organics",
     name: "Achyutam Organics",
     category: "Business",
     industry: "Organic Dairy & E-commerce",
@@ -201,6 +270,7 @@ export const PROJECTS: Project[] = [
     image: achyutam,
   },
   {
+    slug: "kpj-advocates",
     name: "KPJ Advocates",
     category: "Business",
     industry: "Legal Services",
@@ -217,6 +287,7 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: "filizat-metals",
     name: "Filizat Metals",
     category: "Business",
     industry: "Metal Manufacturing",
@@ -231,6 +302,7 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: "xivi",
     name: "XIVI",
     category: "Business",
     industry: "Jewellery & E-commerce",
@@ -248,6 +320,7 @@ export const PROJECTS: Project[] = [
     image: xivi,
   },
   {
+    slug: "chakrabyte",
     name: "Chakrabyte",
     category: "Business",
     industry: "Cybersecurity Education",
@@ -263,3 +336,14 @@ export const PROJECTS: Project[] = [
     ],
   },
 ];
+
+export const getProject = (slug?: string) => PROJECTS.find((project) => project.slug === slug);
+
+export const getProjectGallery = (project: Project) =>
+  project.gallery?.length ? project.gallery : DEFAULT_PROJECT_GALLERY;
+
+export const getProjectMetrics = (project: Project) =>
+  project.metrics?.length ? project.metrics : DEFAULT_PROJECT_METRICS;
+
+export const getProjectRankings = (project: Project) =>
+  project.rankings?.length ? project.rankings : DEFAULT_PROJECT_RANKINGS;

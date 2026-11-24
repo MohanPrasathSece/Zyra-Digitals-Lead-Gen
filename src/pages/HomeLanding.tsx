@@ -17,15 +17,15 @@ const services = [
     icon: Code2,
     title: "Website Design & Development",
     description:
-      "Get a modern, mobile-friendly website built to convert visitors into paying clients, more calls and more confirmed bookings.",
+      "Get a professional, mobile-friendly website built to turn visitors into paying customers, more enquiries and more confirmed bookings.",
     to: "/web-design",
-    action: "Website design in Coimbatore",
+    action: "Explore Website Development",
   },
   {
     icon: Search,
     title: "SEO Services",
     description:
-      "Rank on Google when customers search for what you sell to generate steady organic enquiries and qualified leads.",
+      "Appear on Google when customers search for what you sell to generate steady organic enquiries and qualified business leads.",
     to: "/seo",
     action: "Explore SEO Services",
   },
@@ -33,7 +33,7 @@ const services = [
     icon: Brush,
     title: "Branding & Logo Design",
     description:
-      "Build a credible, memorable brand identity with professional logos, distinct colour palettes and typography that build customer trust.",
+      "Give your business a credible, professional identity with memorable logo design, distinct brand colours and trusted visual styling.",
     to: "/logo-design",
     action: "Explore Branding Design",
   },
@@ -132,7 +132,7 @@ const HomeLanding = () => (
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
                   <service.icon size={24} className="text-primary" />
                 </div>
-                <h3 className="font-semibold text-foreground mb-3">{service.title}</h3>
+                <h3 className="font-semibold text-foreground mb-3 sm:min-h-[3.25rem] flex items-start">{service.title}</h3>
                 <p className="text-muted leading-relaxed flex-1">{service.description}</p>
                 <Link
                   to={service.to}

@@ -62,7 +62,7 @@ const reviews = [
 const Stars = () => (
   <div className="flex gap-1" aria-label="5 out of 5 stars">
     {[0, 1, 2, 3, 4].map((i) => (
-      <Star key={i} size={16} className="text-amber-400" fill="currentColor" />
+      <Star key={i} size={18} className="text-amber-400" fill="currentColor" />
     ))}
   </div>
 );
@@ -87,33 +87,35 @@ const GoogleReviews = () => (
       <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-12 sm:w-28 bg-gradient-to-r from-blue-50 to-transparent" />
       <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-12 sm:w-28 bg-gradient-to-l from-blue-50 to-transparent" />
 
-      <div className="animate-marquee-slow flex items-stretch gap-5 py-3">
+      <div className="animate-marquee-slow flex items-stretch gap-6 py-4">
         {[...reviews, ...reviews].map((review, idx) => (
           <article
             key={`${review.name}-${idx}`}
-            className="flex h-[280px] w-[310px] sm:w-[350px] shrink-0 flex-col rounded-2xl bg-card p-6 shadow-medical ring-1 ring-primary/10 transition-shadow hover:shadow-lg"
+            className="flex h-[320px] w-[350px] sm:h-[340px] sm:w-[420px] shrink-0 flex-col rounded-2xl bg-card p-7 shadow-medical ring-1 ring-primary/10 transition-shadow hover:shadow-lg"
           >
             <div className="flex items-center justify-between gap-3">
               <Stars />
               <span
-                className="relative inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-slate-200"
+                className="relative inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-slate-200"
                 title="Verified Google review"
                 aria-label="Verified Google review"
               >
-                <GoogleLogo size={15} />
-                <span className="absolute -bottom-0.5 -right-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-primary ring-2 ring-card">
-                  <Check size={9} strokeWidth={4} className="text-white" />
+                <GoogleLogo size={17} />
+                <span className="absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary ring-2 ring-card">
+                  <Check size={10} strokeWidth={4} className="text-white" />
                 </span>
               </span>
             </div>
-            <p className="mt-4 line-clamp-5 text-sm leading-relaxed text-muted">“{review.text}”</p>
-            <div className="mt-auto flex items-center gap-3 border-t border-border pt-4">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 font-bold text-primary">
+            <p className="mt-4 line-clamp-5 text-base sm:text-[17px] leading-relaxed text-slate-800 font-normal">
+              “{review.text}”
+            </p>
+            <div className="mt-auto flex items-center gap-3.5 border-t border-border pt-4">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-base font-bold text-primary">
                 {review.name.charAt(0)}
               </span>
               <div className="min-w-0">
-                <p className="truncate font-semibold text-foreground">{review.name}</p>
-                <p className="truncate text-xs text-muted">{review.meta}</p>
+                <p className="truncate text-base font-bold text-foreground">{review.name}</p>
+                <p className="truncate text-xs sm:text-sm text-slate-500 font-medium">{review.meta}</p>
               </div>
             </div>
           </article>
