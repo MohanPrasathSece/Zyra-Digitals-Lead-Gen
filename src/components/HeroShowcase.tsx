@@ -32,8 +32,8 @@ const HeroShowcase = () => (
       />
     </div>
 
-    {/* Mobile phone mockup overlapping bottom-left */}
-    <div className="absolute bottom-6 left-0 w-[88px] sm:bottom-8 sm:left-2 sm:w-[130px] lg:w-[145px]">
+    {/* Mobile phone mockup overlapping bottom-right */}
+    <div className="absolute bottom-6 right-0 z-10 w-[88px] sm:bottom-8 sm:right-2 sm:w-[130px] lg:w-[145px]">
       <div className="rounded-[1.2rem] border-[4px] border-slate-900 bg-slate-900 shadow-2xl sm:rounded-[1.7rem] sm:border-[6px]">
         <div className="relative overflow-hidden rounded-[0.9rem] sm:rounded-[1.2rem]">
           <span className="absolute left-1/2 top-1 z-10 h-1 w-7 -translate-x-1/2 rounded-full bg-slate-900/70 sm:h-1.5 sm:w-11" />
@@ -50,8 +50,8 @@ const HeroShowcase = () => (
       </div>
     </div>
 
-    {/* Price badge - sits below the desktop mockup on the right, fully visible */}
-    <div className="absolute bottom-0 right-0 sm:right-4">
+    {/* Price badge - sits below the desktop mockup on the left, fully visible */}
+    <div className="absolute bottom-0 left-0 z-20 sm:left-4">
       <div className="rounded-xl bg-primary px-4 py-2.5 shadow-2xl ring-1 ring-white/25 sm:px-5 sm:py-3">
         <p className="text-[10px] font-semibold uppercase tracking-wide text-white/80 sm:text-[11px]">
           Website Development
