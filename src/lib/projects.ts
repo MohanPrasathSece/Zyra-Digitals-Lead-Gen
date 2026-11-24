@@ -16,6 +16,7 @@ export type ProjectGalleryItem = {
   description?: string;
   /** Add the image path here once the screenshot is ready. */
   image?: string;
+  imageScale?: boolean;
   /** Desktop browser mockup vs mobile phone mockup. */
   device?: "desktop" | "mobile";
 };
@@ -51,6 +52,7 @@ export type Project = {
   description: string;
   features: string[];
   image?: string;
+  imageScale?: boolean;
   /** Page-by-page screenshots. Falls back to the default slots below. */
   gallery?: ProjectGalleryItem[];
   /** Analytics tiles. Falls back to the default slots below. */
@@ -133,6 +135,7 @@ export const PROJECTS: Project[] = [
       "Local area targeting",
     ],
     image: orchidCover,
+    imageScale: true,
   },
   {
     slug: "happy-dental-agency",
@@ -555,6 +558,7 @@ export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
       route: `${domain}/`,
       description: "High-impact conversion hero, clear value proposition, and frictionless CTA elements engineered to capture immediate buyer interest.",
       image: project.image,
+      imageScale: project.imageScale,
       device: "desktop",
     },
     {

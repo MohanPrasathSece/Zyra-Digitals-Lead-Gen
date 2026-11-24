@@ -213,7 +213,11 @@ const ProjectDetail = () => {
                           src={slot.image}
                           alt={`${project.name} - ${slot.label}`}
                           loading="lazy"
-                          className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                          className={`h-full w-full object-cover object-top transition-transform duration-500 ${
+                            slot.imageScale || project.imageScale
+                              ? "scale-[1.10] group-hover:scale-[1.15]"
+                              : "group-hover:scale-105"
+                          }`}
                         />
                       ) : (
                         <div className="relative flex h-full w-full flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-blue-50/70 via-slate-50 to-indigo-50/40">
