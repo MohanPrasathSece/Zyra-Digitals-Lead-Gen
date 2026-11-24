@@ -1,31 +1,31 @@
 import FadeInView from "@/components/FadeInView";
 
-import achyutam from "@/assets/brands_we_worked_with/achyutam.png";
-import ajanta from "@/assets/brands_we_worked_with/ajanta.png";
-import apexrevops from "@/assets/brands_we_worked_with/apexrevops.png";
-import assetCircle from "@/assets/brands_we_worked_with/asset circle.png";
-import autodigix from "@/assets/brands_we_worked_with/autodigix.png";
-import avenza from "@/assets/brands_we_worked_with/avenza.png";
-import crowdverse from "@/assets/brands_we_worked_with/crowdverse.png";
-import elevate from "@/assets/brands_we_worked_with/elevate.png";
-import femtricks from "@/assets/brands_we_worked_with/femtricks.png";
-import filizat from "@/assets/brands_we_worked_with/filizat.png";
-import happydental from "@/assets/brands_we_worked_with/happydental_newlogo-removebg-preview.png";
-import kpj from "@/assets/brands_we_worked_with/kpj_new_logo-removebg-preview.png";
-import nirvana from "@/assets/brands_we_worked_with/nirvana.png";
-import orchidDental from "@/assets/brands_we_worked_with/orchid dental.png";
-import phoenix from "@/assets/brands_we_worked_with/phoenix.png";
-import qualitech from "@/assets/brands_we_worked_with/qualitech.png";
-import revelle from "@/assets/brands_we_worked_with/revelle.png";
-import seekbuylove from "@/assets/brands_we_worked_with/seekbuylove.png";
-import sevakai from "@/assets/brands_we_worked_with/sevakai black.png";
-import skr from "@/assets/brands_we_worked_with/skr_logo-removebg-preview.png";
-import skylogo from "@/assets/brands_we_worked_with/skylogo.png";
-import solaraAssets from "@/assets/brands_we_worked_with/solara assets.png";
-import theFinanceView from "@/assets/brands_we_worked_with/the finance view.png";
-import theLedgerCapital from "@/assets/brands_we_worked_with/the ledger capital.png";
-import theMarketOffice from "@/assets/brands_we_worked_with/The market office.png";
-import theReportDesk from "@/assets/brands_we_worked_with/the report desk.png";
+import achyutam from "@/assets/brands_we_worked_with/achyutam.webp";
+import ajanta from "@/assets/brands_we_worked_with/ajanta.webp";
+import apexrevops from "@/assets/brands_we_worked_with/apexrevops.webp";
+import assetCircle from "@/assets/brands_we_worked_with/asset circle.webp";
+import autodigix from "@/assets/brands_we_worked_with/autodigix.webp";
+import avenza from "@/assets/brands_we_worked_with/avenza.webp";
+import crowdverse from "@/assets/brands_we_worked_with/crowdverse.webp";
+import elevate from "@/assets/brands_we_worked_with/elevate.webp";
+import femtricks from "@/assets/brands_we_worked_with/femtricks.webp";
+import filizat from "@/assets/brands_we_worked_with/filizat.webp";
+import happydental from "@/assets/brands_we_worked_with/happydental_newlogo-removebg-preview.webp";
+import kpj from "@/assets/brands_we_worked_with/kpj_new_logo-removebg-preview.webp";
+import nirvana from "@/assets/brands_we_worked_with/nirvana.webp";
+import orchidDental from "@/assets/brands_we_worked_with/orchid dental.webp";
+import phoenix from "@/assets/brands_we_worked_with/phoenix.webp";
+import qualitech from "@/assets/brands_we_worked_with/qualitech.webp";
+import revelle from "@/assets/brands_we_worked_with/revelle.webp";
+import seekbuylove from "@/assets/brands_we_worked_with/seekbuylove.webp";
+import sevakai from "@/assets/brands_we_worked_with/sevakai black.webp";
+import skr from "@/assets/brands_we_worked_with/skr_logo-removebg-preview.webp";
+import skylogo from "@/assets/brands_we_worked_with/skylogo.webp";
+import solaraAssets from "@/assets/brands_we_worked_with/solara assets.webp";
+import theFinanceView from "@/assets/brands_we_worked_with/the finance view.webp";
+import theLedgerCapital from "@/assets/brands_we_worked_with/the ledger capital.webp";
+import theMarketOffice from "@/assets/brands_we_worked_with/The market office.webp";
+import theReportDesk from "@/assets/brands_we_worked_with/the report desk.webp";
 
 const CLIENTS = [
   { name: "Orchid Dental", logo: orchidDental },

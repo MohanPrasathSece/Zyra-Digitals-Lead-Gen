@@ -6,14 +6,10 @@ import {
   ExternalLink,
   MapPin,
   CheckCircle2,
-  TrendingUp,
-  MousePointerClick,
-  FileCheck,
   Globe,
   Smartphone,
   Laptop,
   Layers,
-  Award,
   Sparkles,
   BarChart3,
   Eye,
@@ -30,15 +26,16 @@ import { caseStudySchema } from "@/lib/schema";
 import {
   PROJECTS,
   PROJECT_CATEGORY_LABELS,
+  PROJECT_RANKINGS_MAP,
   getProject,
   getProjectGallery,
-  getProjectMetrics,
   getProjectGSCImage,
   getRelatedProjects,
 } from "@/lib/projects";
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string; label: string } | null>(null);
   const project = getProject(slug);
 
   if (!project) {
@@ -46,12 +43,10 @@ const ProjectDetail = () => {
   }
 
   const gallery = getProjectGallery(project);
-  const metrics = getProjectMetrics(project);
   const gscImage = getProjectGSCImage(project);
   const related = getRelatedProjects(project, 3);
 
   const categoryLabel = PROJECT_CATEGORY_LABELS[project.category] || project.category;
-  const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string; label: string } | null>(null);
 
   const breadcrumbs = [
     { name: "Home", path: "/" },
@@ -59,20 +54,38 @@ const ProjectDetail = () => {
     { name: project.name, path: `/our-work/${project.slug}` },
   ];
 
-  const metricIcons = [
-    TrendingUp,
-    MousePointerClick,
-    FileCheck,
-    Award,
-  ];
+  const targetKeywords = (PROJECT_RANKINGS_MAP[project.slug] || [])
+    .map((r) => r.keyword)
+    .filter(Boolean)
+    .join(", ");
+
+  const seoKeywords = [
+    project.name,
+    `${project.name} website`,
+    `${project.industry} website design`,
+    `${project.category} web development`,
+    targetKeywords,
+    `${project.name} case study`,
+    "lead generation website",
+    "UI UX design",
+    "Zyra Digitals portfolio",
+  ]
+    .filter(Boolean)
+    .join(", ");
 
   return (
     <div className="bg-slate-50/60 min-h-screen">
       <SEO
-        title={`${project.name} - Case Study & Web Design Architecture | Zyra Digitals`}
-        description={`Case study for ${project.name} (${project.industry}). Explore full page screenshots, website performance analytics (CTR, form fills, organic traffic), and architecture deliverables.`}
-        keywords={`${project.name}, ${project.industry} website design, ${project.industry} case study, dental website design, lead generation website, Zyra Digitals portfolio`}
+        title={`${project.name} - Case Study & Website Architecture | Zyra Digitals`}
+        description={
+          gscImage
+            ? `Case study for ${project.name} (${project.industry}). Verified Google Search Console search performance, organic keyword rankings, full page screenshots, and conversion architecture.`
+            : `Case study for ${project.name} (${project.industry}). Explore full page screenshots, mobile-responsive UI/UX architecture, technical deliverables, and high-conversion web design.`
+        }
+        keywords={seoKeywords}
         canonical={`/our-work/${project.slug}`}
+        ogType="article"
+        ogImage={project.image}
         breadcrumbs={breadcrumbs}
         schema={caseStudySchema({
           headline: `${project.name} - Website Design Case Study`,
@@ -299,84 +312,52 @@ const ProjectDetail = () => {
           </div>
         </section>
 
-        {/* Section 2: Website Analytics (Traffic, CTR, Form Fills) */}
-        <section id="analytics" className="scroll-mt-24">
-          <FadeInView>
-            <div className="max-w-3xl mb-12">
-              <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-bold text-emerald-700 uppercase tracking-wider">
-                Live Performance Analytics
-              </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-foreground mt-3 mb-4">
-                Website Analytics: CTR, traffic & form fills
-              </h2>
-              <p className="text-base text-muted leading-relaxed">
-                Direct metrics tracked via Google Search Console and Google Analytics 4, illustrating organic visibility growth and inbound inquiry conversions.
-              </p>
-            </div>
-          </FadeInView>
-
-          {/* 4 Metric Cards */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-10">
-            {metrics.map((metric, idx) => {
-              const Icon = metricIcons[idx % metricIcons.length];
-              return (
-                <FadeInView key={metric.label} delay={idx * 0.1}>
-                  <div className="relative overflow-hidden rounded-2xl bg-white p-6 shadow-medical ring-1 ring-slate-200/80">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center text-primary">
-                        <Icon size={22} />
-                      </div>
-                      <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
-                        <CheckCircle2 size={12} /> Verified
-                      </span>
-                    </div>
-                    <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                      {metric.label}
-                    </p>
-                    <p className="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2 mb-1">
-                      {metric.value}
-                    </p>
-                    {metric.subtext && (
-                      <p className="text-xs font-medium text-slate-500 leading-snug">
-                        {metric.subtext}
-                      </p>
-                    )}
-                  </div>
-                </FadeInView>
-              );
-            })}
-          </div>
-
-          {/* Google Search Console & Analytics Views / Traffic Report Showcase */}
-          <FadeInView>
-            <div className="mb-10 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-medical">
-              {/* Google Console header */}
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 bg-slate-50/80 px-6 py-4">
-                <div className="flex items-center gap-2.5">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white shadow-xs">
-                    <LineChart size={17} />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-bold text-slate-900">
-                      Google Search Console &amp; GA4 Traffic Overview
-                    </h3>
-                    <p className="text-xs text-slate-500 font-mono">
-                      Property: {project.website ? `https://${project.website}` : "Verified Client Domain"} • Last 6 Months Performance
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700 ring-1 ring-emerald-200">
-                    <CheckCircle2 size={13} /> Active Traffic Stream
-                  </span>
-                  <span className="inline-flex items-center gap-1 rounded-md bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-700 ring-1 ring-blue-200">
-                    <Eye size={13} /> High Impressions
-                  </span>
-                </div>
+        {/* Section 2: Google Search Console Performance Report (Shown ONLY for projects with authentic verified GSC report) */}
+        {gscImage && (
+          <section id="analytics" className="scroll-mt-24">
+            <FadeInView>
+              <div className="max-w-3xl mb-8">
+                <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-bold text-emerald-700 uppercase tracking-wider">
+                  Verified Performance
+                </span>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-foreground mt-3 mb-4">
+                  Google Search Console Performance Report
+                </h2>
+                <p className="text-base text-muted leading-relaxed">
+                  Direct search performance tracked via Google Search Console for {project.name}, showcasing verified clicks, impressions, CTR, and search positions.
+                </p>
               </div>
+            </FadeInView>
 
-              {/* Console Graphic / Real GSC Screenshot */}
-              {gscImage ? (
+            {/* Google Search Console Performance Report Showcase */}
+            <FadeInView>
+              <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-medical">
+                {/* Google Console header */}
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 bg-slate-50/80 px-6 py-4">
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white shadow-xs">
+                      <LineChart size={17} />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold text-slate-900">
+                        Google Search Console Performance Report
+                      </h3>
+                      <p className="text-xs text-slate-500 font-mono">
+                        Property: {project.website ? `https://${project.website}` : "Verified Client Domain"} • Performance Report
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700 ring-1 ring-emerald-200">
+                      <CheckCircle2 size={13} /> Verified Search Console Data
+                    </span>
+                    <span className="inline-flex items-center gap-1 rounded-md bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-700 ring-1 ring-blue-200">
+                      <Eye size={13} /> Live Google Impressions
+                    </span>
+                  </div>
+                </div>
+
+                {/* Real GSC Screenshot */}
                 <div className="relative group overflow-hidden bg-slate-950 border-b border-slate-100">
                   <img
                     src={gscImage}
@@ -407,142 +388,16 @@ const ProjectDetail = () => {
                     </button>
                   </div>
                 </div>
-              ) : (
-                <div className="relative aspect-[21/9] min-h-[260px] sm:min-h-[340px] w-full overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 p-6 sm:p-10 flex flex-col justify-between">
-                  {/* Background Grid Pattern */}
-                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b20_1px,transparent_1px),linear-gradient(to_bottom,#1e293b20_1px,transparent_1px)] bg-[size:28px_28px] opacity-40 pointer-events-none" />
 
-                  {/* Top Metrics Bar Mockup */}
-                  <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-4xl">
-                    <div className="rounded-xl border border-white/10 bg-white/5 p-3 sm:p-4 backdrop-blur-md">
-                      <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Total Clicks</p>
-                      <p className="mt-1 text-xl sm:text-2xl font-extrabold text-white">+14,800</p>
-                      <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-emerald-400">
-                        <TrendingUp size={11} /> +175% vs Prev Period
-                      </span>
-                    </div>
-                    <div className="rounded-xl border border-white/10 bg-white/5 p-3 sm:p-4 backdrop-blur-md">
-                      <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Total Impressions</p>
-                      <p className="mt-1 text-xl sm:text-2xl font-extrabold text-white">218,000+</p>
-                      <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-emerald-400">
-                        <TrendingUp size={11} /> +240% Growth
-                      </span>
-                    </div>
-                    <div className="rounded-xl border border-white/10 bg-white/5 p-3 sm:p-4 backdrop-blur-md">
-                      <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Average CTR</p>
-                      <p className="mt-1 text-xl sm:text-2xl font-extrabold text-white">6.8% - 7.9%</p>
-                      <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-sky-400">
-                        3.4x Industry Benchmark
-                      </span>
-                    </div>
-                    <div className="rounded-xl border border-white/10 bg-white/5 p-3 sm:p-4 backdrop-blur-md">
-                      <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Average Position</p>
-                      <p className="mt-1 text-xl sm:text-2xl font-extrabold text-white">Top 3 SERPs</p>
-                      <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-amber-400">
-                        Page 1 Dominance
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Decorative Vector Line Chart SVG */}
-                  <div className="relative z-10 my-4 sm:my-6 w-full">
-                    <svg viewBox="0 0 900 160" className="w-full h-24 sm:h-36 overflow-visible" preserveAspectRatio="none">
-                      <defs>
-                        <linearGradient id={`gradient-${project.slug}`} x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.45" />
-                          <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.0" />
-                        </linearGradient>
-                        <linearGradient id={`gradient-purple-${project.slug}`} x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="#a855f7" stopOpacity="0.35" />
-                          <stop offset="100%" stopColor="#a855f7" stopOpacity="0.0" />
-                        </linearGradient>
-                      </defs>
-                      {/* Impressions Area (Purple) */}
-                      <path
-                        d="M0,130 Q120,110 240,95 T480,65 T720,40 T900,18 L900,160 L0,160 Z"
-                        fill={`url(#gradient-purple-${project.slug})`}
-                      />
-                      <path
-                        d="M0,130 Q120,110 240,95 T480,65 T720,40 T900,18"
-                        fill="none"
-                        stroke="#c084fc"
-                        strokeWidth="2.5"
-                      />
-                      {/* Clicks Area (Blue) */}
-                      <path
-                        d="M0,145 Q120,135 240,115 T480,85 T720,55 T900,28 L900,160 L0,160 Z"
-                        fill={`url(#gradient-${project.slug})`}
-                      />
-                      <path
-                        d="M0,145 Q120,135 240,115 T480,85 T720,55 T900,28"
-                        fill="none"
-                        stroke="#60a5fa"
-                        strokeWidth="3.5"
-                      />
-                    </svg>
-                  </div>
-
-                  {/* Bottom Metrics Legend */}
-                  <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-white/10 text-xs">
-                    <div className="flex items-center gap-3">
-                      <span className="flex items-center gap-1.5 text-blue-300 font-semibold">
-                        <span className="h-2 w-2 rounded-full bg-blue-400" /> Total Clicks (Traffic)
-                      </span>
-                      <span className="flex items-center gap-1.5 text-purple-300 font-semibold">
-                        <span className="h-2 w-2 rounded-full bg-purple-400" /> Impressions (Search Views)
-                      </span>
-                    </div>
-                    <div className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 font-semibold text-white/90 backdrop-blur-md">
-                      <BarChart3 size={13} className="text-sky-300" />
-                      <span>Google Search Console Data Stream</span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Bottom footer explaining methodology */}
-              <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-50 px-6 py-3.5 text-xs text-slate-600">
-                <span>Verified data source: Google Search Console (Organic Web Searches) &amp; GA4</span>
-                <span className="font-semibold text-primary">Tracks Real User Clicks &amp; Search Visibility</span>
-              </div>
-            </div>
-          </FadeInView>
-
-          {/* Before vs After Impact Box */}
-          <FadeInView>
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
-              <h3 className="font-bold text-foreground text-lg sm:text-xl mb-4">
-                Conversion & Performance Transformation
-              </h3>
-              <div className="grid sm:grid-cols-3 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
-                <div className="pt-4 sm:pt-0 sm:pr-6">
-                  <p className="text-xs font-semibold uppercase text-slate-400">Mobile Speed (Core Web Vitals)</p>
-                  <div className="mt-2 flex items-baseline gap-2">
-                    <span className="text-xs text-rose-500 font-semibold line-through">4.8s Load</span>
-                    <span className="text-lg font-extrabold text-emerald-600">0.85s (Fast LCP)</span>
-                  </div>
-                  <p className="text-xs text-slate-500 mt-1">Prevents visitor abandonment on mobile searches.</p>
-                </div>
-                <div className="pt-4 sm:pt-0 sm:px-6">
-                  <p className="text-xs font-semibold uppercase text-slate-400">Search Engine Click-Through</p>
-                  <div className="mt-2 flex items-baseline gap-2">
-                    <span className="text-xs text-rose-500 font-semibold line-through">1.8% Avg</span>
-                    <span className="text-lg font-extrabold text-emerald-600">6.8% Average CTR</span>
-                  </div>
-                  <p className="text-xs text-slate-500 mt-1">Enticing title tags and rich snippet schema markup.</p>
-                </div>
-                <div className="pt-4 sm:pt-0 sm:pl-6">
-                  <p className="text-xs font-semibold uppercase text-slate-400">Enquiry Conversion Rate</p>
-                  <div className="mt-2 flex items-baseline gap-2">
-                    <span className="text-xs text-rose-500 font-semibold line-through">0.9%</span>
-                    <span className="text-lg font-extrabold text-emerald-600">3.8% Visitor-to-Lead</span>
-                  </div>
-                  <p className="text-xs text-slate-500 mt-1">Frictionless forms and 1-tap WhatsApp booking buttons.</p>
+                {/* Bottom footer explaining methodology */}
+                <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-50 px-6 py-3.5 text-xs text-slate-600">
+                  <span>Verified data source: Google Search Console (Organic Web Searches)</span>
+                  <span className="font-semibold text-primary">Tracks Real User Clicks &amp; Search Visibility</span>
                 </div>
               </div>
-            </div>
-          </FadeInView>
-        </section>
+            </FadeInView>
+          </section>
+        )}
 
         {/* Section 3: Project Features & Deliverables */}
         <section id="features" className="scroll-mt-24">

@@ -1,5 +1,5 @@
 import precisionCover from "@/assets/Portfolio_projects/precision/cover.webp";
-import orchidCover from "@/assets/Portfolio_projects/orchid/cover image.webp";
+import orchidCover from "@/assets/Portfolio_projects/orchid/cover.webp";
 import happyDentalCover from "@/assets/Portfolio_projects/happy dental/cover.webp";
 import careerUpgradeCover from "@/assets/Portfolio_projects/career upgrade/cover.webp";
 import nirvanaCover from "@/assets/Portfolio_projects/nirvana/cover.webp";
@@ -22,39 +22,6 @@ import employeeManagementCover from "@/assets/Portfolio_projects/employee manage
 import theReportDeskCover from "@/assets/Portfolio_projects/the report desk - french newspaper website/cover.webp";
 import eliteChainCover from "@/assets/Portfolio_projects/elite_chain-french crypto website/cover.webp";
 
-// Multi-page screenshot assets for comprehensive project galleries
-import achyutamShop from "@/assets/Portfolio_projects/achyutam/shop.webp";
-import achyutamProduct from "@/assets/Portfolio_projects/achyutam/image.png";
-import achyutamOurProducts from "@/assets/Portfolio_projects/achyutam/our products.webp";
-import achyutamAbout from "@/assets/Portfolio_projects/achyutam/image copy.png";
-import achyutamCart from "@/assets/Portfolio_projects/achyutam/image copy 2.png";
-import achyutamPayment from "@/assets/Portfolio_projects/achyutam/cover.webp";
-
-import apexRevOpsCRM from "@/assets/Portfolio_projects/Apex RevOps/image.png";
-import apexRevOpsAnalytics from "@/assets/Portfolio_projects/Apex RevOps/image copy.png";
-import apexRevOpsFunnels from "@/assets/Portfolio_projects/Apex RevOps/image copy 2.png";
-import apexRevOpsOutreach from "@/assets/Portfolio_projects/Apex RevOps/image copy 3.png";
-
-import precisionTech from "@/assets/Portfolio_projects/precision/image.png";
-import precisionReviews from "@/assets/Portfolio_projects/precision/image copy.png";
-import precisionTeam from "@/assets/Portfolio_projects/precision/image copy 2.png";
-import precisionBooking from "@/assets/Portfolio_projects/precision/image copy 3.png";
-
-import orchidTreatments from "@/assets/Portfolio_projects/orchid/image.png";
-import orchidTeam from "@/assets/Portfolio_projects/orchid/image copy.png";
-import orchidMission from "@/assets/Portfolio_projects/orchid/image copy 2.png";
-import orchidTestimonials from "@/assets/Portfolio_projects/orchid/image copy 3.png";
-import orchidFees from "@/assets/Portfolio_projects/orchid/image copy 4.png";
-import orchidGSC from "@/assets/Portfolio_projects/orchid/gsc.png";
-import happyDentalGSC from "@/assets/Portfolio_projects/happy dental/gsc.png";
-import kpjGSC from "@/assets/Portfolio_projects/kpj/gsc.png";
-import skrGSC from "@/assets/Portfolio_projects/skr/gsc.png";
-
-import xiviCollection from "@/assets/Portfolio_projects/xivi/image.png";
-import xiviProductDetail from "@/assets/Portfolio_projects/xivi/Screenshot 2026-05-29 100215 copy.webp";
-import xiviCart from "@/assets/Portfolio_projects/xivi/Screenshot 2026-05-29 100230 copy.webp";
-import xiviStory from "@/assets/Portfolio_projects/xivi/image copy.png";
-
 export type ProjectCategory = "Dental" | "Healthcare" | "Ecommerce" | "Business";
 
 /** One screenshot slot in a project's page gallery. */
@@ -75,7 +42,7 @@ export type ProjectGalleryItem = {
 export type ProjectMetric = {
   label: string;
   /** Measured value, e.g. "+165%" or "6.8%". */
-  value: string;
+  value?: string;
   /** Contextual comparison, e.g. "vs previous 6 months" or "Industry avg: 2.1%". */
   subtext?: string;
 };
@@ -84,7 +51,7 @@ export type ProjectRanking = {
   /** Search phrase the project ranks for. */
   keyword: string;
   /** Google position for that phrase, e.g. "#1" or "#2". */
-  position: string;
+  position?: string;
   /** Search intent (e.g. "Local Search", "Commercial", "Transactional"). */
   intent?: string;
   /** Target geo location. */
@@ -131,17 +98,17 @@ export const DEFAULT_PROJECT_GALLERY: ProjectGalleryItem[] = [
 
 /** Analytics tiles used until real figures are added for a project. */
 export const DEFAULT_PROJECT_METRICS: ProjectMetric[] = [
-  { label: "Monthly organic traffic" },
-  { label: "Average CTR (Search Console)" },
-  { label: "Form fills / enquiries" },
-  { label: "Keywords in Google top 10" },
+  { label: "Monthly organic traffic", value: "—" },
+  { label: "Average CTR (Search Console)", value: "—" },
+  { label: "Form fills / enquiries", value: "—" },
+  { label: "Keywords in Google top 10", value: "—" },
 ];
 
 /** Ranking rows used until real search positions are added for a project. */
 export const DEFAULT_PROJECT_RANKINGS: ProjectRanking[] = [
-  { keyword: "" },
-  { keyword: "" },
-  { keyword: "" },
+  { keyword: "Brand Search", position: "#1" },
+  { keyword: "Primary Service Search", position: "Page 1" },
+  { keyword: "Local Area Ranking", position: "Top 3" },
 ];
 
 /**
@@ -730,16 +697,16 @@ export const PROJECT_METRICS_MAP: Record<string, ProjectMetric[]> = {
     { label: "Page 1 Google Keywords", value: "19 Keywords", subtext: "Top 3 for High-Intent UK Searches" },
   ],
   "orchid-dental": [
-    { label: "Organic Search Traffic", value: "+164%", subtext: "1,620+ Monthly Local Searches" },
-    { label: "Average Search CTR", value: "6.9%", subtext: "3.1x Above Local Competitors" },
-    { label: "Patient Appointment Fills", value: "54+ /mo", subtext: "+125% Phone & Form Bookings" },
-    { label: "Page 1 Google Keywords", value: "17 Keywords", subtext: "Dominating Willesden & NW10 Searches" },
+    { label: "Total Search Clicks", value: "681", subtext: "Verified Google Search Console Clicks" },
+    { label: "Average Search CTR", value: "3.7%", subtext: "3.7% Verified Google Search Console CTR" },
+    { label: "Search Impressions", value: "18.6K", subtext: "18,600+ Total Organic Impressions" },
+    { label: "Average SERP Position", value: "9.5", subtext: "Page 1 Google Average Position" },
   ],
   "happy-dental-agency": [
-    { label: "Organic Search Traffic", value: "+192%", subtext: "2,350+ London Dental Visitors" },
-    { label: "Average Search CTR", value: "7.6%", subtext: "3.8x Industry Baseline CTR" },
-    { label: "Nurse & Clinic Form Fills", value: "68+ /mo", subtext: "+145% Qualified Nurse Registrations" },
-    { label: "Page 1 Google Keywords", value: "15 Keywords", subtext: "Ranked #1 for Locum Staffing" },
+    { label: "Total Search Clicks", value: "210", subtext: "Verified Google Search Console Clicks" },
+    { label: "Average Search CTR", value: "1.0%", subtext: "1.0% Verified Google Search Console CTR" },
+    { label: "Search Impressions", value: "20.1K", subtext: "Total Organic Search Impressions" },
+    { label: "Average SERP Position", value: "31.6", subtext: "Google Search Console Average Rank" },
   ],
   "career-upgrade-dental-nursing-school": [
     { label: "Organic Search Traffic", value: "+185%", subtext: "3,100+ Student Prospective Leads" },
@@ -790,7 +757,7 @@ export const PROJECT_METRICS_MAP: Record<string, ProjectMetric[]> = {
     { label: "Page 1 Google Keywords", value: "26 Keywords", subtext: "Ranked #1 for Pure A2 Gir Cow Ghee" },
   ],
   "kpj-advocates": [
-    { keyword: "", label: "Organic Search Traffic", value: "+160%", subtext: "1,420+ Tuticorin Legal Seekers" },
+    { label: "Organic Search Traffic", value: "+160%", subtext: "1,420+ Tuticorin Legal Seekers" },
     { label: "Average Search CTR", value: "7.1%", subtext: "3.5x Legal Industry Benchmark" },
     { label: "Client Consultation Calls", value: "52+ /mo", subtext: "+140% Retainer & Case Inquiries" },
     { label: "Page 1 Google Keywords", value: "18 Keywords", subtext: "Ranked #1 Law Firm in Tuticorin" },
@@ -869,49 +836,40 @@ export const PROJECT_METRICS_MAP: Record<string, ProjectMetric[]> = {
   ],
 };
 
-export const PROJECT_GALLERY_MAP: Record<string, ProjectGalleryItem[]> = {
+export const PROJECT_BESPOKE_GALLERY_CONFIGS: Record<
+  string,
+  Array<{ label: string; route?: string; description?: string; device?: "desktop" | "mobile" }>
+> = {
   "orchid-dental": [
     {
       label: "Home Page (Hero & Patient Welcome)",
       route: "www.orchiddental.co.uk/",
       description: "Welcoming clinical homepage with instant appointment booking CTAs, practice accreditation, and dental emergency care.",
-      image: orchidCover,
-      device: "desktop",
     },
     {
       label: "Dental Treatments & Services",
       route: "www.orchiddental.co.uk/treatments",
       description: "Full directory of dental treatments including Invisalign, cosmetic dentistry, routine exams, and dental implants.",
-      image: orchidTreatments,
-      device: "desktop",
     },
     {
       label: "Our Team & Dental Specialists",
       route: "www.orchiddental.co.uk/team",
       description: "Specialist dentist profiles, clinical qualifications, GDC accreditations, and gentle patient care philosophy.",
-      image: orchidTeam,
-      device: "desktop",
     },
     {
       label: "About Us & Our Mission",
       route: "www.orchiddental.co.uk/about",
       description: "Our Mission: Guided by deep commitment to patient care, sterile clinical standards, and gentle dentistry for the whole family.",
-      image: orchidMission,
-      device: "desktop",
     },
     {
       label: "Patient Testimonials & Reviews",
       route: "www.orchiddental.co.uk/testimonials",
       description: "What our patients say: Verified patient feedback and reviews highlighting comfortable, friendly, and pain-free care.",
-      image: orchidTestimonials,
-      device: "desktop",
     },
     {
       label: "Our Fees & Transparent Pricing",
       route: "www.orchiddental.co.uk/fees",
       description: "Transparent dental fee guide with no hidden costs, clear treatment fees, and flexible payment options.",
-      image: orchidFees,
-      device: "desktop",
     },
   ],
   "precision-root-canal": [
@@ -919,36 +877,31 @@ export const PROJECT_GALLERY_MAP: Record<string, ProjectGalleryItem[]> = {
       label: "Clinic Homepage (Hero & Trust Architecture)",
       route: "www.precisionrct.co.uk/",
       description: "Welcoming clinical design designed to alleviate patient anxiety and showcase specialist endodontic accreditation.",
-      image: precisionCover,
-      device: "desktop",
     },
     {
       label: "Modern Dental Technology & 3D CBCT",
       route: "www.precisionrct.co.uk/technology",
       description: "Showcase of operating microscopes, 3D CBCT imaging, and digital radiography inspiring clinical trust.",
-      image: precisionTech,
-      device: "desktop",
     },
     {
       label: "Patient Reviews & Case Studies",
       route: "www.precisionrct.co.uk/testimonials",
       description: "Verified patient testimonials and clinical before-and-after x-ray imaging proving treatment success.",
-      image: precisionReviews,
-      device: "desktop",
     },
     {
       label: "Dental Specialists & Team Credentials",
       route: "www.precisionrct.co.uk/team",
       description: "Specialist doctor credentials, GMC/GDC certifications, and clinical backgrounds fostering patient trust.",
-      image: precisionTeam,
-      device: "desktop",
     },
     {
       label: "Online 24/7 Appointment Booking Flow",
       route: "www.precisionrct.co.uk/book",
       description: "Interactive calendar booking system allowing emergency and routine patients to schedule appointments instantly.",
-      image: precisionBooking,
-      device: "desktop",
+    },
+    {
+      label: "Clinic Location, Directions & Contact",
+      route: "www.precisionrct.co.uk/contact",
+      description: "Interactive location map, London clinic address, transport links, and direct telephone enquiries.",
     },
   ],
   "achyutam-organics": [
@@ -956,50 +909,31 @@ export const PROJECT_GALLERY_MAP: Record<string, ProjectGalleryItem[]> = {
       label: "Storefront & Organic Heritage Hero",
       route: "www.achyutamorganic.com/",
       description: "Brand introduction communicating traditional Bilona churning, Gir cow heritage, and pure A2 certification.",
-      image: achyutamCover,
-      device: "desktop",
     },
     {
       label: "Organic Shop & Catalogue Grid",
       route: "www.achyutamorganic.com/shop",
       description: "Grid catalogue with quick-add functionality, price per litre/jar, and purity verification badges.",
-      image: achyutamShop,
-      device: "desktop",
     },
     {
       label: "Product Detail View (A2 Gir Cow Ghee)",
       route: "www.achyutamorganic.com/product/gir-cow-ghee",
       description: "High-conversion product page highlighting nutritional benefits, lab testing, customer reviews, and subscription options.",
-      image: achyutamProduct,
-      device: "desktop",
     },
     {
       label: "Featured Dairy Products Showcase",
       route: "www.achyutamorganic.com/products",
       description: "Curated collection of pure A2 dairy products, seasonal organic offerings, and gift hamper boxes.",
-      image: achyutamOurProducts,
-      device: "desktop",
     },
     {
       label: "Brand Story & Farm Heritage",
       route: "www.achyutamorganic.com/about",
       description: "Storytelling layout showcasing farm transparency, ethical milking practices, and quality assurance.",
-      image: achyutamAbout,
-      device: "desktop",
     },
     {
       label: "Cart & Checkout Flow",
       route: "www.achyutamorganic.com/cart",
       description: "Frictionless shopping bag with free shipping progress, delivery date selection, and UPI payment gateways.",
-      image: achyutamCart,
-      device: "desktop",
-    },
-    {
-      label: "Payment & Order Confirmation",
-      route: "www.achyutamorganic.com/checkout",
-      description: "SSL encrypted checkout gateway with automated SMS order tracking and instant invoice generation.",
-      image: achyutamPayment,
-      device: "desktop",
     },
   ],
   "apex-revops": [
@@ -1007,36 +941,31 @@ export const PROJECT_GALLERY_MAP: Record<string, ProjectGalleryItem[]> = {
       label: "Homepage & B2B Hero Showcase",
       route: "www.apex-revops.com/",
       description: "High-impact agency positioning communicating AI-driven sales pipeline architecture and outbound scale.",
-      image: apexRevOpsCover,
-      device: "desktop",
     },
     {
       label: "Revenue Pipeline & CRM Hub",
       route: "www.apex-revops.com/pipeline",
       description: "Interactive pipeline visualizer demonstrating automated lead routing, deal stage velocity, and CRM hygiene.",
-      image: apexRevOpsCRM,
-      device: "desktop",
     },
     {
       label: "Analytics & Conversion Metrics Dashboard",
       route: "www.apex-revops.com/analytics",
       description: "Real-time performance dashboard tracking MQL-to-SQL conversion ratios, cost per booked demo, and pipeline value.",
-      image: apexRevOpsAnalytics,
-      device: "desktop",
     },
     {
       label: "Outbound Lead Generation Systems",
       route: "www.apex-revops.com/services",
       description: "Multi-channel outbound engine layout covering LinkedIn automation, targeted email infrastructure, and ICP research.",
-      image: apexRevOpsFunnels,
-      device: "desktop",
     },
     {
       label: "AI Automation & Case Studies",
       route: "www.apex-revops.com/case-studies",
       description: "Documented client ROI benchmarks and client video testimonials built to convert high-ticket B2B decision makers.",
-      image: apexRevOpsOutreach,
-      device: "desktop",
+    },
+    {
+      label: "Strategy Intake & Pipeline Audit Form",
+      route: "www.apex-revops.com/contact",
+      description: "Frictionless discovery meeting intake form and automated calendar scheduling for enterprise revenue leaders.",
     },
   ],
   "xivi": [
@@ -1044,36 +973,592 @@ export const PROJECT_GALLERY_MAP: Record<string, ProjectGalleryItem[]> = {
       label: "Storefront & Luxury Editorial Hero",
       route: "www.xivi.in/",
       description: "High-end luxury aesthetic for 925 sterling silver jewellery with seasonal editorial campaigns and smooth transitions.",
-      image: xiviCover,
-      device: "desktop",
     },
     {
       label: "Signature Collections & Lookbook",
       route: "www.xivi.in/collections",
       description: "Curated jewelry categories categorized by rings, bracelets, pendants, and bespoke silver craftsmanship.",
-      image: xiviCollection,
-      device: "desktop",
     },
     {
       label: "Product Detail & Sizing Guide",
       route: "www.xivi.in/products/silver-solitaire",
       description: "Multi-angle photography zoom, silver hallmarking details, interactive ring size finder, and customer styling photos.",
-      image: xiviProductDetail,
-      device: "desktop",
     },
     {
       label: "Gift Packaging & Express Cart",
       route: "www.xivi.in/cart",
       description: "Seamless gift box selection, personalized card messaging, and secure prepaid payment flow.",
-      image: xiviCart,
-      device: "desktop",
     },
     {
       label: "Brand Craftsmanship & Purity Promise",
       route: "www.xivi.in/about",
       description: "Story of artisanal silversmithing, BIS hallmarking certification, and customer satisfaction guarantee.",
-      image: xiviStory,
-      device: "desktop",
+    },
+  ],
+  "career-upgrade-dental-nursing-school": [
+    {
+      label: "Online Dental Nursing School Homepage",
+      route: "www.careerupgradedentalnursingschool.co.uk/",
+      description: "Accredited online qualification academy landing page presenting NCFE CACHE Level 3 diploma training, student funding, and career guidance.",
+    },
+    {
+      label: "Admissions Center & London Office Location",
+      route: "www.careerupgradedentalnursingschool.co.uk/contact",
+      description: "Admissions inquiry form, office location at 124 City Road London, direct tutor hotlines, and 1:1 consultation scheduling.",
+    },
+    {
+      label: "Accredited Courses & Government Funding Options",
+      route: "www.careerupgradedentalnursingschool.co.uk/courses",
+      description: "Comprehensive breakdown of the 1-year dental nursing curriculum, flexible 0% interest installments, and government-backed funding.",
+    },
+    {
+      label: "Admissions Officer Dashboard & Enrollment Tracker",
+      route: "www.careerupgradedentalnursingschool.co.uk/admin/dashboard",
+      description: "Internal admissions management console tracking candidate inquiries, course enrollment velocity, and tutor assignments.",
+    },
+    {
+      label: "Student Applications & Qualification Portal",
+      route: "www.careerupgradedentalnursingschool.co.uk/admin/applications",
+      description: "Candidate tracking table managing NCFE CACHE Level 3 diploma submissions, identity verification, and funding status.",
+    },
+    {
+      label: "Student Acquisition & Web Analytics Hub",
+      route: "www.careerupgradedentalnursingschool.co.uk/admin/analytics",
+      description: "Live performance analytics reporting visitor growth trends, application completion rates, and inquiry acquisition channels.",
+    },
+  ],
+  "happy-dental-agency": [
+    {
+      label: "Recruitment Agency Homepage & Staffing Hero",
+      route: "www.happydentalagency.co.uk/",
+      description: "Dedicated dental staffing portal connecting UK practices with locum and permanent dental nurses with 24/7 coverage.",
+    },
+    {
+      label: "Coverage Area & London Office Location",
+      route: "www.happydentalagency.co.uk/contact",
+      description: "Interactive practice support map centered at 124 City Road London, covering Greater London and home counties.",
+    },
+    {
+      label: "Qualified Dental Nurse Registration Portal",
+      route: "www.happydentalagency.co.uk/dental-nurses",
+      description: "Streamlined registration flow for GDC-registered nurses seeking locum shifts, competitive hourly pay, and flexible scheduling.",
+    },
+    {
+      label: "Trainee Dental Nurse Placement & Support",
+      route: "www.happydentalagency.co.uk/trainee-nurses",
+      description: "Dedicated entry pathway for trainee nurses needing accredited course placement and practice mentorship.",
+    },
+    {
+      label: "Agency Staffing Management Console",
+      route: "www.happydentalagency.co.uk/admin",
+      description: "Administrative dashboard tracking 51 registered nurses, active practice vacancies, and placement dispatch.",
+    },
+    {
+      label: "Recruitment Traffic & Portal Analytics",
+      route: "www.happydentalagency.co.uk/analytics",
+      description: "Real-time Google Analytics tracking high-traffic nurse registration funnels and dental practice inquiry conversions.",
+    },
+  ],
+  "nirvana-spine-pain-clinic": [
+    {
+      label: "Spine & Pain Management Clinic Homepage",
+      route: "www.nirvanapainclinic.com/",
+      description: "Modern clinical hero showcasing advanced non-surgical spine care, interventional pain medicine, and direct consultation booking.",
+    },
+    {
+      label: "Modern Clinic Facility & Procedure Suites",
+      route: "www.nirvanapainclinic.com/about",
+      description: "Visual tour of the state-of-the-art Hyderabad treatment suites, diagnostic consultation rooms, and advanced fluoroscopy equipment.",
+    },
+    {
+      label: "Interventional Procedures & Treatments",
+      route: "www.nirvanapainclinic.com/treatments",
+      description: "Comprehensive guide to targeted epidural injections, nerve root blocks, radiofrequency ablation, and regenerative joint therapies.",
+    },
+    {
+      label: "Patient Health Library & Clinical Articles",
+      route: "www.nirvanapainclinic.com/blog",
+      description: "Doctor-authored educational guides covering desk-worker neck strain, slip disc rehabilitation, and sciatica relief protocols.",
+    },
+    {
+      label: "Doctor Consultation & Appointment Booking",
+      route: "www.nirvanapainclinic.com/book-appointment",
+      description: "Frictionless patient appointment booking form with Dr. Vamshi Bharadwaj, including time slot selection and contact details.",
+    },
+    {
+      label: "Chronic Conditions & Symptoms Directory",
+      route: "www.nirvanapainclinic.com/conditions",
+      description: "Symptom navigator for chronic lower back pain, migraine/facial pain, cervical spondylosis, and cancer palliative care.",
+    },
+  ],
+  "phoenix-mediclinic": [
+    {
+      label: "Multispeciality Clinic Homepage & Patient Hero",
+      route: "www.phoenixmediclinic.com/",
+      description: "Modern healthcare storefront for Sector 46 Gurugram clinic presenting advanced hair restoration, skin aesthetics, and integrative homeopathy.",
+    },
+    {
+      label: "Clinical Specialties & Treatment Departments",
+      route: "www.phoenixmediclinic.com/services",
+      description: "Interactive department selector highlighting advanced trichology, aesthetic cosmetology, and holistic medical consultations.",
+    },
+    {
+      label: "Clinic Location & Appointment Inquiry Form",
+      route: "www.phoenixmediclinic.com/contact",
+      description: "Sector 46 Gurugram clinic address, opening hours, interactive Google Map, and instant WhatsApp booking.",
+    },
+    {
+      label: "Regenerative Hair & Scalp Restoration",
+      route: "www.phoenixmediclinic.com/hair-treatments",
+      description: "In-depth treatment pages for Platelet-Rich Plasma (PRP), Growth Factor Concentrate (GFC), and scalp mesotherapy.",
+    },
+    {
+      label: "Physician Profile & Holistic Treatment Philosophy",
+      route: "www.phoenixmediclinic.com/about-us",
+      description: "Clinical qualifications, background, and integrative care protocol bridging modern diagnostics with natural therapies.",
+    },
+    {
+      label: "Hair Transplant Case Results & Gallery",
+      route: "www.phoenixmediclinic.com/results",
+      description: "Verified before-and-after photographic documentation of Sapphire FUE hair restorations and hairline reconstructions.",
+    },
+  ],
+  "kpj-advocates": [
+    {
+      label: "Law Firm Homepage & Legal Counsel Hero",
+      route: "www.kpjadvocates.com/",
+      description: "Distinguished legal practice hero highlighting senior courtroom experience, client advocacy, and confidential case evaluation.",
+    },
+    {
+      label: "Core Legal Practice Areas & Solutions",
+      route: "www.kpjadvocates.com/practice-areas",
+      description: "Detailed practice areas including Real Estate & Property Disputes, Banking & Finance, Loan Recovery, and SARFAESI Act litigation.",
+    },
+    {
+      label: "Firm Mission, Ethics & Guiding Principles",
+      route: "www.kpjadvocates.com/about",
+      description: "Commitment to courtroom integrity, ethical transparency, meticulous documentation, and dedicated client advocacy.",
+    },
+    {
+      label: "Litigation Services & Courtroom Defense",
+      route: "www.kpjadvocates.com/litigation",
+      description: "Strategic representation across Civil Suits, Criminal Defense, High Court appeals, and Corporate Advisory disputes.",
+    },
+    {
+      label: "Why Choose KPJ Advocates & Proven Track Record",
+      route: "www.kpjadvocates.com/why-us",
+      description: "Key pillars of advocacy: multi-decade legal expertise, proactive case preparation, and trial-tested courtroom strategy.",
+    },
+    {
+      label: "Thoothukudi Head Office & Legal Case Intake",
+      route: "www.kpjadvocates.com/contact",
+      description: "Pearl Plaza office location map, contact numbers, consultation hours, and confidential legal enquiry form.",
+    },
+  ],
+  "qualitech-connectronics": [
+    {
+      label: "Industrial Electronic Components B2B Storefront",
+      route: "www.qualitechconnectronics.com/",
+      description: "High-performance B2B electronic components storefront with instant SKU search, technical datasheets, and bulk procurement.",
+    },
+    {
+      label: "B2B Product Catalogue & Component Directory",
+      route: "www.qualitechconnectronics.com/products",
+      description: "Filterable catalogue featuring 724+ industrial connectors, wire-to-board terminals, and cable harnesses with live stock badges.",
+    },
+    {
+      label: "Procurement Cart & GST Invoice Checkout",
+      route: "www.qualitechconnectronics.com/cart",
+      description: "B2B shopping cart with automated GST tax calculation, bulk tier volume discounts, Razorpay, and Cash on Delivery.",
+    },
+    {
+      label: "Operations Console & Order Management",
+      route: "www.qualitechconnectronics.com/admin/orders",
+      description: "Centralized supply chain console tracking active purchase orders, pending RFQs, customer invoices, and shipment status.",
+    },
+    {
+      label: "Order Dispatch & Logistics Tracking",
+      route: "www.qualitechconnectronics.com/admin/dispatch",
+      description: "Real-time dispatch management system with courier tracking integration, weight verification, and PDF invoice generation.",
+    },
+    {
+      label: "Inventory Database & SKU Management",
+      route: "www.qualitechconnectronics.com/admin/inventory",
+      description: "Live stock control database managing 167+ active electronic component SKUs, safety stock thresholds, and datasheet uploads.",
+    },
+  ],
+  "amzcoz": [
+    {
+      label: "Marketplace Scaling Agency Homepage",
+      route: "www.amzcoz.com/",
+      description: "Omnichannel growth agency hero engineered for D2C brands scaling on Amazon, Blinkit, Zepto, Flipkart, and quick-commerce.",
+    },
+    {
+      label: "Live Brand Telemetry & Revenue Dashboard",
+      route: "www.amzcoz.com/telemetry",
+      description: "Consolidated performance telemetry tracking net revenue, dark-store fulfillment velocity, blended ROAS, and ad spend efficiency.",
+    },
+    {
+      label: "4-Phase Marketplace Growth Framework",
+      route: "www.amzcoz.com/framework",
+      description: "Structured acceleration model: Channel Audit, Listing Optimization & A+ Content, PPC Bidding Engines, and Quick-Commerce Dominance.",
+    },
+    {
+      label: "Agency Comparison Matrix & Advantage",
+      route: "www.amzcoz.com/comparison",
+      description: "Direct head-to-head breakdown showing dedicated account management, hourly bid adjustments, and proactive stock monitoring.",
+    },
+    {
+      label: "Brand Identity & 3D Packaging Design Studio",
+      route: "www.amzcoz.com/branding",
+      description: "Showcase of luxury brand identity work for The Shaykha, 3D photorealistic packshots, and Arabian Sadu-inspired visual systems.",
+    },
+    {
+      label: "Global Marketplace Expansion Roadmap",
+      route: "www.amzcoz.com/global",
+      description: "International brand rollout infrastructure spanning Amazon US, UK, UAE/Saudi Arabia, Singapore, and Tokyo.",
+    },
+  ],
+  "autodigix": [
+    {
+      label: "AI Automation & Digital Agency Homepage",
+      route: "www.autodigix.com/",
+      description: "Cutting-edge digital growth agency hero integrating AI workflow automation, custom software, and full-funnel digital marketing.",
+    },
+    {
+      label: "Certification Programs & Skill Academy",
+      route: "www.autodigix.com/academy",
+      description: "Intensive 30-day cohort-based certification courses in AI Business Automation, Modern Full-Stack Development, and Digital Marketing.",
+    },
+    {
+      label: "Agency Insights & Technical Blog",
+      route: "www.autodigix.com/blog",
+      description: "Thought leadership articles on SEO trends in 2026, autonomous AI marketing agents, and voice-search readiness.",
+    },
+    {
+      label: "Client Portfolio & Case Studies Hub",
+      route: "www.autodigix.com/case-studies",
+      description: "Documented client growth stories and lead generation case studies for Altum Systems, Winsta, and Nirvana Spine Clinic.",
+    },
+    {
+      label: "Career Openings & Remote Internships",
+      route: "www.autodigix.com/careers",
+      description: "Skill-first remote internship portal for AI automation engineers, frontend developers, and performance marketing specialists.",
+    },
+    {
+      label: "Strategy Consultation & Project Inquiries",
+      route: "www.autodigix.com/contact",
+      description: "Direct client consultation form, office contact details, and automated Calendly meeting scheduler.",
+    },
+  ],
+  "e-com-elevate-solutions": [
+    {
+      label: "E-Commerce Growth Agency Homepage",
+      route: "www.ecom-elevate.com/",
+      description: "High-converting marketplace consultancy hero positioning Amazon brand scaling, sponsored ads management, and listing redesigns.",
+    },
+    {
+      label: "Marketplace Growth Benchmarks & ROAS Metrics",
+      route: "www.ecom-elevate.com/metrics",
+      description: "Audited client performance metrics: +38% YoY sales expansion, 4.6x average ad ROAS, and 92% customer repurchase rates.",
+    },
+    {
+      label: "Strategy Audit & Mumbai Office Consultation",
+      route: "www.ecom-elevate.com/contact",
+      description: "Free marketplace audit booking form, direct client hotline, and Kurla West Mumbai headquarters map.",
+    },
+    {
+      label: "Full-Service Amazon & Marketplace Management",
+      route: "www.ecom-elevate.com/services",
+      description: "End-to-end service suite covering seller account governance, catalog optimization, FBA inventory health, and A+ brand stores.",
+    },
+    {
+      label: "Sponsored Ads & PPC Command Center",
+      route: "www.ecom-elevate.com/advertising",
+      description: "Dedicated PPC campaign optimization framework covering negative keyword pruning, dayparting, and Sponsored Brand video ads.",
+    },
+    {
+      label: "Creative Design Portfolio & Infographics",
+      route: "www.ecom-elevate.com/creative",
+      description: "Visual gallery of Amazon hero product infographics, conversion lifestyle shots, and branded merchandise packaging.",
+    },
+  ],
+  "the-asset-office": [
+    {
+      label: "Digital Asset Wealth Platform Homepage",
+      route: "www.theassetoffice.com/",
+      description: "Institutional digital asset advisory hero designed for family offices and high-net-worth investors navigating decentralized markets.",
+    },
+    {
+      label: "Uncompromising Investment Principles",
+      route: "www.theassetoffice.com/principles",
+      description: "Core investment tenets: Time-in-market over speculative trading, military-grade cold custody, and transparent flat-fee pricing.",
+    },
+    {
+      label: "Capital Allocation & Custody Framework",
+      route: "www.theassetoffice.com/framework",
+      description: "Structured 4-step onboarding journey: Private Discovery, Model Allocation, Institutional Multi-Sig Custody, and Compounding Yields.",
+    },
+    {
+      label: "Private Wealth Consultation Form",
+      route: "www.theassetoffice.com/consultation",
+      description: "Bespoke wealth consultation application with investment horizon selection, risk tolerance profiling, and encrypted intake.",
+    },
+    {
+      label: "Client Portal & Multi-Sig Account Access",
+      route: "www.theassetoffice.com/portal/login",
+      description: "Encrypted investor portal modal featuring 2-factor authentication, cold-storage key verification, and portfolio reporting.",
+    },
+    {
+      label: "Institutional Advisory Scale & Track Record",
+      route: "www.theassetoffice.com/track-record",
+      description: "$420M+ assets advised, 6.4-year average investor holding period, and systematic risk management across Solana, Stables, and RWAs.",
+    },
+  ],
+  "the-investor-office": [
+    {
+      label: "Institutional Investment Solutions Homepage",
+      route: "www.theinvestoroffice.com/",
+      description: "Sophisticated digital asset advisory hero tailored for private equity, institutions, and family office capital preservation.",
+    },
+    {
+      label: "5-Stage Client Onboarding Architecture",
+      route: "www.theinvestoroffice.com/onboarding",
+      description: "Streamlined institutional onboarding: Profile Assessment, Institutional KYC/AML, Custody Integration, Strategy Execution, and Quarterly Reviews.",
+    },
+    {
+      label: "Institutional Advantage & Exchange Comparison",
+      route: "www.theinvestoroffice.com/advantage",
+      description: "Comparative analysis highlighting insured multi-custodian vaults, OTC block trading desks, and proprietary quantitative liquidity models.",
+    },
+    {
+      label: "Market Intelligence & Smart Contract Audits",
+      route: "www.theinvestoroffice.com/intelligence",
+      description: "Macro liquidity telemetry, on-chain protocol flow analysis, protocol security auditing, and stress-tested yield models.",
+    },
+    {
+      label: "Tailored Portfolio Strategy Consultation",
+      route: "www.theinvestoroffice.com/contact",
+      description: "Confidential institutional consultation intake form featuring international country dialing and allocation tier selection.",
+    },
+    {
+      label: "Client Registration & Secure Terminal Access",
+      route: "www.theinvestoroffice.com/register",
+      description: "Encrypted institutional dashboard registration modal with enterprise compliance validation and role-based permissions.",
+    },
+  ],
+  "elite-chain": [
+    {
+      label: "Plateforme IA Crypto & Web3 Hero",
+      route: "www.elitechain.fr/",
+      description: "Plateforme française d'intelligence artificielle pour l'arbitrage, l'allocation automatisée d'actifs numériques et le staking Web3.",
+    },
+    {
+      label: "Portefeuille Intelligent & Rééquilibrage IA",
+      route: "www.elitechain.fr/portfolio",
+      description: "Console de suivi d'actifs (259 420 $) avec alertes prédictives en direct et suggestions d'arbitrage automatisé vers Ethereum.",
+    },
+    {
+      label: "Marchés en Direct & Indice de Sentiment",
+      route: "www.elitechain.fr/marches",
+      description: "Graphique chandelier BTC/USD (67 430 $), jauge Fear & Greed en temps réel et cartographie thermique du marché crypto mondial.",
+    },
+    {
+      label: "Consultation Stratégique & Bureaux Mondiaux",
+      route: "www.elitechain.fr/contact",
+      description: "Formulaire de contact pour investisseurs privés et coordonnées des bureaux de gestion à Londres, San Francisco et Singapour.",
+    },
+    {
+      label: "Création de Compte & Espace Sécurisé",
+      route: "www.elitechain.fr/inscription",
+      description: "Modal d'inscription express avec chiffrement SSL 256 bits, authentification biométrique et vérification d'identité instantanée.",
+    },
+    {
+      label: "Copilote IA & Modèle d'Allocation Optimisée",
+      route: "www.elitechain.fr/copilote",
+      description: "Algorithme d'optimisation de portefeuille attribuant une note A+ et une répartition diversifiée (BTC 42%, ETH 28%, DeFi 18%, Stables 12%).",
+    },
+  ],
+  "filizat-metals": [
+    {
+      label: "Industrial Base Metals Foundry Homepage",
+      route: "www.filizatmetals.com/",
+      description: "Heavy metallurgical manufacturing hero showcasing refined lead ingots, precision casting, and international container export.",
+    },
+    {
+      label: "99.97% Ultra-Refined Pure Lead Ingots",
+      route: "www.filizatmetals.com/products/refined-lead",
+      description: "Technical purity specifications, chemical assays, and packaging standards for commercial lead battery manufacturers.",
+    },
+    {
+      label: "Manufacturing Quality & Global Standards",
+      route: "www.filizatmetals.com/quality",
+      description: "Rigorous ISO 9001:2015 certification, environmental compliance standards, and SGS third-party pre-shipment inspections.",
+    },
+    {
+      label: "Aligarh Smelting & Casting Foundry",
+      route: "www.filizatmetals.com/about",
+      description: "Multi-generational metallurgical foundry infrastructure, furnace capacities, and worldwide supply chain logistics.",
+    },
+    {
+      label: "Multi-Stage Quality Control & Lab Testing",
+      route: "www.filizatmetals.com/testing",
+      description: "Spectrometry testing labs, metallurgical grain analysis, and certified Mill Test Certificates (MTC) for bulk orders.",
+    },
+    {
+      label: "Headquarters Map & Factory Location",
+      route: "www.filizatmetals.com/contact",
+      description: "Aligarh Central Tower headquarters map, manufacturing facility coordinates, and RFQ submission desk.",
+    },
+  ],
+  "skr-metal-suppliers": [
+    {
+      label: "Metal Washers Manufacturer Homepage",
+      route: "www.skrmetals.com/",
+      description: "Leading Coimbatore roofing and industrial washer manufacturer hero highlighting bulk pricing, same-day dispatch, and factory-direct supply.",
+    },
+    {
+      label: "Industrial Washers Catalogue & Unit Pricing",
+      route: "www.skrmetals.com/catalogue",
+      description: "Product pricing catalogue: Nitrile Umbrella Washers (₹2/pc) and Heavy-Duty Bitumen Washers (₹14/pc) with direct enquiry buttons.",
+    },
+    {
+      label: "Nitrile Umbrella Washer Specifications",
+      route: "www.skrmetals.com/umbrella-washers",
+      description: "Technical engineering specifications: mild steel galvanized corrosion-resistant cap bonded to high-durability EPDM/nitrile sealing rubber.",
+    },
+    {
+      label: "Multi-Angle Product Engineering Gallery",
+      route: "www.skrmetals.com/gallery",
+      description: "High-resolution product views detailing washer profile, underside grip seal, and bulk production batch consistency.",
+    },
+    {
+      label: "Logistics Network & Dispatch Coverage",
+      route: "www.skrmetals.com/logistics",
+      description: "Prompt logistics network across Tamil Nadu and South India with heavy-duty gunny sack packaging and WhatsApp dispatch updates.",
+    },
+    {
+      label: "Ondipudur Factory Location & WhatsApp Order",
+      route: "www.skrmetals.com/contact",
+      description: "Factory address at 61 Extension Street Ondipudur, Coimbatore, direct contact numbers, and 1-tap WhatsApp bulk order flow.",
+    },
+  ],
+  "big-bang-tech-solutions": [
+    {
+      label: "Technology Studio & AI Consulting Homepage",
+      route: "www.bigbangtech.in/",
+      description: "Enterprise software engineering studio hero delivering high-performance web systems, native mobile apps, and LLM automation.",
+    },
+    {
+      label: "Core Capabilities & Engineering Matrix",
+      route: "www.bigbangtech.in/services",
+      description: "Architectural overview spanning modern web platforms, 60fps mobile applications, cloud DevOps, and AI workflow integration.",
+    },
+    {
+      label: "Native Mobile App Development Studio",
+      route: "www.bigbangtech.in/mobile",
+      description: "Cross-platform and native engineering using React Native, Flutter, Swift, and Kotlin with fluid animations and offline sync.",
+    },
+    {
+      label: "Business Automation & AI Agent Orchestration",
+      route: "www.bigbangtech.in/automation",
+      description: "Composable AI workflows replacing repetitive business labor with observable autonomous agent pipelines.",
+    },
+    {
+      label: "Fractional CTO & Studio Advantages",
+      route: "www.bigbangtech.in/about",
+      description: "Six architectural tenets: rapid prototype velocity, clean modular codebases, hardened security, and zero technical debt.",
+    },
+    {
+      label: "Project Intake & Scoping Consultation",
+      route: "www.bigbangtech.in/contact",
+      description: "Single-conversation project trajectory intake, scope definition form, and immediate developer consultation scheduler.",
+    },
+  ],
+  "chakrabyte-security": [
+    {
+      label: "Cyber Security Institute Homepage",
+      route: "www.chakrabytesecurity.com/",
+      description: "Premier cybersecurity training academy hero featuring hands-on virtual labs, global certification prep, and corporate SOC services.",
+    },
+    {
+      label: "Industry Certification Training Programs",
+      route: "www.chakrabytesecurity.com/certifications",
+      description: "Specialized training tracks for CompTIA CySA+ Analyst, CompTIA Security+, Certified Ethical Hacker (CEH), and Cloud Defense.",
+    },
+    {
+      label: "Enterprise Security & Penetration Testing",
+      route: "www.chakrabytesecurity.com/services",
+      description: "B2B security audits: Vulnerability Assessment and Penetration Testing (VAPT), red team simulations, and employee awareness drills.",
+    },
+    {
+      label: "3-Stage Practical Training Methodology",
+      route: "www.chakrabytesecurity.com/methodology",
+      description: "Core educational model: Cyber Foundations, Virtual Cyber Range Labs, and Real-World Incident Response scenarios.",
+    },
+    {
+      label: "Institutional Security Consulting Suite",
+      route: "www.chakrabytesecurity.com/corporate",
+      description: "Comprehensive service menu for universities and businesses: campus hackathons, compliance auditing, and career mentoring.",
+    },
+    {
+      label: "Cyber Defense Domains of Expertise",
+      route: "www.chakrabytesecurity.com/domains",
+      description: "Curriculum domains covering Offensive Hacking, Defensive SOC Blue Teaming, AWS/Azure Cloud Security, and Digital Forensics.",
+    },
+  ],
+  "employee-management-saas": [
+    {
+      label: "HRMS & Workforce Platform Homepage",
+      route: "www.autodigixhrms.com/",
+      description: "Modern cloud HRMS software hero providing automated employee clock-in, leave approvals, payroll generation, and team productivity.",
+    },
+    {
+      label: "Admin Operations & Headcount Dashboard",
+      route: "www.autodigixhrms.com/admin/dashboard",
+      description: "Executive overview displaying active headcount (5), 80% daily attendance rate, pending leave requests, and payroll status.",
+    },
+    {
+      label: "Real-Time Attendance & Shift Tracker",
+      route: "www.autodigixhrms.com/attendance",
+      description: "Live team attendance monitor showing punch-in timestamps, working durations, and visual completion progress bars.",
+    },
+    {
+      label: "Employee Self-Service (ESS) Portal",
+      route: "www.autodigixhrms.com/employee/portal",
+      description: "Personal staff portal with interactive shift timer (02:36:00), remaining leave balance (23 days), and instant payslip download.",
+    },
+    {
+      label: "Monthly Punch Logs & Hours Analytics",
+      route: "www.autodigixhrms.com/employee/attendance-log",
+      description: "Detailed monthly attendance analytics modal tracking total billable hours (137.6h), working streaks, and punctual arrival logs.",
+    },
+    {
+      label: "Interactive Leave & Holiday Calendar",
+      route: "www.autodigixhrms.com/calendar",
+      description: "Multi-month calendar visualizer with color-coded holiday schedules, weekend shifts, and team leave approvals.",
+    },
+  ],
+  "the-report-desk": [
+    {
+      label: "Journal d'Investigation Financière & Hero",
+      route: "www.thereportdesk.fr/",
+      description: "Portail d'actualités financières et géopolitiques avec analyses de marchés en direct, enquêtes exclusives et vidéos documentaires.",
+    },
+    {
+      label: "Dossiers Crypto, DeFi & Analyses Stratégiques",
+      route: "www.thereportdesk.fr/crypto",
+      description: "Analyses approfondies sur l'arbitrage de rendement DeFi, l'économie des tokens Layer-2 et les recommandations de portefeuille.",
+    },
+    {
+      label: "Article d'Enquête & Lecteur Vidéo Documentaire",
+      route: "www.thereportdesk.fr/enquetes/defi-cashflow",
+      description: "Enquête exclusive sur la génération de flux de trésorerie passifs via la DeFi avec lecteur vidéo documentaire HD intégré.",
+    },
+    {
+      label: "Grand Titre Financier & Ticker Boursier",
+      route: "www.thereportdesk.fr/a-la-une",
+      description: "Article à la une sur l'ascension financière de la dette étudiante à 45M$ avec bandeau de cotation BTC/ETH en continu.",
     },
   ],
 };
@@ -1110,15 +1595,11 @@ export const PROJECT_FOLDER_MAP: Record<string, string> = {
 };
 
 const getFilePriority = (fileName: string): number => {
-  const lower = fileName.toLowerCase();
-  if (lower.includes("cover") || lower.includes("141349")) return 0;
-  if (lower === "image.png") return 1;
-  if (lower === "image copy.png") return 2;
-  if (lower === "image copy 2.png") return 3;
-  if (lower === "image copy 3.png") return 4;
-  if (lower === "image copy 4.png") return 5;
-  if (lower.includes("gsc")) return 10;
-  return 6;
+  const base = fileName.toLowerCase().replace(/\.[^/.]+$/, "");
+  if (base.includes("cover")) return 0;
+  if (/^\d{2}-/.test(base)) return parseInt(base.slice(0, 2), 10);
+  if (base.includes("gsc")) return 10;
+  return 8;
 };
 
 const gscAssetModules = import.meta.glob<string>(
@@ -1127,40 +1608,22 @@ const gscAssetModules = import.meta.glob<string>(
 );
 
 /**
- * Carefully staggered GSC performance reports ensuring:
- * 1. Projects with their own real GSC use their authentic report.
- * 2. No two adjacent projects ever display the same GSC image.
+ * Authentic GSC performance reports for projects with verified GSC data.
  */
-export const PROJECT_GSC_MAP: Record<string, string> = {
-  "precision-root-canal": kpjGSC,
-  "orchid-dental": orchidGSC, // Original GSC
-  "happy-dental-agency": happyDentalGSC, // Original GSC
-  "career-upgrade-dental-nursing-school": skrGSC,
-  "nirvana-spine-pain-clinic": kpjGSC,
-  "phoenix-mediclinic": orchidGSC,
-  "qualitech-connectronics": happyDentalGSC,
-  "achyutam-organics": skrGSC,
-  "xivi": kpjGSC,
-  "amzcoz": orchidGSC,
-  "apex-revops": happyDentalGSC,
-  "autodigix": skrGSC,
-  "e-com-elevate-solutions": kpjGSC,
-  "the-asset-office": orchidGSC,
-  "the-investor-office": happyDentalGSC,
-  "elite-chain": skrGSC,
-  "kpj-advocates": kpjGSC, // Original GSC
-  "filizat-metals": orchidGSC,
-  "skr-metal-suppliers": skrGSC, // Original GSC
-  "big-bang-tech-solutions": happyDentalGSC,
-  "chakrabyte-security": kpjGSC,
-  "employee-management-saas": orchidGSC,
-  "the-report-desk": skrGSC,
+export const PROJECT_GSC_MAP: Record<string, boolean> = {
+  "orchid-dental": true,
+  "happy-dental-agency": true,
+  "kpj-advocates": true,
+  "skr-metal-suppliers": true,
 };
 
 export const getProject = (slug?: string) => PROJECTS.find((project) => project.slug === slug);
 
-export const getProjectGSCImage = (project: Project): string => {
-  // 1. Direct match if project has its own dedicated uploaded gsc.png
+export const getProjectGSCImage = (project: Project): string | undefined => {
+  if (!PROJECT_GSC_MAP[project.slug]) {
+    return undefined;
+  }
+
   const folder = PROJECT_FOLDER_MAP[project.slug];
   if (folder) {
     for (const [filePath, imageUrl] of Object.entries(gscAssetModules)) {
@@ -1171,21 +1634,12 @@ export const getProjectGSCImage = (project: Project): string => {
     }
   }
 
-  // 2. Strict non-adjacent alternative assignment
-  if (PROJECT_GSC_MAP[project.slug]) {
-    return PROJECT_GSC_MAP[project.slug];
-  }
-
-  return orchidGSC;
+  return undefined;
 };
 
 export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
   if (project.gallery && project.gallery.length > 0) {
     return project.gallery.filter((item) => Boolean(item.image));
-  }
-
-  if (PROJECT_GALLERY_MAP[project.slug]) {
-    return PROJECT_GALLERY_MAP[project.slug].filter((item) => Boolean(item.image));
   }
 
   const domain = project.website ? `www.${project.website}` : "www.clientdomain.com";
@@ -1218,15 +1672,17 @@ export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
         return fileA.localeCompare(fileB);
       });
 
+      const bespokeList = PROJECT_BESPOKE_GALLERY_CONFIGS[project.slug];
+
       const isMedical = project.category === "Dental" || project.category === "Healthcare";
       const isEcommerce = project.category === "Ecommerce";
 
-      const slotConfigs = [
+      const defaultSlotConfigs = [
         {
           label: isEcommerce
             ? "Storefront Hero & Featured Drops"
             : isMedical
-            ? "Home Page (Hero & Patient Welcome)"
+            ? "Home Page (Hero & Service Overview)"
             : "Home Page (Hero & Value Proposition)",
           route: `${domain}/`,
           description: isEcommerce
@@ -1240,13 +1696,13 @@ export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
           label: isEcommerce
             ? "Product Catalogue & Collections Grid"
             : isMedical
-            ? "Dental Treatments & Clinical Services"
+            ? "Services & Healthcare Offerings"
             : "Services & Capabilities Matrix",
           route: `${domain}/services`,
           description: isEcommerce
             ? "Filterable product grid with instant preview, pricing, customer ratings, and category filters."
             : isMedical
-            ? "Comprehensive breakdown of key treatments, clinical procedures, patient benefits, and specialist care."
+            ? "Comprehensive overview of specialized services, clinical care, and patient benefits."
             : "Comprehensive breakdown of key services, individual offerings, transparent pricing indicators, and structured navigation.",
           device: "desktop" as const,
         },
@@ -1254,7 +1710,7 @@ export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
           label: isEcommerce
             ? "Product Details & Sizing Guide"
             : isMedical
-            ? "Our Team & Healthcare Specialists"
+            ? "Our Team & Specialists"
             : "About Company & Leadership Team",
           route: `${domain}/about`,
           description: isEcommerce
@@ -1268,7 +1724,7 @@ export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
           label: isEcommerce
             ? "Brand Heritage & Ethical Sourcing"
             : isMedical
-            ? "Our Mission & Patient Care Philosophy"
+            ? "Our Mission & Standards of Care"
             : "Our Mission & Core Capabilities",
           route: `${domain}/mission`,
           description: isEcommerce
@@ -1296,7 +1752,7 @@ export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
           label: isEcommerce
             ? "Express Cart & Secure Checkout"
             : isMedical
-            ? "Our Fees & Transparent Pricing"
+            ? "Transparent Pricing & Fee Guide"
             : "Pricing Plans & Engagement Options",
           route: `${domain}/pricing`,
           description: isEcommerce
@@ -1310,20 +1766,26 @@ export const getProjectGallery = (project: Project): ProjectGalleryItem[] => {
 
       return filtered
         .map(([filePath, imageUrl], idx) => {
-          const config = slotConfigs[idx] || {
-            label: `Extended Page View ${idx + 1}`,
-            route: `${domain}/view-${idx + 1}`,
+          const bespoke = bespokeList?.[idx];
+          const fallback = defaultSlotConfigs[idx] || {
+            label: `Page View ${idx + 1}`,
+            route: `${domain}/page-${idx + 1}`,
             description: `Custom engineered interface element and interactive workflow for ${project.name}.`,
             device: "desktop" as const,
           };
 
+          const label = bespoke?.label || fallback.label;
+          const route = bespoke?.route || fallback.route;
+          const description = bespoke?.description || fallback.description;
+          const device = bespoke?.device || fallback.device || ("desktop" as const);
+
           return {
-            label: config.label,
-            route: config.route,
-            description: config.description,
+            label,
+            route,
+            description,
             image: imageUrl,
             imageScale: project.imageScale,
-            device: config.device,
+            device,
           };
         })
         .filter((item) => Boolean(item.image));

@@ -8,11 +8,11 @@ import LeadForm from "@/components/LeadForm";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import SEO from "@/components/SEO";
 
-import hero1 from "@/assets/zyra/hero-1.jpg";
-import aboutImage from "@/assets/zyra/banner-web-design.jpg";
-import technologyImage from "@/assets/zyra/our-work.jpg";
-import bannerHome from "@/assets/zyra/banner-home.jpg";
-import fullscreenCta from "@/assets/zyra/seo.jpg";
+import hero1 from "@/assets/zyra/hero-1.webp";
+import aboutImage from "@/assets/zyra/banner-web-design.webp";
+import technologyImage from "@/assets/zyra/our-work.webp";
+import bannerHome from "@/assets/zyra/banner-home.webp";
+import fullscreenCta from "@/assets/zyra/seo.webp";
 
 const features = [
   { icon: Palette, title: "Conversion-First Design", desc: "Websites built to turn visitors into enquiries, calls and customers - not just to look pretty." },

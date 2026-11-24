@@ -7,7 +7,7 @@ import LeadForm from "@/components/LeadForm";
 import SEO from "@/components/SEO";
 import { SITE } from "@/lib/site";
 import { PAGE_BANNERS } from "@/lib/banners";
-import storyImage from "@/assets/zyra/hero-1.jpg";
+import storyImage from "@/assets/zyra/hero-1.webp";
 import founderPhoto from "@/assets/founder-image.webp";
 
 const capabilities = [

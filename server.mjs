@@ -256,6 +256,7 @@ function getOgImageForRoute(route) {
   if (
     route === '/about' ||
     route === '/our-work' ||
+    route.startsWith('/our-work/') ||
     route === '/services' ||
     route === '/industries' ||
     route.startsWith('/industries/')
@@ -321,6 +322,33 @@ const BLOG_POSTS = [
     date: '2026-11-24',
     image: 'https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=flat%20illustration%20comparing%20three%20panels%3A%20search%20result%20list%2C%20a%20featured%20answer%20box%2C%20and%20an%20AI%20chat%20assistant%20answer%2C%20clean%20blue%20and%20white%20palette%2C%20professional%20editorial%20blog%20header%2C%20no%20text&image_size=landscape_16_9',
   },
+];
+
+// Published project case studies. Slugs mirror src/lib/projects.ts.
+const PROJECT_WORKS = [
+  { slug: "precision-root-canal", name: "Precision Root Canal Therapy & Hygiene", industry: "Specialist Dental Care" },
+  { slug: "orchid-dental", name: "Orchid Dental", industry: "General & Family Dentistry" },
+  { slug: "happy-dental-agency", name: "Happy Dental Agency", industry: "Dental Recruitment & Staffing" },
+  { slug: "career-upgrade-dental-nursing-school", name: "Career Upgrade Dental Nursing School", industry: "Dental Education & Training" },
+  { slug: "nirvana-spine-pain-clinic", name: "Nirvana Spine & Pain Clinic", industry: "Spine & Pain Management" },
+  { slug: "phoenix-mediclinic", name: "Phoenix Mediclinic", industry: "Multispeciality Healthcare" },
+  { slug: "qualitech-connectronics", name: "Qualitech Connectronics", industry: "Industrial Electronics & E-Commerce" },
+  { slug: "achyutam-organics", name: "Achyutam Organics", industry: "Organic Dairy & E-commerce" },
+  { slug: "xivi", name: "XIVI", industry: "Jewellery & E-commerce" },
+  { slug: "amzcoz", name: "AMZCOZ", industry: "Marketplace & Quick Commerce" },
+  { slug: "apex-revops", name: "Apex RevOps", industry: "B2B Lead Generation & Automation" },
+  { slug: "autodigix", name: "AutoDigix CRM", industry: "Workforce Management & HR Tech" },
+  { slug: "e-com-elevate-solutions", name: "E Com Elevate Solutions", industry: "E-Commerce Growth & Tech Solutions" },
+  { slug: "the-asset-office", name: "The Asset Office", industry: "Crypto & Digital Asset Advisory" },
+  { slug: "the-investor-office", name: "The Investor Office", industry: "Investment Solutions & Financial Advisory" },
+  { slug: "elite-chain", name: "Elite Chain", industry: "AI & Blockchain Technology" },
+  { slug: "kpj-advocates", name: "KPJ Advocates", industry: "Legal Services" },
+  { slug: "filizat-metals", name: "Filizat Metals", industry: "Metal Manufacturing" },
+  { slug: "skr-metal-suppliers", name: "SKR Metal Suppliers", industry: "Industrial & Metal Suppliers" },
+  { slug: "big-bang-tech-solutions", name: "Big Bang Tech Solutions", industry: "Technology Consulting & AI Products" },
+  { slug: "chakrabyte-security", name: "Chakrabyte Security", industry: "Cybersecurity Education & Training" },
+  { slug: "employee-management-saas", name: "Employee Management System", industry: "HR Tech & SaaS Platform" },
+  { slug: "the-report-desk", name: "The Report Desk", industry: "Digital Journalism & Media" },
 ];
 
 // FAQ content. Mirrors src/components/HomeFAQ.tsx so that answer-engine
@@ -446,6 +474,7 @@ const SITEMAP_ROUTES = [
   ['/industries/solar-companies', '0.6'],
   ...LANDING_PAGES.map((p) => [p.path, p.priority]),
   ...BLOG_POSTS.map((p) => [`/blogs/${p.slug}`, '0.7']),
+  ...PROJECT_WORKS.map((p) => [`/our-work/${p.slug}`, '0.8']),
 ];
 
 app.get('/sitemap.xml', (req, res) => {
@@ -531,6 +560,14 @@ BLOG_POSTS.forEach((post) => {
   SEO_MAP[`/blogs/${post.slug}`] = { title: post.seoTitle, desc: post.desc };
 });
 
+// Register each project case study route so it is served with 200 + indexable metadata.
+PROJECT_WORKS.forEach((p) => {
+  SEO_MAP[`/our-work/${p.slug}`] = {
+    title: `${p.name} - Case Study & Website Architecture | Zyra Digitals`,
+    desc: `Case study for ${p.name} (${p.industry}). Explore full page screenshots, mobile-responsive UI/UX architecture, technical deliverables, and high-conversion web design by Zyra Digitals.`,
+  };
+});
+
 // Register every service, location and industry landing page with its own
 // title + description so non-JavaScript crawlers see unique metadata.
 LANDING_PAGES.forEach((p) => {
@@ -560,6 +597,10 @@ BLOG_POSTS.forEach((post) => {
   ROUTE_NAMES[`/blogs/${post.slug}`] = post.title;
 });
 
+PROJECT_WORKS.forEach((p) => {
+  ROUTE_NAMES[`/our-work/${p.slug}`] = p.name;
+});
+
 LANDING_PAGES.forEach((p) => {
   ROUTE_NAMES[p.path] = p.name;
 });
@@ -576,6 +617,10 @@ function buildSchemaGraph(route, title, description) {
   } else if (route.startsWith('/industries/')) {
     breadcrumbItems.push({ name: 'Home', item: BASE_URL + '/' });
     breadcrumbItems.push({ name: 'Industries', item: BASE_URL + '/industries' });
+    breadcrumbItems.push({ name: ROUTE_NAMES[route] || title, item: BASE_URL + route });
+  } else if (route.startsWith('/our-work/')) {
+    breadcrumbItems.push({ name: 'Home', item: BASE_URL + '/' });
+    breadcrumbItems.push({ name: 'Our Work', item: BASE_URL + '/our-work' });
     breadcrumbItems.push({ name: ROUTE_NAMES[route] || title, item: BASE_URL + route });
   } else if (route.startsWith('/blogs/')) {
     breadcrumbItems.push({ name: 'Home', item: BASE_URL + '/' });
@@ -611,6 +656,25 @@ function buildSchemaGraph(route, title, description) {
           publisher: { '@id': ORG_ID },
           isPartOf: { '@id': WEBSITE_ID },
           mainEntityOfPage: { '@id': `${BASE_URL}${route}#webpage` },
+          inLanguage: 'en',
+        },
+      ]
+    : [];
+
+  // Project case study pages get a CreativeWork node.
+  const project = PROJECT_WORKS.find((p) => `/our-work/${p.slug}` === route);
+  const caseStudyNode = project
+    ? [
+        {
+          '@type': 'CreativeWork',
+          '@id': `${BASE_URL}${route}#casestudy`,
+          headline: `${project.name} - Website Design Case Study`,
+          description,
+          author: { '@id': ORG_ID },
+          publisher: { '@id': ORG_ID },
+          about: project.industry,
+          mainEntityOfPage: { '@id': `${BASE_URL}${route}#webpage` },
+          isPartOf: { '@id': WEBSITE_ID },
           inLanguage: 'en',
         },
       ]
@@ -825,6 +889,7 @@ function buildSchemaGraph(route, title, description) {
         inLanguage: 'en',
       },
       ...articleNode,
+      ...caseStudyNode,
       ...serviceNodes,
       ...homeFaqNode,
       {
