@@ -80,7 +80,7 @@ const ProjectDetail = () => {
       />
 
       {/* Hero Header */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white py-16 sm:py-24">
+      <section className="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white py-10 sm:py-16 lg:py-20">
         <div className="pointer-events-none absolute -right-24 top-0 h-96 w-96 rounded-full bg-blue-500/20 blur-3xl" />
         <div className="pointer-events-none absolute left-0 bottom-0 h-72 w-72 rounded-full bg-indigo-500/20 blur-2xl" />
 
@@ -116,7 +116,7 @@ const ProjectDetail = () => {
               {project.name}
             </h1>
 
-            <p className="mb-8 text-base sm:text-lg leading-relaxed text-blue-100/90 max-w-3xl">
+            <p className="mb-6 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed text-blue-100/90 max-w-3xl">
               {project.description}
             </p>
 

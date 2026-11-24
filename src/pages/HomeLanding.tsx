@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Brush, CheckCircle2, Code2, Search } from "lucide-react";
+import { ArrowRight, Brush, Check, CheckCircle2, Code2, Search, Star } from "lucide-react";
 import FadeInView from "@/components/FadeInView";
 import ClientLogos from "@/components/ClientLogos";
 import GoogleReviews from "@/components/GoogleReviews";
@@ -9,7 +9,6 @@ import LeadForm from "@/components/LeadForm";
 import ProjectCard from "@/components/ProjectCard";
 import SEO from "@/components/SEO";
 import { faqSchema } from "@/lib/schema";
-import { INDUSTRIES } from "@/lib/site";
 import { PROJECTS } from "@/lib/projects";
 
 const services = [
@@ -39,24 +38,65 @@ const services = [
   },
 ];
 
-const industryCopy: Record<string, string> = {
-  "dental-clinics":
-    "Websites and SEO that help dental clinics reach more patients and confirm more appointments.",
-  "interior-designers":
-    "Portfolio websites that showcase your projects and bring a steady stream of design enquiries.",
-  "real-estate":
-    "Property websites that showcase listings and capture serious, ready-to-buy enquiries.",
-  "solar-companies":
-    "Websites and SEO that generate qualified solar quote requests and installation bookings.",
-};
+const websitePackages = [
+  {
+    name: "Portfolio",
+    tag: "Portfolio Website",
+    price: "₹7,999",
+    period: "onwards",
+    summary: "For freelancers, designers, clinics and personal brands",
+    features: [
+      "Up to 5 pages",
+      "Custom, mobile-first design",
+      "Project / work gallery",
+      "Enquiry form with email alerts",
+      "Basic on-page SEO",
+      "Contact + WhatsApp buttons",
+    ],
+    featured: false,
+  },
+  {
+    name: "Business",
+    tag: "Business Website",
+    price: "₹11,999",
+    period: "onwards",
+    summary: "For service businesses that want more leads & enquiries",
+    features: [
+      "Up to 12 pages",
+      "Conversion-focused layouts",
+      "Service pages + landing pages",
+      "Blog & content setup",
+      "Full on-page SEO & schema",
+      "Google Analytics & lead tracking",
+      "1 month free support",
+    ],
+    featured: true,
+  },
+  {
+    name: "E-commerce",
+    tag: "E-commerce Website",
+    price: "₹19,999",
+    period: "onwards",
+    summary: "For brands ready to sell products online",
+    features: [
+      "Unlimited products & categories",
+      "Secure payment gateway",
+      "Cart, checkout & order emails",
+      "Product SEO & fast loading",
+      "Shipping & tax configuration",
+      "2 months free support",
+    ],
+    featured: false,
+  },
+];
 
 const whyPoints = [
-  "100+ websites designed and delivered.",
-  "Websites built to turn visitors into enquiries.",
-  "Mobile-first websites with performance considered from day one.",
-  "Guaranteed replies within 1 hour.",
-  "Website and SEO services under one roof.",
-  "Support even after your website goes live.",
+  "Fast turnarounds with clear milestones",
+  "Transparent pricing with no hidden charges",
+  "Direct communication with the founder",
+  "Built with clean, modern code - no slow templates",
+  "Free quote and website audit within 1 hour",
+  "Ongoing support after launch",
 ];
 
 const HomeLanding = () => (
@@ -84,8 +124,10 @@ const HomeLanding = () => (
               <h1 className="mb-6 text-4xl font-extrabold leading-[1.08] text-white sm:text-5xl xl:text-6xl">
                 Get More Customers and Enquiries With a Better Website.
               </h1>
-              <p className="mb-8 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg">
-                We design high-converting business websites, rank you on Google with SEO, and build brands that bring you more calls, enquiries and confirmed bookings.
+              <p className="mb-8 text-base text-blue-100 sm:text-lg sm:leading-8">
+                Zyra Digitals builds custom websites and runs targeted SEO campaigns that turn
+                visitors into paying clients. Based in Coimbatore, working 100% online with
+                businesses across India and internationally.
               </p>
               <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
                 <a
@@ -150,56 +192,105 @@ const HomeLanding = () => (
     {/* Section 3: Client Logos */}
     <ClientLogos />
 
-    {/* Industries */}
-    <section className="py-16 sm:py-20 bg-blue-50/80">
+    {/* Website Packages (Replaces old Industries section) */}
+    <section className="bg-blue-50/80 py-16 sm:py-20">
       <div className="container mx-auto px-5 sm:px-6">
         <FadeInView>
-          <div className="max-w-2xl mx-auto text-center mb-12">
-            <h2 className="text-foreground mb-4">We Help Businesses Grow Online</h2>
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary sm:text-sm">
+              Website Packages &amp; Pricing
+            </p>
+            <h2 className="mb-4 text-foreground">Three Packages, Transparent Starting Prices</h2>
             <p className="text-muted text-base sm:text-lg">
-              We create websites and SEO that bring different types of businesses more enquiries and bookings.
+              Every website is mobile-first, ultra-fast, and built to turn visitors into confirmed client enquiries.
             </p>
           </div>
         </FadeInView>
 
-        <div className="grid sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {INDUSTRIES.slice(0, 4).map((industry, index) => (
-            <FadeInView key={industry.slug} delay={index * 0.1}>
-              <Link
-                to={`/industries/${industry.slug}`}
-                className="group flex h-full flex-col rounded-2xl bg-card p-6 sm:p-7 shadow-medical ring-1 ring-primary/10 transition-all duration-200 hover:-translate-y-1 hover:shadow-medical-lg"
+        <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-3">
+          {websitePackages.map((pkg, i) => (
+            <FadeInView key={pkg.name} delay={i * 0.1}>
+              <div
+                className={`flex h-full flex-col rounded-2xl p-6 sm:p-7 ${pkg.featured
+                    ? "bg-primary text-white shadow-xl ring-2 ring-primary"
+                    : "bg-card shadow-medical ring-1 ring-primary/10"
+                  }`}
               >
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {industry.name}
-                  </h3>
-                  <ArrowUpRight
-                    size={20}
-                    className="shrink-0 text-muted transition-colors group-hover:text-primary"
-                  />
-                </div>
-                <p className="text-muted leading-relaxed mt-3 flex-1">
-                  {industryCopy[industry.slug]}
+                {pkg.featured && (
+                  <span className="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
+                    <Star size={12} /> Most Popular
+                  </span>
+                )}
+
+                <p
+                  className={`text-sm font-semibold uppercase tracking-[0.14em] ${pkg.featured ? "text-white/80" : "text-primary"
+                    }`}
+                >
+                  {pkg.name}
                 </p>
-              </Link>
+                <h3
+                  className={`mt-1 text-xl font-bold ${pkg.featured ? "text-white" : "text-foreground"
+                    }`}
+                >
+                  {pkg.tag}
+                </h3>
+                <p className={`mt-2 text-sm ${pkg.featured ? "text-white/85" : "text-muted"}`}>
+                  {pkg.summary}
+                </p>
+
+                <div
+                  className={`mt-5 flex items-end gap-1.5 border-b pb-5 ${pkg.featured ? "border-white/20" : "border-border"
+                    }`}
+                >
+                  <span
+                    className={`text-3xl font-extrabold ${pkg.featured ? "text-white" : "text-foreground"
+                      }`}
+                  >
+                    {pkg.price}
+                  </span>
+                  <span className={`pb-1 text-sm ${pkg.featured ? "text-white/70" : "text-muted"}`}>
+                    {pkg.period}
+                  </span>
+                </div>
+
+                <ul className="mt-5 flex-1 space-y-3">
+                  {pkg.features.map((f) => (
+                    <li
+                      key={f}
+                      className={`flex gap-2.5 text-sm ${pkg.featured ? "text-white/95" : "text-muted"
+                        }`}
+                    >
+                      <Check
+                        size={16}
+                        className={`mt-0.5 shrink-0 ${pkg.featured ? "text-white" : "text-primary"
+                          }`}
+                      />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href="#get-quote"
+                  className={`mt-6 inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 font-semibold transition-all duration-200 active:scale-95 ${pkg.featured
+                      ? "bg-white text-primary hover:bg-white/90 shadow-sm"
+                      : "bg-primary text-primary-foreground hover:brightness-110 shadow-sm"
+                    }`}
+                >
+                  Get This Package <ArrowRight size={16} />
+                </a>
+              </div>
             </FadeInView>
           ))}
         </div>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <Link
-            to="/contact"
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-7 py-3.5 font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 active:scale-95"
-          >
-            Discuss Your Business <ArrowRight size={18} />
-          </Link>
-          <Link
-            to="/industries"
-            className="inline-flex items-center gap-2 font-semibold text-primary transition-all hover:gap-3"
-          >
-            View all industries <ArrowRight size={18} />
-          </Link>
-        </div>
+        <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-muted">
+          Need a custom build, SaaS platform or multi-location website?{" "}
+          <Link to="/contact" className="font-semibold text-primary hover:underline">
+            Talk to us
+          </Link>{" "}
+          for a tailored proposal within 1 hour.
+        </p>
       </div>
     </section>
 

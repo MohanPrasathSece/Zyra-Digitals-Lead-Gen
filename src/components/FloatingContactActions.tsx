@@ -2,7 +2,7 @@ import { PhoneCall } from "lucide-react";
 import { SITE } from "@/lib/site";
 
 const FloatingContactActions = () => (
-  <div className="fixed right-5 bottom-36 sm:bottom-40 z-40 flex flex-col gap-3">
+  <div className="fixed right-5 bottom-[88px] sm:bottom-40 z-40 flex flex-col gap-3">
     <a
       href={`${SITE.whatsappHref}?text=${encodeURIComponent("Hi Zyra Digitals, I would like to discuss a project.")}`}
       target="_blank"
