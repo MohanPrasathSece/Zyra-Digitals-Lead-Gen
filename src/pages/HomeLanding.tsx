@@ -139,9 +139,6 @@ const HomeLanding = () => (
         <div className="grid items-center gap-16 lg:grid-cols-[1.05fr_1fr] lg:gap-10">
           <FadeInView>
             <div className="max-w-3xl text-white">
-              <p className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-sky-200 sm:text-sm">
-                Website Design, SEO &amp; Branding Agency in Coimbatore
-              </p>
               <h1 className="mb-6 text-4xl font-extrabold leading-[1.08] text-white sm:text-5xl xl:text-6xl">
                 Get More Customers and Enquiries With a Better Website.
               </h1>
@@ -163,20 +160,6 @@ const HomeLanding = () => (
                 >
                   View Our Work
                 </Link>
-              </div>
-
-              <div className="mt-8 flex flex-wrap items-center gap-3 text-xs font-medium text-sky-200">
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Starts from ₹7,999
-                </span>
-                <span>•</span>
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Unlimited revisions till delivery
-                </span>
-                <span>•</span>
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> 1-Hour Guaranteed Reply
-                </span>
               </div>
             </div>
           </FadeInView>
