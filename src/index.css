@@ -95,19 +95,23 @@
   }
 }
 
-/* Infinite marquee animation for logos and reviews (right to left) */
+/* Infinite marquee animation for logos and reviews (hardware-accelerated GPU transforms) */
 @keyframes marquee-scroll {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 .animate-marquee {
   display: flex;
   width: max-content;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
   animation: marquee-scroll 28s linear infinite;
 }
 
@@ -118,6 +122,10 @@
 .animate-marquee-slow {
   display: flex;
   width: max-content;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
   animation: marquee-scroll 42s linear infinite;
 }
 

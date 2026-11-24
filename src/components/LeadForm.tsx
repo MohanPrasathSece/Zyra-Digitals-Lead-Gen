@@ -42,6 +42,7 @@ const LeadForm = ({
 }: LeadFormProps) => {
   const [sending, setSending] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [service, setService] = useState(defaultService);
   const [budget, setBudget] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
@@ -49,6 +50,7 @@ const LeadForm = ({
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSending(true);
+    setErrorMessage(null);
 
     const formData = new FormData(e.currentTarget);
     const name = (formData.get("name") as string) || "";
@@ -76,16 +78,21 @@ const LeadForm = ({
 
       if (!resp.ok) {
         const data = (await resp.json().catch(() => null)) as { error?: string } | null;
-        throw new Error(data?.error || "Request failed");
+        throw new Error(data?.error || "We could not deliver your message right now.");
       }
 
       if (formRef.current) formRef.current.reset();
       setService(defaultService);
       setBudget("");
+      setErrorMessage(null);
       setShowSuccess(true);
-    } catch (error) {
-      console.error("Lead form error:", error);
-      toast.error("Failed to send your request. Please try again or message us on WhatsApp.");
+    } catch (error: any) {
+      console.error("[LEAD FORM ERROR]:", error);
+      const errMsg =
+        error?.message ||
+        "Delivery issue encountered. Please reach us directly on WhatsApp or Email.";
+      setErrorMessage(errMsg);
+      toast.error("Email delivery issue. Please connect directly via WhatsApp or Email below.");
     } finally {
       setSending(false);
     }
@@ -205,6 +212,31 @@ const LeadForm = ({
                   placeholder="Tell us a little about your business and goals..."
                 />
               </div>
+
+              {errorMessage && (
+                <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-left sm:col-span-2">
+                  <p className="text-sm font-semibold text-red-800">
+                    Unable to send email right now:
+                  </p>
+                  <p className="mt-1 text-xs text-red-700">{errorMessage}</p>
+                  <div className="mt-3 flex flex-wrap items-center gap-3 pt-2 border-t border-red-200/80">
+                    <a
+                      href={SITE.whatsappHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-[#25D366] px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:opacity-95"
+                    >
+                      <Phone size={13} /> Chat on WhatsApp ({SITE.phoneDisplay})
+                    </a>
+                    <a
+                      href={`mailto:${SITE.email}`}
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:opacity-95"
+                    >
+                      <Mail size={13} /> Email Us ({SITE.email})
+                    </a>
+                  </div>
+                </div>
+              )}
 
               <button
                 type="submit"

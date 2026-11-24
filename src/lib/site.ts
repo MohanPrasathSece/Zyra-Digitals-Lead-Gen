@@ -12,7 +12,7 @@ export const SITE = {
   country: "India",
   locationNote: "Working 100% online - serving clients worldwide",
   url: "https://www.zyradigitals.com",
-  hours: "Mon - Sat: 9:30 AM - 7:00 PM IST",
+  hours: "Mon - Sun: 8:00 AM - 12:00 AM IST",
   founderName: "Mohan Prasath S",
   /** Add genuine official profile URLs only (e.g. LinkedIn). Leave empty until verified. */
   sameAs: [] as string[],

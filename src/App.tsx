@@ -5,6 +5,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingContactActions from "@/components/FloatingContactActions";
+import StickyBottomBar from "@/components/StickyBottomBar";
+import ScrollToTop from "@/components/ScrollToTop";
 import CalendlyBadge from "@/components/CalendlyBadge";
 import ScrollToTopOnNav from "@/components/ScrollToTopOnNav";
 import Home from "./pages/HomeLanding";
@@ -67,6 +69,8 @@ const App = () => (
             </Suspense>
           </main>
           <FloatingContactActions />
+          <StickyBottomBar />
+          <ScrollToTop />
           <CalendlyBadge />
           <Footer />
         </div>

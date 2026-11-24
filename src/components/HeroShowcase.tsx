@@ -1,64 +1,36 @@
-import desktopShot from "@/assets/banners/images/home/herosecrighttab.png";
-import mobileShot from "@/assets/banners/images/home/hero_Sec_mobile.png";
+import heroRightShot from "@/assets/banners/hero_sec_right_side.webp";
 
 /**
- * Static preview built from the site's existing website imagery.
+ * Hero section preview featuring multi-device mockups and crisp white price badge.
  */
 const HeroShowcase = () => (
-  <div className="relative mx-auto w-full max-w-[320px] pb-24 sm:max-w-[460px] sm:pb-28 lg:max-w-[540px]">
+  <div className="relative mx-auto w-full max-w-[380px] sm:max-w-[520px] lg:max-w-[640px] xl:max-w-[690px] pt-2 pb-6">
     {/* Subtle blue glow */}
-    <div className="pointer-events-none absolute -inset-8 rounded-[3rem] bg-[radial-gradient(circle_at_60%_40%,rgba(96,165,250,0.45),transparent_65%)] blur-2xl" />
+    <div className="pointer-events-none absolute -inset-6 rounded-[3rem] bg-[radial-gradient(circle_at_60%_40%,rgba(96,165,250,0.45),transparent_65%)] blur-2xl" />
 
-    {/* Desktop browser mockup */}
-    <div className="relative rounded-2xl bg-white shadow-2xl ring-1 ring-white/30">
-      <div className="flex items-center gap-1.5 rounded-t-2xl border-b border-slate-200 bg-slate-100 px-3 py-2 sm:px-4 sm:py-2.5">
-        <span className="h-2 w-2 rounded-full bg-[#ff5f57] sm:h-2.5 sm:w-2.5" />
-        <span className="h-2 w-2 rounded-full bg-[#febc2e] sm:h-2.5 sm:w-2.5" />
-        <span className="h-2 w-2 rounded-full bg-[#28c840] sm:h-2.5 sm:w-2.5" />
-        <div className="ml-2.5 hidden flex-1 items-center gap-2 rounded-md bg-white px-3 py-1 text-[11px] text-slate-400 sm:flex">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-          www.yourbusiness.com
-        </div>
-      </div>
+    {/* Multi-device hero showcase image */}
+    <div className="relative z-10 transition-transform duration-300 hover:scale-[1.015]">
       <img
-        src={desktopShot}
-        alt="Website design preview displayed on desktop"
-        width={1586}
-        height={917}
+        src={heroRightShot}
+        alt="Website design preview across desktop, tablet, and mobile"
+        width={1461}
+        height={1076}
         loading="eager"
         {...({ fetchpriority: "high" } as Record<string, string>)}
         decoding="async"
-        className="h-[180px] w-full rounded-b-2xl object-cover object-top sm:h-[260px] lg:h-[300px]"
+        className="w-full h-auto drop-shadow-2xl"
       />
-    </div>
 
-    {/* Mobile phone mockup overlapping bottom-right */}
-    <div className="absolute bottom-6 right-0 z-10 w-[88px] sm:bottom-8 sm:right-2 sm:w-[130px] lg:w-[145px]">
-      <div className="rounded-[1.2rem] border-[4px] border-slate-900 bg-slate-900 shadow-2xl sm:rounded-[1.7rem] sm:border-[6px]">
-        <div className="relative overflow-hidden rounded-[0.9rem] sm:rounded-[1.2rem]">
-          <span className="absolute left-1/2 top-1 z-10 h-1 w-7 -translate-x-1/2 rounded-full bg-slate-900/70 sm:h-1.5 sm:w-11" />
-          <img
-            src={mobileShot}
-            alt="Website design preview displayed on mobile"
-            width={557}
-            height={807}
-            loading="eager"
-            decoding="async"
-            className="h-[140px] w-full object-cover object-top sm:h-[210px] lg:h-[235px]"
-          />
+      {/* Price badge - white card, positioned up and to the right over the phone mockup */}
+      <div className="absolute bottom-2 left-6 sm:bottom-4 sm:left-10 z-20">
+        <div className="rounded-xl bg-white px-4 py-2.5 shadow-2xl ring-1 ring-slate-200/90 transition-transform duration-200 hover:scale-105">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-blue-600 sm:text-[11px]">
+            Website Development
+          </p>
+          <p className="text-base font-black leading-tight text-slate-900 sm:text-lg">
+            Starts from ₹7,999
+          </p>
         </div>
-      </div>
-    </div>
-
-    {/* Price badge - sits below the desktop mockup on the left, fully visible */}
-    <div className="absolute bottom-0 left-0 z-20 sm:left-4">
-      <div className="rounded-xl bg-primary px-4 py-2.5 shadow-2xl ring-1 ring-white/25 sm:px-5 sm:py-3">
-        <p className="text-[10px] font-semibold uppercase tracking-wide text-white/80 sm:text-[11px]">
-          Website Development
-        </p>
-        <p className="text-lg font-extrabold leading-tight text-white sm:text-xl">
-          Starts from ₹7,999
-        </p>
       </div>
     </div>
   </div>

@@ -5,10 +5,11 @@ import PageBanner from "@/components/PageBanner";
 import CTASection from "@/components/CTASection";
 import HomeFAQ, { serviceFaqs } from "@/components/HomeFAQ";
 import LeadForm from "@/components/LeadForm";
+import ProjectCard from "@/components/ProjectCard";
 import SEO from "@/components/SEO";
 import { faqSchema, serviceSchema } from "@/lib/schema";
 import { PAGE_BANNERS } from "@/lib/banners";
-import ourWorkImage from "@/assets/zyra/our-work.jpg";
+import { PROJECTS } from "@/lib/projects";
 
 const websiteTypes = [
   {
@@ -229,33 +230,92 @@ const WebDesign = () => (
       </div>
     </section>
 
-    {/* Approach */}
+    {/* How It Works / Process Section */}
+    <section className="bg-slate-50 border-y border-slate-200/80 py-16 sm:py-20">
+      <div className="container mx-auto px-5 sm:px-6">
+        <FadeInView>
+          <div className="mx-auto mb-14 max-w-2xl text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary sm:text-sm">
+              Our 4-Step Process
+            </p>
+            <h2 className="mb-4 text-foreground">How We Build Your High-Converting Website</h2>
+            <p className="text-muted text-base leading-relaxed">
+              From our kickoff conversation to launch and rankings, our process is fast, transparent, and focused on delivering real client enquiries.
+            </p>
+          </div>
+        </FadeInView>
+
+        <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            {
+              step: "01",
+              title: "Discovery & Strategy",
+              desc: "We analyze your target market, competitors, and keywords to plan page hierarchy, conversion funnels, and wireframes.",
+            },
+            {
+              step: "02",
+              title: "Design & Copywriting",
+              desc: "We craft custom, modern UI layouts with punchy, high-intent headlines that speak directly to your ideal buyers.",
+            },
+            {
+              step: "03",
+              title: "Fast Mobile Build",
+              desc: "Engineered with clean modern code for sub-second load times, 100/100 Core Web Vitals, and responsive perfection on all screens.",
+            },
+            {
+              step: "04",
+              title: "SEO & Launch",
+              desc: "We configure schema markup, submit XML sitemaps to Google Search Console, test lead forms, and launch your site live.",
+            },
+          ].map((item, idx) => (
+            <FadeInView key={item.step} delay={idx * 0.1}>
+              <div className="relative flex h-full flex-col rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                <span className="mb-3 inline-block font-mono text-2xl font-black text-primary/80">
+                  {item.step}
+                </span>
+                <h3 className="mb-2 text-base font-bold text-foreground sm:text-lg">
+                  {item.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted flex-1">
+                  {item.desc}
+                </p>
+              </div>
+            </FadeInView>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Featured Projects Showcase */}
     <section className="bg-blue-50/80 py-16 sm:py-20">
-      <div className="container mx-auto px-6">
-        <div className="mx-auto grid max-w-5xl items-center gap-12 lg:grid-cols-2">
-          <FadeInView>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary sm:text-sm">Built for Results</p>
-            <h2 className="mb-5 text-foreground">Websites engineered to bring you business</h2>
-            <p className="mb-4 leading-relaxed text-muted">
-              A great-looking website is only the start. We design every page around your customers, your keywords and your goals - so your website becomes your best salesperson, bringing you more enquiries, more calls and more confirmed bookings for your business in Coimbatore and beyond.
+      <div className="container mx-auto px-5 sm:px-6">
+        <FadeInView>
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary sm:text-sm">
+              Recent Website Projects
             </p>
-            <p className="mb-6 leading-relaxed text-muted">
-              Fast loading, mobile-first and search-ready from day one, because speed and usability directly affect how many visitors turn into enquiries.
+            <h2 className="mb-4 text-foreground">Explore Our Completed Websites</h2>
+            <p className="text-muted">
+              Live websites designed and engineered by Zyra Digitals. Click any case study to explore full page mockups, search rankings, and conversion analytics.
             </p>
-            <ul className="space-y-3">
-              {checklist.map((item) => (
-                <li key={item} className="flex items-center gap-2.5 text-muted">
-                  <Check size={16} className="shrink-0 text-primary" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </FadeInView>
-          <FadeInView delay={0.15}>
-            <div className="overflow-hidden rounded-2xl shadow-medical-lg">
-              <img src={ourWorkImage} alt="Website design work by Zyra Digitals in Coimbatore" loading="lazy" className="h-[300px] w-full object-cover" />
-            </div>
-          </FadeInView>
+          </div>
+        </FadeInView>
+
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+          {PROJECTS.slice(0, 3).map((project) => (
+            <FadeInView key={project.slug}>
+              <ProjectCard project={project} showFeatures />
+            </FadeInView>
+          ))}
+        </div>
+
+        <div className="mt-10 text-center">
+          <Link
+            to="/our-work"
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-primary/30 bg-white px-7 py-3.5 font-semibold text-primary transition-all duration-200 hover:bg-primary/5 active:scale-95 shadow-sm"
+          >
+            View All Website Projects <ArrowRight size={18} />
+          </Link>
         </div>
       </div>
     </section>

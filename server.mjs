@@ -53,9 +53,23 @@ app.use(express.json({ limit: "200kb" }));
 
 app.post("/api/contact", async (req, res) => {
   const { name, phone, email, message } = req.body ?? {};
+  const timestamp = new Date().toISOString();
+
+  console.log(`\n==================================================`);
+  console.log(`[SMTP INCOMING LEAD] ${timestamp}`);
+  console.log(`Client Name   : ${name || "(empty)"}`);
+  console.log(`Client Email  : ${email || "(empty)"}`);
+  console.log(`Client Phone  : ${phone || "(empty)"}`);
+  console.log(`Message Details:`);
+  console.log(message || "(empty)");
+  console.log(`==================================================`);
 
   if (!name || !phone || !email || !message) {
-    return res.status(400).json({ ok: false, error: "Missing required fields" });
+    console.error(`[SMTP ERROR] Validation failed: Missing required fields.`);
+    return res.status(400).json({
+      ok: false,
+      error: "Missing required fields. Please fill in all required inputs."
+    });
   }
 
   const {
@@ -68,53 +82,147 @@ app.post("/api/contact", async (req, res) => {
     FROM_EMAIL,
   } = process.env;
 
+  const adminRecipient = ADMIN_EMAIL || "zyradigitalsofficial@gmail.com";
+  const fromAddress = FROM_EMAIL || (SMTP_USER ? `Zyra Digitals <${SMTP_USER}>` : "Zyra Digitals <zyradigitalsofficial@gmail.com>");
+
+  // Check if SMTP is configured
   if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS) {
-    console.log("SMTP not configured - logging form submission instead:");
-    console.log("Name:", name);
-    console.log("Phone:", phone);
-    console.log("Email:", email);
-    console.log("Message:", message);
-    return res.json({ ok: true, message: "Form logged successfully (SMTP not configured)" });
+    console.warn(`[SMTP WARN] SMTP credentials are not configured in environment (.env).`);
+    console.log(`[SMTP SIMULATION] Submission logged locally. Both Admin & Customer emails were simulated successfully.`);
+    return res.json({
+      ok: true,
+      simulated: true,
+      message: "Lead received and logged in server terminal (SMTP credentials not yet supplied in .env)."
+    });
   }
+
+  const isSecure = SMTP_SECURE === "true" || Number(SMTP_PORT) === 465;
+
+  console.log(`[SMTP CONFIG] Connecting to host: ${SMTP_HOST}:${SMTP_PORT} (secure: ${isSecure}) as ${SMTP_USER}`);
 
   const transporter = nodemailer.createTransport({
     host: SMTP_HOST,
     port: Number(SMTP_PORT),
-    secure: SMTP_SECURE === "true",
+    secure: isSecure,
     auth: {
       user: SMTP_USER,
       pass: SMTP_PASS,
     },
     tls: {
-      rejectUnauthorized: false
-    }
+      rejectUnauthorized: false,
+    },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
   });
 
-  const to = ADMIN_EMAIL || "zyradigitalsofficial@gmail.com";
-  const from = FROM_EMAIL || SMTP_USER;
-
   try {
-    // 1. Send the inquiry alert to the admin in the background
-    transporter.sendMail({
-      to,
-      from,
+    // Verify SMTP connection
+    await transporter.verify();
+    console.log(`[SMTP STATUS] Connection verified successfully with ${SMTP_HOST}.`);
+
+    // 1. Prepare and send Admin notification email
+    const adminMailOptions = {
+      to: adminRecipient,
+      from: fromAddress,
       replyTo: email,
-      subject: `Website enquiry from ${name}`,
-      text: `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nMessage:\n${message}`,
-    }).catch(err => console.error("Admin Email send failed:", err));
+      subject: `🚨 New Website Lead: ${name} (${phone})`,
+      text: `NEW LEAD RECEIVED ON ZYRA DIGITALS\n\nName: ${name}\nPhone / WhatsApp: ${phone}\nEmail: ${email}\nTime: ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })} IST\n\nProject Details:\n${message}\n\n---\nZyra Digitals Lead Generation Platform`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; rounded: 12px; background-color: #ffffff;">
+          <div style="border-bottom: 2px solid #2563eb; padding-bottom: 12px; margin-bottom: 20px;">
+            <h2 style="color: #1e3a8a; margin: 0; font-size: 20px;">🚀 New Website Lead Received</h2>
+            <p style="color: #64748b; font-size: 13px; margin: 4px 0 0 0;">Received at: ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })} IST</p>
+          </div>
+          <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 20px;">
+            <tr>
+              <td style="padding: 8px 0; color: #475569; width: 140px; font-weight: bold;">Client Name:</td>
+              <td style="padding: 8px 0; color: #0f172a; font-weight: 600;">${name}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #475569; font-weight: bold;">Phone / WhatsApp:</td>
+              <td style="padding: 8px 0; color: #0f172a;"><a href="https://wa.me/${phone.replace(/[^0-9]/g, '')}" style="color: #2563eb; text-decoration: none;">${phone} (Chat on WhatsApp)</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #475569; font-weight: bold;">Email:</td>
+              <td style="padding: 8px 0; color: #0f172a;"><a href="mailto:${email}" style="color: #2563eb; text-decoration: none;">${email}</a></td>
+            </tr>
+          </table>
+          <div style="background-color: #f8fafc; border-left: 4px solid #2563eb; padding: 14px 16px; border-radius: 4px; margin-bottom: 24px;">
+            <p style="margin: 0 0 6px 0; font-weight: bold; color: #1e293b; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;">Project Requirements:</p>
+            <p style="margin: 0; color: #334155; white-space: pre-line; line-height: 1.6; font-size: 14px;">${message}</p>
+          </div>
+          <p style="font-size: 12px; color: #94a3b8; margin: 0; text-align: center;">Zyra Digitals Lead Gen Engine • Malumichampatti, Coimbatore</p>
+        </div>
+      `,
+    };
 
-    // 2. Send a confirmation auto-response to the customer who filled out the form in the background
-    transporter.sendMail({
+    // 2. Prepare and send Customer confirmation / thank you email
+    const customerMailOptions = {
       to: email,
-      from,
-      subject: `Thank you for contacting Zyra Digitals`,
-      text: `Hi ${name},\n\nThank you for contacting Zyra Digitals. We have received your message and our team will get back to you within 1 hour.\n\nHere is a copy of your message:\n"${message}"\n\nBest regards,\nThe Zyra Digitals Team`,
-    }).catch(err => console.error("User Email send failed:", err));
+      from: fromAddress,
+      subject: `Thank you for contacting Zyra Digitals! We received your enquiry`,
+      text: `Hi ${name},\n\nThank you for reaching out to Zyra Digitals!\n\nWe have received your enquiry and our team is already reviewing your details. We guarantee a reply within 1 hour during our working hours (8:00 AM to 12:00 AM IST) with your free website audit and project proposal.\n\nNeed immediate assistance? Feel free to message or call us anytime:\nWhatsApp: +91 90254 21149 (https://wa.me/919025421149)\nEmail: zyradigitalsofficial@gmail.com\n\nSummary of your enquiry:\n${message}\n\nBest regards,\nMohan Prasath S & The Zyra Digitals Team\nhttps://www.zyradigitals.com`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 28px; border: 1px solid #e2e8f0; border-radius: 14px; background-color: #ffffff;">
+          <div style="text-align: center; margin-bottom: 24px;">
+            <h1 style="color: #1e40af; font-size: 24px; margin: 0 0 6px 0; font-weight: 800;">Zyra Digitals</h1>
+            <p style="color: #64748b; font-size: 14px; margin: 0;">Website Design, SEO &amp; Branding Agency</p>
+          </div>
 
-    return res.json({ ok: true });
-  } catch (err) {
-    console.error("Contact API error:", err);
-    return res.status(500).json({ ok: false, error: "Failed to process request" });
+          <div style="background-color: #eff6ff; border-radius: 12px; padding: 20px; margin-bottom: 24px; text-align: center;">
+            <h2 style="color: #1e3a8a; font-size: 18px; margin: 0 0 8px 0;">Thank You for Reaching Out, ${name}!</h2>
+            <p style="color: #3b82f6; font-size: 14px; font-weight: 600; margin: 0;">We have received your project details and are preparing your free audit.</p>
+          </div>
+
+          <p style="color: #334155; font-size: 15px; line-height: 1.6; margin-bottom: 16px;">
+            Our team is reviewing your requirements. We guarantee a response <strong>within 1 hour</strong> during our working hours (<strong>8:00 AM to 12:00 AM IST</strong>, 7 days a week).
+          </p>
+
+          <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; margin-bottom: 24px;">
+            <p style="margin: 0 0 8px 0; font-weight: bold; color: #475569; font-size: 13px; text-transform: uppercase;">Your Enquiry Summary:</p>
+            <p style="margin: 0; color: #1e293b; font-size: 14px; white-space: pre-line; line-height: 1.5;">${message}</p>
+          </div>
+
+          <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; margin-bottom: 20px; text-align: center;">
+            <p style="color: #475569; font-size: 14px; margin: 0 0 12px 0;">Need immediate assistance or want to talk now?</p>
+            <a href="https://wa.me/919025421149?text=${encodeURIComponent("Hi Zyra Digitals, I just submitted an enquiry on your website.")}" style="display: inline-block; background-color: #25D366; color: #ffffff; text-decoration: none; font-weight: bold; padding: 10px 20px; border-radius: 8px; font-size: 14px; margin-right: 8px;">
+              Chat on WhatsApp (+91 90254 21149)
+            </a>
+          </div>
+
+          <p style="font-size: 12px; color: #94a3b8; text-align: center; margin: 0; border-top: 1px solid #f1f5f9; padding-top: 14px;">
+            Zyra Digitals • Coimbatore, Tamil Nadu, India • <a href="https://www.zyradigitals.com" style="color: #2563eb;">www.zyradigitals.com</a>
+          </p>
+        </div>
+      `,
+    };
+
+    console.log(`[SMTP SENDING] Dispatching notification to Admin: ${adminRecipient}...`);
+    const adminResult = await transporter.sendMail(adminMailOptions);
+    console.log(`[SMTP SUCCESS] Admin email delivered. MessageId: ${adminResult.messageId}`);
+
+    console.log(`[SMTP SENDING] Dispatching confirmation to Customer: ${email}...`);
+    const customerResult = await transporter.sendMail(customerMailOptions);
+    console.log(`[SMTP SUCCESS] Customer email delivered. MessageId: ${customerResult.messageId}`);
+
+    return res.json({
+      ok: true,
+      messageId: adminResult.messageId,
+      message: "Lead processed and emails dispatched successfully to admin and customer."
+    });
+  } catch (smtpError) {
+    console.error(`\n❌ [SMTP ERROR OCCURRED]`);
+    console.error(`Error Code    : ${smtpError.code || "N/A"}`);
+    console.error(`Error Message : ${smtpError.message}`);
+    console.error(`Full Stack Trace:`);
+    console.error(smtpError);
+    console.error(`==================================================\n`);
+
+    return res.status(500).json({
+      ok: false,
+      error: "SMTP delivery encountered an issue. Please contact us directly on WhatsApp (+91 90254 21149) or Email (zyradigitalsofficial@gmail.com).",
+      details: smtpError.message,
+    });
   }
 });
 

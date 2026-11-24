@@ -18,9 +18,10 @@ const ProjectCard = ({ project, showFeatures = false, className = "" }: ProjectC
           src={project.image}
           alt={`${project.name} website design`}
           loading="lazy"
-          className={`h-full w-full object-cover transition-transform duration-300 ${
-            project.imageScale ? "scale-[1.10] group-hover:scale-[1.15]" : "group-hover:scale-105"
-          }`}
+          decoding="async"
+          width={640}
+          height={480}
+          className={`h-full w-full object-cover ${project.imageScale ? "scale-[1.075]" : ""}`}
         />
       ) : (
         <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/10 via-primary/5 to-transparent px-6 text-center transition-colors group-hover:from-primary/15">

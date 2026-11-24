@@ -20,15 +20,30 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     target: "esnext",
+    cssCodeSplit: true,
+    chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
-        entryFileNames: "assets/[name].js",
+        entryFileNames: "assets/[name]-[hash].js",
         chunkFileNames: "assets/[name]-[hash].js",
         assetFileNames: "assets/[name]-[hash].[ext]",
-        manualChunks: undefined,
+        manualChunks: (id) => {
+          if (id.includes("node_modules")) {
+            if (id.includes("react") || id.includes("react-dom") || id.includes("react-router")) {
+              return "vendor-react";
+            }
+            if (id.includes("lucide-react")) {
+              return "vendor-icons";
+            }
+            if (id.includes("recharts")) {
+              return "vendor-charts";
+            }
+            return "vendor";
+          }
+        },
       },
     },
-    assetsInlineLimit: 0,
+    assetsInlineLimit: 4096,
   },
   plugins: [react()],
   resolve: {

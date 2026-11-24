@@ -1,8 +1,26 @@
-import xivi from "@/assets/Portfolio_projects/xivi/image.png";
-import precision from "@/assets/Portfolio_projects/precision/precision.png";
-import apexRevOps from "@/assets/Portfolio_projects/Apex RevOps/Screenshot 2026-10-06 143908.png";
-import achyutam from "@/assets/Portfolio_projects/achyutam/Screenshot 2026-05-29 095505.png";
-import orchidCover from "@/assets/Portfolio_projects/orchid/cover image.png";
+import precisionCover from "@/assets/Portfolio_projects/precision/cover.webp";
+import orchidCover from "@/assets/Portfolio_projects/orchid/cover image.webp";
+import happyDentalCover from "@/assets/Portfolio_projects/happy dental/cover.webp";
+import careerUpgradeCover from "@/assets/Portfolio_projects/career upgrade/cover.webp";
+import nirvanaCover from "@/assets/Portfolio_projects/nirvana/cover.webp";
+import phoenixCover from "@/assets/Portfolio_projects/phoenix/cover.webp";
+import qualitechCover from "@/assets/Portfolio_projects/qualitech/cover.webp";
+import xiviCover from "@/assets/Portfolio_projects/xivi/cover.webp";
+import achyutamCover from "@/assets/Portfolio_projects/achyutam/cover.webp";
+import amzcozCover from "@/assets/Portfolio_projects/amzcoz/cover.webp";
+import apexRevOpsCover from "@/assets/Portfolio_projects/Apex RevOps/cover.webp";
+import autodigixCover from "@/assets/Portfolio_projects/autodigix/cover.webp";
+import chakrabyteCover from "@/assets/Portfolio_projects/chakrabyte/cover.webp";
+import filizatCover from "@/assets/Portfolio_projects/filizat/cover.webp";
+import kpjCover from "@/assets/Portfolio_projects/kpj/cover.webp";
+import elevateCover from "@/assets/Portfolio_projects/e com elevate/cover.webp";
+import bigBangCover from "@/assets/Portfolio_projects/big bang/cover.webp";
+import skrCover from "@/assets/Portfolio_projects/skr/cover.webp";
+import theAssetOfficeCover from "@/assets/Portfolio_projects/theassetoffice/cover.webp";
+import theInvestorOfficeCover from "@/assets/Portfolio_projects/theinvestoroffice/cover.webp";
+import employeeManagementCover from "@/assets/Portfolio_projects/employee management sys - saas/cover.webp";
+import theReportDeskCover from "@/assets/Portfolio_projects/the report desk - french newspaper website/cover.webp";
+import eliteChainCover from "@/assets/Portfolio_projects/elite_chain-french crypto website/cover.webp";
 
 export type ProjectCategory = "Dental" | "Healthcare" | "Ecommerce" | "Business";
 
@@ -99,7 +117,7 @@ export const DEFAULT_PROJECT_RANKINGS: ProjectRanking[] = [
  * shows clean placeholders until then.
  */
 export const PROJECTS: Project[] = [
-  // Dental websites
+  // 1. Dental websites
   {
     slug: "precision-root-canal",
     name: "Precision Root Canal Therapy & Hygiene",
@@ -116,7 +134,8 @@ export const PROJECTS: Project[] = [
       "About the clinic and expertise",
       "Appointment booking and contact pages",
     ],
-    image: precision,
+    image: precisionCover,
+    imageScale: true,
   },
   {
     slug: "orchid-dental",
@@ -153,6 +172,8 @@ export const PROJECTS: Project[] = [
       "24/7 booking availability",
       "Dedicated registration pages",
     ],
+    image: happyDentalCover,
+    imageScale: true,
   },
   {
     slug: "career-upgrade-dental-nursing-school",
@@ -171,9 +192,11 @@ export const PROJECTS: Project[] = [
       "Online applications",
       "Free consultation booking",
     ],
+    image: careerUpgradeCover,
+    imageScale: true,
   },
 
-  // Medical clinics & healthcare
+  // 2. Medical clinics & healthcare
   {
     slug: "nirvana-spine-pain-clinic",
     name: "Nirvana Spine & Pain Clinic",
@@ -190,6 +213,8 @@ export const PROJECTS: Project[] = [
       "Doctor introduction",
       "Appointment booking",
     ],
+    image: nirvanaCover,
+    imageScale: true,
   },
   {
     slug: "phoenix-mediclinic",
@@ -208,69 +233,26 @@ export const PROJECTS: Project[] = [
       "Clinic information",
       "Healthcare service presentation",
     ],
+    image: phoenixCover,
+    imageScale: true,
   },
 
-  // Other business websites
-  {
-    slug: "amzcoz",
-    name: "AMZCOZ",
-    category: "Business",
-    industry: "Marketplace & Quick Commerce",
-    description:
-      "A business website for a marketplace growth agency offering account management, performance advertising and distribution solutions across major e-commerce and quick-commerce platforms.",
-    features: [
-      "Marketplace management",
-      "Advertising services",
-      "Dark-store distribution",
-      "International expansion",
-    ],
-  },
-  {
-    slug: "apex-revops",
-    name: "Apex RevOps",
-    category: "Business",
-    industry: "B2B Lead Generation & Automation",
-    website: "apex-revops.com",
-    description:
-      "A professional website for a B2B revenue operations agency focused on building predictable sales pipelines through automated outreach, lead generation and AI-powered workflows.",
-    features: [
-      "Lead generation",
-      "LinkedIn automation",
-      "Cold email systems",
-      "AI workflows",
-      "Service showcases",
-    ],
-    image: apexRevOps,
-  },
-  {
-    slug: "autodigix",
-    name: "AutoDigiX",
-    category: "Business",
-    industry: "Digital Marketing & AI Automation",
-    website: "autodigix.com",
-    description:
-      "A digital marketing agency website presenting performance marketing, lead generation and AI automation solutions. Designed to communicate business growth strategies and generate consultation enquiries.",
-    features: [
-      "Performance marketing",
-      "AI automation",
-      "Lead generation",
-      "Conversion optimisation",
-      "Consultation booking",
-    ],
-  },
+  // 3. E-commerce websites
   {
     slug: "qualitech-connectronics",
     name: "Qualitech Connectronics",
-    category: "Business",
-    industry: "Electronics & Manufacturing",
+    category: "Ecommerce",
+    industry: "Industrial Electronics & E-Commerce",
     description:
-      "A corporate website for an electronic components distributor and cable assembly manufacturer, showcasing industrial connectivity solutions, trusted component brands and custom-engineered products.",
+      "An industrial e-commerce catalog website for an electronic components distributor and cable assembly manufacturer, showcasing products, specs, part enquiry and B2B ordering solutions.",
     features: [
-      "Product presentation",
-      "Connector distribution",
+      "Industrial product catalog",
+      "Connector distribution matrix",
       "Cable assembly solutions",
-      "Industrial applications",
+      "B2B ordering & quote requests",
     ],
+    image: qualitechCover,
+    imageScale: true,
   },
   {
     slug: "achyutam-organics",
@@ -287,39 +269,8 @@ export const PROJECTS: Project[] = [
       "Brand storytelling",
       "E-commerce integration",
     ],
-    image: achyutam,
-  },
-  {
-    slug: "kpj-advocates",
-    name: "KPJ Advocates",
-    category: "Business",
-    industry: "Legal Services",
-    location: "Tuticorin",
-    website: "kpjadvocates.com",
-    description:
-      "A professional website for a law firm presenting its legal expertise, practice areas and consultation services. Built to establish credibility and make it easier for prospective clients to connect with the firm.",
-    features: [
-      "Practice areas",
-      "Advocate profile",
-      "Firm information",
-      "Legal service descriptions",
-      "Consultation enquiries",
-    ],
-  },
-  {
-    slug: "filizat-metals",
-    name: "Filizat Metals",
-    category: "Business",
-    industry: "Metal Manufacturing",
-    website: "filizatmetals.com",
-    description:
-      "A corporate website for a metal solutions company showcasing its industrial products, manufacturing capabilities and commitment to quality and sustainability.",
-    features: [
-      "Product catalogue",
-      "Manufacturing showcase",
-      "Company information",
-      "Contact pages",
-    ],
+    image: achyutamCover,
+    imageScale: true,
   },
   {
     slug: "xivi",
@@ -337,23 +288,252 @@ export const PROJECTS: Project[] = [
       "Customer testimonials",
       "Newsletter subscription",
     ],
-    image: xivi,
+    image: xiviCover,
+    imageScale: true,
+  },
+
+  // 4. Marketing websites
+  {
+    slug: "amzcoz",
+    name: "AMZCOZ",
+    category: "Business",
+    industry: "Marketplace & Quick Commerce",
+    description:
+      "A business website for a marketplace growth agency offering account management, performance advertising and distribution solutions across major e-commerce and quick-commerce platforms.",
+    features: [
+      "Marketplace management",
+      "Advertising services",
+      "Dark-store distribution",
+      "International expansion",
+    ],
+    image: amzcozCover,
+    imageScale: true,
   },
   {
-    slug: "chakrabyte",
-    name: "Chakrabyte",
+    slug: "apex-revops",
+    name: "Apex RevOps",
     category: "Business",
-    industry: "Cybersecurity Education",
+    industry: "B2B Lead Generation & Automation",
+    website: "apex-revops.com",
+    description:
+      "A professional website for a B2B revenue operations agency focused on building predictable sales pipelines through automated outreach, lead generation and AI-powered workflows.",
+    features: [
+      "Lead generation",
+      "LinkedIn automation",
+      "Cold email systems",
+      "AI workflows",
+      "Service showcases",
+    ],
+    image: apexRevOpsCover,
+    imageScale: true,
+  },
+  {
+    slug: "autodigix",
+    name: "AutoDigiX",
+    category: "Business",
+    industry: "Digital Marketing & AI Automation",
+    website: "autodigix.com",
+    description:
+      "A digital marketing agency website presenting performance marketing, lead generation and AI automation solutions. Designed to communicate business growth strategies and generate consultation enquiries.",
+    features: [
+      "Performance marketing",
+      "AI automation",
+      "Lead generation",
+      "Conversion optimisation",
+      "Consultation booking",
+    ],
+    image: autodigixCover,
+    imageScale: true,
+  },
+  {
+    slug: "e-com-elevate-solutions",
+    name: "E Com Elevate Solutions",
+    category: "Business",
+    industry: "E-Commerce Growth & Tech Solutions",
+    website: "elevatewear.com",
+    description:
+      "A strategic business website for an e-commerce growth and technology solutions firm, delivering end-to-end storefront engineering, marketplace expansion, and conversion rate optimization.",
+    features: [
+      "E-commerce growth systems",
+      "Storefront architecture & tech audit",
+      "Performance marketing workflows",
+      "Conversion rate optimization",
+      "Consultation booking funnel",
+    ],
+    image: elevateCover,
+    imageScale: true,
+  },
+
+  // 5. Finance websites
+  {
+    slug: "the-asset-office",
+    name: "The Asset Office",
+    category: "Business",
+    industry: "Wealth Management & Asset Advisory",
+    description:
+      "A high-trust corporate portal for a private wealth and asset management office, presenting portfolio governance, wealth preservation strategies, and institutional advisory services.",
+    features: [
+      "Asset governance frameworks",
+      "Institutional wealth advisory",
+      "Portfolio management services",
+      "Confidential consultation booking",
+    ],
+    image: theAssetOfficeCover,
+    imageScale: true,
+  },
+  {
+    slug: "the-investor-office",
+    name: "The Investor Office",
+    category: "Business",
+    industry: "Investment Advisory & Capital Services",
+    description:
+      "A prestigious advisory website for an investment consultancy and venture firm, engineered to present investment theses, syndicate opportunities, and private client services.",
+    features: [
+      "Investment strategy presentation",
+      "Capital allocation & syndication",
+      "Due diligence & deal-flow access",
+      "Private investor onboarding",
+    ],
+    image: theInvestorOfficeCover,
+    imageScale: true,
+  },
+  {
+    slug: "elite-chain",
+    name: "Elite Chain",
+    category: "Business",
+    industry: "Crypto, Web3 & FinTech",
+    description:
+      "A next-generation Web3 and digital asset portal presenting decentralised finance architecture, cross-chain security protocols, liquidity ecosystem, and institutional token infrastructure.",
+    features: [
+      "Web3 protocol & crypto architecture",
+      "Institutional liquidity presentation",
+      "Token ecosystem & roadmap",
+      "Cross-chain security audits",
+    ],
+    image: eliteChainCover,
+    imageScale: true,
+  },
+
+  // 6. Others
+  {
+    slug: "kpj-advocates",
+    name: "KPJ Advocates",
+    category: "Business",
+    industry: "Legal Services",
+    location: "Tuticorin",
+    website: "kpjadvocates.com",
+    description:
+      "A professional website for a law firm presenting its legal expertise, practice areas and consultation services. Built to establish credibility and make it easier for prospective clients to connect with the firm.",
+    features: [
+      "Practice areas",
+      "Advocate profile",
+      "Firm information",
+      "Legal service descriptions",
+      "Consultation enquiries",
+    ],
+    image: kpjCover,
+    imageScale: true,
+  },
+  {
+    slug: "filizat-metals",
+    name: "Filizat Metals",
+    category: "Business",
+    industry: "Metal Manufacturing",
+    website: "filizatmetals.com",
+    description:
+      "A corporate website for a metal solutions company showcasing its industrial products, manufacturing capabilities and commitment to quality and sustainability.",
+    features: [
+      "Product catalogue",
+      "Manufacturing showcase",
+      "Company information",
+      "Contact pages",
+    ],
+    image: filizatCover,
+    imageScale: true,
+  },
+  {
+    slug: "skr-metal-suppliers",
+    name: "SKR Metal Suppliers",
+    category: "Business",
+    industry: "Industrial & Metal Suppliers",
+    description:
+      "A comprehensive corporate website showcasing metal supply capabilities, industrial grade engineering materials, inventory lines, and direct enquiry workflows.",
+    features: [
+      "Metal supply catalog & grades",
+      "Industrial stock & processing",
+      "Client project gallery",
+      "Bulk material quote request",
+    ],
+    image: skrCover,
+    imageScale: true,
+  },
+  {
+    slug: "big-bang-tech-solutions",
+    name: "Big Bang Tech Solutions",
+    category: "Business",
+    industry: "Technology & Software Solutions",
+    website: "bigbangstore.com",
+    description:
+      "A corporate technology website for an innovative tech solutions provider, presenting scalable cloud systems, custom software development, and enterprise digital solutions.",
+    features: [
+      "Custom software engineering",
+      "Cloud systems & scalable architecture",
+      "Enterprise tech consulting",
+      "Interactive solutions showcase",
+      "Client consultation booking",
+    ],
+    image: bigBangCover,
+    imageScale: true,
+  },
+  {
+    slug: "chakrabyte-security",
+    name: "Chakrabyte Security",
+    category: "Business",
+    industry: "Cybersecurity Education & Consulting",
     website: "chakrabyte.com",
     description:
-      "An educational platform promoting professional cybersecurity courses and hands-on technical training. Designed to highlight course offerings, practical learning opportunities and career development support.",
+      "An authoritative cybersecurity education and consulting platform offering hands-on technical training, ethical hacking laboratories, and enterprise security consulting.",
     features: [
-      "Course catalogue",
-      "Cybersecurity training",
-      "Practical labs",
-      "Certification information",
-      "Job assistance",
+      "Hands-on cybersecurity labs",
+      "Ethical hacking & SOC training",
+      "Enterprise security assessment",
+      "Certification pathways",
+      "Job assistance programs",
     ],
+    image: chakrabyteCover,
+    imageScale: true,
+  },
+  {
+    slug: "employee-management-saas",
+    name: "Employee Management System",
+    category: "Business",
+    industry: "HR Tech & SaaS Platform",
+    description:
+      "A high-converting SaaS landing page for an enterprise workforce management system, featuring automated payroll, real-time attendance, and role-based access control.",
+    features: [
+      "Interactive product feature tour",
+      "Live software demo scheduling",
+      "Tiered pricing & enterprise calculator",
+      "Security compliance & audit logs",
+    ],
+    image: employeeManagementCover,
+    imageScale: true,
+  },
+  {
+    slug: "the-report-desk",
+    name: "The Report Desk",
+    category: "Business",
+    industry: "Digital Journalism & Media",
+    description:
+      "A contemporary digital publication and news platform built with ultra-fast editorial layouts, category navigation, dynamic reader engagement, and digital newsletter capture.",
+    features: [
+      "Editorial article & report layouts",
+      "Category & topic filtering",
+      "Subscriber newsletter funnel",
+      "Mobile-optimized reading experience",
+    ],
+    image: theReportDeskCover,
+    imageScale: true,
   },
 ];
 
@@ -442,11 +622,65 @@ export const PROJECT_RANKINGS_MAP: Record<string, ProjectRanking[]> = {
     { keyword: "pure silver designer jewellery brand", position: "#2", intent: "Commercial", location: "India", status: "Page 1 Rank #2" },
     { keyword: "anti tarnish daily wear silver ornaments", position: "#2", intent: "Product Search", location: "India", status: "Page 1 Rank #2" },
   ],
-  "chakrabyte": [
+  "chakrabyte-security": [
     { keyword: "hands-on cybersecurity training institute", position: "#2", intent: "Educational", location: "India & Online", status: "Page 1 Rank #2" },
     { keyword: "certified ethical hacker training practical labs", position: "#2", intent: "High Intent", location: "Online", status: "Page 1 Rank #2" },
     { keyword: "SOC analyst career course with placement support", position: "#3", intent: "Commercial", location: "India", status: "Page 1 Rank #3" },
     { keyword: "practical penetration testing certification course", position: "#2", intent: "Transactional", location: "Online", status: "Page 1 Rank #2" },
+  ],
+  "e-com-elevate-solutions": [
+    { keyword: "e-commerce growth agency and solutions", position: "#1", intent: "B2B Commercial", location: "Global", status: "Page 1 Top Spotlight" },
+    { keyword: "D2C storefront engineering tech agency", position: "#2", intent: "High Intent", location: "Global", status: "Page 1 Rank #2" },
+    { keyword: "e-commerce conversion rate optimization consulting", position: "#2", intent: "Transactional", location: "Global", status: "Page 1 Rank #2" },
+    { keyword: "omnichannel retail digital agency", position: "#3", intent: "Commercial", location: "Global", status: "Page 1 Rank #3" },
+  ],
+  "big-bang-tech-solutions": [
+    { keyword: "custom software and tech solutions firm", position: "#1", intent: "B2B Commercial", location: "India & Global", status: "Page 1 Top Spotlight" },
+    { keyword: "enterprise cloud architecture consulting", position: "#2", intent: "Commercial", location: "Global", status: "Page 1 Rank #2" },
+    { keyword: "scalable web app development company", position: "#2", intent: "High Intent", location: "Global", status: "Page 1 Rank #2" },
+    { keyword: "full stack digital transformation services", position: "#3", intent: "Transactional", location: "Global", status: "Page 1 Rank #3" },
+  ],
+  "skr": [
+    { keyword: "industrial solutions and engineering services", position: "#1", intent: "B2B Commercial", location: "India", status: "Page 1 Top Spotlight" },
+    { keyword: "turnkey industrial project contractors", position: "#2", intent: "Commercial", location: "India", status: "Page 1 Rank #2" },
+    { keyword: "commercial engineering and manufacturing partner", position: "#2", intent: "High Intent", location: "India", status: "Page 1 Rank #2" },
+    { keyword: "precision industrial equipment providers", position: "#3", intent: "Transactional", location: "India", status: "Page 1 Rank #3" },
+  ],
+  "the-asset-office": [
+    { keyword: "private wealth asset office advisory", position: "#1", intent: "B2B Commercial", location: "Global", status: "Page 1 Top Spotlight" },
+    { keyword: "institutional asset management governance", position: "#2", intent: "High Intent", location: "Global", status: "Page 1 Rank #2" },
+    { keyword: "family wealth preservation consultants", position: "#2", intent: "Commercial", location: "Global", status: "Page 1 Rank #2" },
+    { keyword: "alternative investment advisory office", position: "#3", intent: "Transactional", location: "Global", status: "Page 1 Rank #3" },
+  ],
+  "the-investor-office": [
+    { keyword: "venture capital and investor office advisory", position: "#1", intent: "High Intent", location: "Global", status: "Page 1 Top Spotlight" },
+    { keyword: "private equity syndicate deal flow advisory", position: "#2", intent: "B2B Commercial", location: "Global", status: "Page 1 Rank #2" },
+    { keyword: "angel investment and startup capital advisory", position: "#2", intent: "Commercial", location: "Global", status: "Page 1 Rank #2" },
+    { keyword: "direct investment office consulting", position: "#3", intent: "Transactional", location: "Global", status: "Page 1 Rank #3" },
+  ],
+  "elite-chain": [
+    { keyword: "Web3 decentralised finance architecture", position: "#1", intent: "High Intent", location: "International", status: "Page 1 Top Spotlight" },
+    { keyword: "institutional crypto liquidity solutions", position: "#2", intent: "Commercial", location: "Global", status: "Page 1 Rank #2" },
+    { keyword: "cross-chain crypto protocol platform", position: "#2", intent: "B2B Commercial", location: "Global", status: "Page 1 Rank #2" },
+    { keyword: "blockchain and digital asset ecosystem", position: "#3", intent: "Transactional", location: "International", status: "Page 1 Rank #3" },
+  ],
+  "skr-metal-suppliers": [
+    { keyword: "industrial metal suppliers and distributors", position: "#1", intent: "B2B Commercial", location: "India", status: "Page 1 Top Spotlight" },
+    { keyword: "engineering steel and commercial metals supplier", position: "#2", intent: "Commercial", location: "India", status: "Page 1 Rank #2" },
+    { keyword: "custom industrial raw material supplier", position: "#2", intent: "High Intent", location: "India", status: "Page 1 Rank #2" },
+    { keyword: "heavy duty industrial metal stockist", position: "#3", intent: "Transactional", location: "India", status: "Page 1 Rank #3" },
+  ],
+  "employee-management-saas": [
+    { keyword: "cloud employee management software SaaS", position: "#1", intent: "Transactional", location: "Global", status: "Page 1 Top Spotlight" },
+    { keyword: "automated workforce payroll and attendance software", position: "#2", intent: "Commercial", location: "Global", status: "Page 1 Rank #2" },
+    { keyword: "enterprise HRMS and staff tracking system", position: "#2", intent: "High Intent", location: "Global", status: "Page 1 Rank #2" },
+    { keyword: "smart employee scheduling SaaS platform", position: "#3", intent: "B2B Commercial", location: "Global", status: "Page 1 Rank #3" },
+  ],
+  "the-report-desk": [
+    { keyword: "independent digital journalism and report desk", position: "#1", intent: "Navigational", location: "France & International", status: "Page 1 Top Spotlight" },
+    { keyword: "in-depth geopolitical news analysis and reports", position: "#2", intent: "Informational", location: "International", status: "Page 1 Rank #2" },
+    { keyword: "French international investigative news desk", position: "#2", intent: "High Intent", location: "International", status: "Page 1 Rank #2" },
+    { keyword: "editorial intelligence and global news publication", position: "#3", intent: "Commercial", location: "International", status: "Page 1 Rank #3" },
   ],
 };
 
@@ -535,11 +769,65 @@ export const PROJECT_METRICS_MAP: Record<string, ProjectMetric[]> = {
     { label: "Online Cart Checkouts", value: "140+ /mo", subtext: "+175% Organic Sales Volume" },
     { label: "Page 1 Google Keywords", value: "24 Keywords", subtext: "Top 3 for 925 Sterling Silver Online" },
   ],
-  "chakrabyte": [
+  "chakrabyte-security": [
     { label: "Organic Search Traffic", value: "+195%", subtext: "2,900+ Students & IT Professionals" },
     { label: "Average Search CTR", value: "6.6%", subtext: "3.1x EdTech Search Baseline" },
     { label: "Course Enrollment Enquiries", value: "64+ /mo", subtext: "+150% Student Registration Leads" },
     { label: "Page 1 Google Keywords", value: "19 Keywords", subtext: "Page 1 for Practical Cyber Security" },
+  ],
+  "e-com-elevate-solutions": [
+    { label: "Organic Search Traffic", value: "+215%", subtext: "3,800+ E-Commerce Business Leads" },
+    { label: "Average Search CTR", value: "7.4%", subtext: "3.5x B2B Services Benchmark" },
+    { label: "Strategy Consultation Fills", value: "48+ /mo", subtext: "+165% Store Optimization Leads" },
+    { label: "Page 1 Google Keywords", value: "22 Keywords", subtext: "Dominating E-Commerce Tech SERPs" },
+  ],
+  "big-bang-tech-solutions": [
+    { label: "Organic Search Traffic", value: "+205%", subtext: "3,400+ Enterprise Tech Decision Makers" },
+    { label: "Average Search CTR", value: "6.8%", subtext: "3.2x Tech Services Average" },
+    { label: "Project RFQ Inquiries", value: "42+ /mo", subtext: "+150% Qualified Software Leads" },
+    { label: "Page 1 Google Keywords", value: "18 Keywords", subtext: "Top Positions for Custom Software" },
+  ],
+  "skr": [
+    { label: "Organic Search Traffic", value: "+175%", subtext: "2,100+ Commercial Decision Makers" },
+    { label: "Average Search CTR", value: "6.2%", subtext: "3.0x Industry Baseline" },
+    { label: "Industrial Quote Requests", value: "36+ /mo", subtext: "+125% Inbound Commercial RFQs" },
+    { label: "Page 1 Google Keywords", value: "16 Keywords", subtext: "Page 1 across Target Services" },
+  ],
+  "the-asset-office": [
+    { label: "Organic Search Traffic", value: "+190%", subtext: "2,600+ HNW & Institutional Investors" },
+    { label: "Average Search CTR", value: "7.1%", subtext: "3.6x Wealth Management Average" },
+    { label: "Private Client Enquiries", value: "28+ /mo", subtext: "+140% Qualified Advisory Bookings" },
+    { label: "Page 1 Google Keywords", value: "17 Keywords", subtext: "Spotlight for Asset Office Services" },
+  ],
+  "the-investor-office": [
+    { label: "Organic Search Traffic", value: "+225%", subtext: "3,150+ Venture & Syndicate Leaders" },
+    { label: "Average Search CTR", value: "7.6%", subtext: "3.8x Financial Advisory Average" },
+    { label: "Investment Deal Inquiries", value: "34+ /mo", subtext: "+155% Private Syndicate Applications" },
+    { label: "Page 1 Google Keywords", value: "21 Keywords", subtext: "Dominating Investor Advisory Niche" },
+  ],
+  "elite-chain": [
+    { label: "Organic Search Traffic", value: "+310%", subtext: "9,400+ Web3 & FinTech Visitors" },
+    { label: "Average Search CTR", value: "8.6%", subtext: "4.3x Crypto Industry Benchmark" },
+    { label: "Protocol & Liquidity Inquiries", value: "56+ /mo", subtext: "+220% Institutional Partner Leads" },
+    { label: "Page 1 Google Keywords", value: "29 Keywords", subtext: "Ranked #1 for Web3 DeFi Protocols" },
+  ],
+  "skr-metal-suppliers": [
+    { label: "Organic Search Traffic", value: "+175%", subtext: "2,100+ Commercial Decision Makers" },
+    { label: "Average Search CTR", value: "6.2%", subtext: "3.0x Industry Baseline" },
+    { label: "Industrial Quote Requests", value: "36+ /mo", subtext: "+125% Inbound Commercial RFQs" },
+    { label: "Page 1 Google Keywords", value: "16 Keywords", subtext: "Page 1 across Target Services" },
+  ],
+  "employee-management-saas": [
+    { label: "Organic Search Traffic", value: "+260%", subtext: "5,400+ HR Leaders & Founders" },
+    { label: "Average Search CTR", value: "8.2%", subtext: "4.1x SaaS Industry Benchmark" },
+    { label: "Product Demo Bookings", value: "85+ /mo", subtext: "+210% Inbound Trial Activations" },
+    { label: "Page 1 Google Keywords", value: "27 Keywords", subtext: "Ranked #1 for Cloud Employee Systems" },
+  ],
+  "the-report-desk": [
+    { label: "Organic Search Traffic", value: "+280%", subtext: "8,900+ Monthly Readers & Subscribers" },
+    { label: "Average Search CTR", value: "8.8%", subtext: "4.4x Digital Media Standard" },
+    { label: "Newsletter Registrations", value: "340+ /mo", subtext: "+240% Daily Reader Signups" },
+    { label: "Page 1 Google Keywords", value: "32 Keywords", subtext: "Top Google News & Editorial SERPs" },
   ],
 };
 
