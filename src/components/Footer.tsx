@@ -6,7 +6,7 @@ import BrandWordmark from "@/components/BrandWordmark";
 const CORE_SERVICES = [
   { to: "/web-design", label: "Website Design & Development" },
   { to: "/seo", label: "Search Engine Optimisation (SEO)" },
-  { to: "/web-design", label: "Branding & Logo Design" },
+  { to: "/branding", label: "Branding & Logo Design" },
   { to: "/seo", label: "Local SEO & Google Maps" },
 ];
 

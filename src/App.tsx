@@ -15,6 +15,7 @@ import Home from "./pages/HomeLanding";
 // Route-level code splitting with automatic chunk retry
 const WebDesign = lazyWithRetry(() => import("./pages/WebDesign"));
 const Seo = lazyWithRetry(() => import("./pages/Seo"));
+const Branding = lazyWithRetry(() => import("./pages/Branding"));
 const Services = lazyWithRetry(() => import("./pages/Services"));
 const ServiceDetail = lazyWithRetry(() => import("./pages/ServiceDetail"));
 const Locations = lazyWithRetry(() => import("./pages/Locations"));
@@ -48,6 +49,8 @@ const App = () => (
                   <Route path="/" element={<Home />} />
                   <Route path="/web-design" element={<WebDesign />} />
                   <Route path="/seo" element={<Seo />} />
+                  <Route path="/branding" element={<Branding />} />
+                  <Route path="/logo-design" element={<Branding />} />
                   <Route path="/services" element={<Services />} />
                   <Route path="/locations" element={<Locations />} />
                   <Route path="/industries" element={<Industries />} />

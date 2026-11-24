@@ -5,19 +5,44 @@ import { toast } from "sonner";
 import { SITE } from "@/lib/site";
 
 export const SERVICE_OPTIONS = [
-  "Website Design",
-  "SEO",
+  "Website Development",
+  "SEO Services",
   "Branding & Logo Design",
   "Multiple Services",
 ];
 
-const BUDGET_OPTIONS = [
-  "Under ₹9,999",
-  "₹9,999 - ₹24,999",
-  "₹24,999 - ₹49,999",
-  "₹49,999+",
-  "Not sure yet",
-];
+export const SERVICE_BUDGET_PACKAGES: Record<string, string[]> = {
+  website: [
+    "Portfolio Website (₹7,999)",
+    "Business Website (₹11,999)",
+    "E-commerce Website (₹19,999)",
+  ],
+  seo: [
+    "Starter SEO (₹2,999/mo)",
+    "Growth SEO (₹5,999/mo)",
+    "Authority SEO (₹9,999/mo)",
+  ],
+  branding: [
+    "Starter Branding (₹2,999)",
+    "Growth Branding (₹5,999)",
+    "Complete Brand Suite (₹9,999)",
+  ],
+  multiple: [
+    "₹10,000",
+    "₹20,000",
+    "₹30,000+",
+  ],
+};
+
+export const getBudgetPackagesForService = (serviceName: string): string[] => {
+  if (!serviceName) return [];
+  const s = serviceName.toLowerCase();
+  if (s.includes("multiple")) return SERVICE_BUDGET_PACKAGES.multiple;
+  if (s.includes("web") || s.includes("site")) return SERVICE_BUDGET_PACKAGES.website;
+  if (s.includes("seo") || s.includes("search")) return SERVICE_BUDGET_PACKAGES.seo;
+  if (s.includes("brand") || s.includes("logo")) return SERVICE_BUDGET_PACKAGES.branding;
+  return SERVICE_BUDGET_PACKAGES.multiple;
+};
 
 interface LeadFormProps {
   id?: string;
@@ -234,10 +259,16 @@ const LeadForm = ({
               </div>
 
               <div>
-                <label className="block text-[13px] font-medium text-foreground mb-1.5">Service You Need</label>
+                <label className="block text-[13px] font-medium text-foreground mb-1.5">
+                  Service You Need <span className="text-destructive">*</span>
+                </label>
                 <select
                   value={service}
-                  onChange={(e) => setService(e.target.value)}
+                  onChange={(e) => {
+                    setService(e.target.value);
+                    setBudget("");
+                  }}
+                  required
                   className="w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm bg-white focus:border-primary focus:ring-2 focus:ring-primary/20"
                 >
                   <option value="">Select a service...</option>
@@ -248,17 +279,49 @@ const LeadForm = ({
               </div>
 
               <div>
-                <label className="block text-[13px] font-medium text-foreground mb-1.5">Estimated Budget</label>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="block text-[13px] font-medium text-foreground">
+                    Package / Budget <span className="text-destructive">*</span>
+                  </label>
+                  {!service && (
+                    <span className="text-[11px] font-semibold text-amber-600">
+                      Disabled until service is chosen
+                    </span>
+                  )}
+                </div>
                 <select
                   value={budget}
                   onChange={(e) => setBudget(e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm bg-white focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  disabled={!service}
+                  required
+                  className={`w-full rounded-lg border px-3.5 py-2.5 text-sm transition-all ${
+                    !service
+                      ? "bg-slate-100 border-slate-200 text-slate-400 cursor-not-allowed select-none"
+                      : "bg-white border-gray-300 text-slate-900 focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  }`}
                 >
-                  <option value="">Select budget range...</option>
-                  {BUDGET_OPTIONS.map((b) => (
-                    <option key={b} value={b}>{b}</option>
-                  ))}
+                  {!service ? (
+                    <option value="">Select a service above first...</option>
+                  ) : (
+                    <>
+                      <option value="">Choose your package / budget...</option>
+                      {getBudgetPackagesForService(service).map((pkg) => (
+                        <option key={pkg} value={pkg}>
+                          {pkg}
+                        </option>
+                      ))}
+                    </>
+                  )}
                 </select>
+                {!service ? (
+                  <p className="mt-1 text-[11px] text-slate-500">
+                    Pick a service to unlock exact package pricing.
+                  </p>
+                ) : (
+                  <p className="mt-1 text-[11px] text-emerald-600 font-medium">
+                    ✓ Available packages loaded for {service}
+                  </p>
+                )}
               </div>
 
               <div className="sm:col-span-2">

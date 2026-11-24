@@ -33,8 +33,8 @@ const services = [
     title: "Branding & Logo Design",
     description:
       "Give your business a credible, professional identity with memorable logo design, distinct brand colours and trusted visual styling.",
-    to: "/logo-design",
-    action: "Explore Branding Design",
+    to: "/branding",
+    action: "Explore Branding Packages",
   },
 ];
 
