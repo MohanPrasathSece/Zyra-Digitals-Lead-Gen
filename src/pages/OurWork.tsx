@@ -14,12 +14,13 @@ import {
 } from "@/lib/projects";
 import { TrendingUp, Target, Smile, ExternalLink, ArrowRight, Sparkles } from "lucide-react";
 
-const CATEGORY_ORDER: ProjectCategory[] = ["Dental", "Healthcare", "Business"];
+const CATEGORY_ORDER: ProjectCategory[] = ["Dental", "Healthcare", "Ecommerce", "Business"];
 
 const CATEGORY_BLURBS: Record<ProjectCategory, string> = {
   Dental: "Website projects for dental clinics, specialist practices and dental training providers.",
   Healthcare: "Website projects for clinics and healthcare practices.",
-  Business: "Website projects for e-commerce, professional services, manufacturing and other businesses.",
+  Ecommerce: "E-commerce and online shopping websites with product catalogues, payment gateways and cart flows.",
+  Business: "Website projects for professional services, manufacturing, tech and other businesses.",
 };
 
 const OurWork = () => {
@@ -28,7 +29,9 @@ const OurWork = () => {
 
   const filteredGroups = CATEGORY_ORDER.map((category) => ({
     category,
-    items: gallery.filter((project) => project.category === category),
+    items: (selectedCategory === "All" ? gallery : PROJECTS).filter(
+      (project) => project.category === category
+    ),
   })).filter((group) => {
     if (selectedCategory === "All") return group.items.length > 0;
     return group.category === selectedCategory && group.items.length > 0;
@@ -37,9 +40,9 @@ const OurWork = () => {
   return (
     <div>
       <SEO
-        title="Our Work - Website Design Portfolio for Dental, Healthcare & Business"
-        description="15 completed website design projects by Zyra Digitals, including dental clinics, healthcare practices and business websites."
-        keywords="web design portfolio, dental website design, healthcare website design, website design examples, business website portfolio, web design agency work, Zyra Digitals portfolio"
+        title="Our Work - Website Design Portfolio for Dental, Healthcare, E-Commerce & Business"
+        description="15 completed website design projects by Zyra Digitals, including dental clinics, healthcare practices, e-commerce stores and business websites."
+        keywords="web design portfolio, dental website design, healthcare website design, ecommerce website design, business website portfolio, web design agency work, Zyra Digitals portfolio"
         canonical="/our-work"
         breadcrumbs={[{ name: "Our Work", path: "/our-work" }]}
       />
@@ -135,7 +138,14 @@ const OurWork = () => {
               {/* Category Filter Tabs */}
               <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
                 {["All", ...CATEGORY_ORDER].map((cat) => {
-                  const label = cat === "All" ? "All Projects (15)" : PROJECT_CATEGORY_LABELS[cat as ProjectCategory];
+                  const count =
+                    cat === "All"
+                      ? PROJECTS.length
+                      : PROJECTS.filter((p) => p.category === cat).length;
+                  const label =
+                    cat === "All"
+                      ? "All Projects"
+                      : PROJECT_CATEGORY_LABELS[cat as ProjectCategory];
                   const isActive = selectedCategory === cat;
 
                   return (
@@ -149,7 +159,7 @@ const OurWork = () => {
                           : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                       }`}
                     >
-                      {label}
+                      {label} ({count})
                     </button>
                   );
                 })}

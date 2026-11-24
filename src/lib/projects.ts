@@ -3,7 +3,7 @@ import precision from "@/assets/Portfolio_projects/precision/precision.png";
 import apexRevOps from "@/assets/Portfolio_projects/Apex RevOps/Screenshot 2026-10-06 143908.png";
 import achyutam from "@/assets/Portfolio_projects/achyutam/Screenshot 2026-05-29 095505.png";
 
-export type ProjectCategory = "Dental" | "Healthcare" | "Business";
+export type ProjectCategory = "Dental" | "Healthcare" | "Ecommerce" | "Business";
 
 /** One screenshot slot in a project's page gallery. */
 export type ProjectGalleryItem = {
@@ -61,6 +61,7 @@ export type Project = {
 export const PROJECT_CATEGORY_LABELS: Record<ProjectCategory, string> = {
   Dental: "Dental Websites",
   Healthcare: "Medical Clinics & Healthcare",
+  Ecommerce: "E-Commerce Websites",
   Business: "Other Business Websites",
 };
 
@@ -269,7 +270,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "achyutam-organics",
     name: "Achyutam Organics",
-    category: "Business",
+    category: "Ecommerce",
     industry: "Organic Dairy & E-commerce",
     website: "achyutamorganic.com",
     description:
@@ -318,7 +319,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "xivi",
     name: "XIVI",
-    category: "Business",
+    category: "Ecommerce",
     industry: "Jewellery & E-commerce",
     website: "xivi.in",
     description:
