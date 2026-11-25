@@ -143,6 +143,16 @@ const LeadForm = ({
       console.log("🆔 Message ID:", data?.messageId);
       console.groupEnd();
 
+      // Push generate_lead conversion event to Google Tag Manager dataLayer (No PII)
+      if (typeof window !== "undefined") {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "generate_lead",
+          form_name: "contact_form",
+          lead_type: "website_enquiry",
+        });
+      }
+
       if (formRef.current) formRef.current.reset();
       setService(defaultService);
       setBudget("");
