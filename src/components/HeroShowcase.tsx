@@ -21,13 +21,13 @@ const HeroShowcase = () => (
         className="w-full h-auto drop-shadow-2xl"
       />
 
-      {/* Price badge - white card, positioned up and to the right over the phone mockup */}
-      <div className="absolute bottom-2 left-6 sm:bottom-4 sm:left-10 z-20">
-        <div className="rounded-xl bg-white px-4 py-2.5 shadow-2xl ring-1 ring-slate-200/90 transition-transform duration-200 hover:scale-105">
+      {/* Price badge - white card, positioned centered under the laptop mockup */}
+      <div className="absolute bottom-3 sm:bottom-5 left-[38%] sm:left-[42%] -translate-x-1/2 z-20 whitespace-nowrap">
+        <div className="rounded-xl bg-white px-3.5 sm:px-4 py-2 sm:py-2.5 shadow-2xl ring-1 ring-slate-200/90 transition-transform duration-200 hover:scale-105">
           <p className="text-[10px] font-bold uppercase tracking-wider text-blue-600 sm:text-[11px]">
             Website Development
           </p>
-          <p className="text-base font-black leading-tight text-slate-900 sm:text-lg">
+          <p className="text-sm sm:text-base lg:text-lg font-black leading-tight text-slate-900">
             Starts from ₹7,999
           </p>
         </div>

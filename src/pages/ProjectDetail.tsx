@@ -333,9 +333,9 @@ const ProjectDetail = () => {
             <FadeInView>
               <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-medical">
                 {/* Google Console header */}
-                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 bg-slate-50/80 px-6 py-4">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 bg-slate-50/80 px-4 sm:px-6 py-3.5 sm:py-4">
                   <div className="flex items-center gap-2.5">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white shadow-xs">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white shadow-xs">
                       <LineChart size={17} />
                     </div>
                     <div>
@@ -347,12 +347,16 @@ const ProjectDetail = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700 ring-1 ring-emerald-200">
-                      <CheckCircle2 size={13} /> Verified Search Console Data
+                  <div className="grid grid-cols-2 gap-2 w-full sm:flex sm:w-auto items-center">
+                    <span className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-emerald-50 px-2.5 py-1.5 text-[11px] sm:text-xs font-bold text-emerald-700 ring-1 ring-emerald-200 shadow-2xs">
+                      <CheckCircle2 size={13} className="shrink-0 text-emerald-600" />
+                      <span className="hidden sm:inline">Verified Search Console Data</span>
+                      <span className="sm:hidden">Verified Data</span>
                     </span>
-                    <span className="inline-flex items-center gap-1 rounded-md bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-700 ring-1 ring-blue-200">
-                      <Eye size={13} /> Live Google Impressions
+                    <span className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-blue-50 px-2.5 py-1.5 text-[11px] sm:text-xs font-bold text-blue-700 ring-1 ring-blue-200 shadow-2xs">
+                      <Eye size={13} className="shrink-0 text-blue-600" />
+                      <span className="hidden sm:inline">Live Google Impressions</span>
+                      <span className="sm:hidden">Live Impressions</span>
                     </span>
                   </div>
                 </div>

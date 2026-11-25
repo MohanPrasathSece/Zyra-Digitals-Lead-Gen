@@ -386,20 +386,20 @@ const LeadForm = ({
       </div>
 
       <Dialog open={showSuccess} onOpenChange={setShowSuccess}>
-        <DialogContent className="sm:max-w-md text-center p-8">
+        <DialogContent className="w-[calc(100%-2.5rem)] max-w-md rounded-2xl text-center p-6 sm:p-8 bg-white border border-slate-200 shadow-2xl">
           <div className="flex flex-col items-center gap-4">
-            <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-2">
-              <CheckCircle2 className="w-8 h-8 text-green-600" />
+            <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mb-1">
+              <CheckCircle2 className="w-8 h-8 text-emerald-600" />
             </div>
             <DialogHeader>
-              <DialogTitle className="text-2xl text-center">Request Sent!</DialogTitle>
-              <DialogDescription className="text-center text-base pt-2">
+              <DialogTitle className="text-2xl font-extrabold text-center text-slate-900">Request Sent!</DialogTitle>
+              <DialogDescription className="text-center text-sm sm:text-base pt-2 text-slate-600 leading-relaxed">
                 Thank you! We've received your details and will get back to you within 1 hour - guaranteed - with your free audit and a proposal built to bring you more enquiries.
               </DialogDescription>
             </DialogHeader>
             <button
               onClick={() => setShowSuccess(false)}
-              className="mt-6 px-8 py-2.5 bg-primary text-primary-foreground font-medium rounded-lg hover:brightness-110 transition-all focus:outline-none"
+              className="mt-4 w-full sm:w-auto px-8 py-2.5 bg-primary text-primary-foreground font-semibold rounded-xl hover:brightness-110 active:scale-95 transition-all focus:outline-none shadow-md"
             >
               Continue
             </button>

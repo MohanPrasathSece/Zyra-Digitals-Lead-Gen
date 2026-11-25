@@ -46,7 +46,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-md bg-card/80" style={{ boxShadow: "var(--shadow-sm)" }}>
+    <nav className="sticky top-0 z-50 backdrop-blur-md bg-white/95 border-b border-slate-100" style={{ boxShadow: "var(--shadow-sm)" }}>
       <div className="container mx-auto flex items-center justify-between py-2 px-4 sm:px-6">
         <Link to="/" className="flex items-center shrink-0" aria-label="Zyra Digitals home">
           <BrandWordmark compact />
