@@ -83,7 +83,7 @@ const Contact = () => {
                         <CalendarDays size={18} />
                       </span>
                       <div>
-                        <p className="font-semibold text-foreground">Book a 30-minute meeting</p>
+                        <p className="font-semibold text-foreground">Book an Appointment</p>
                         <p className="mt-1 text-sm leading-relaxed text-muted">
                           Pick a time in Calendly and talk through your project.
                         </p>
@@ -95,7 +95,7 @@ const Contact = () => {
                       rel="noopener noreferrer"
                       className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground hover:bg-blue-700"
                     >
-                      Open meeting calendar <ArrowUpRight size={16} />
+                      Book Appointment <ArrowUpRight size={16} />
                     </a>
                   </div>
                 </div>

@@ -1,69 +1,22 @@
-import { useEffect } from "react";
-import { CALENDLY_URL, loadCalendly } from "@/lib/calendly";
+import { Calendar } from "lucide-react";
+import { CALENDLY_URL } from "@/lib/calendly";
 
 const CalendlyBadge = () => {
-  useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout> | null = null;
-    let idleId: number | null = null;
-    let initialized = false;
-
-    const init = () => {
-      if (initialized || window.zyraCalendlyBadgeInitialized) return;
-      initialized = true;
-
-      loadCalendly()
-        .then((calendly) => {
-          if (window.zyraCalendlyBadgeInitialized) return;
-          calendly.initBadgeWidget({
-            url: CALENDLY_URL,
-            text: "Schedule a 30-minute call",
-            color: "#0069ff",
-            textColor: "#ffffff",
-            branding: true,
-          });
-          window.zyraCalendlyBadgeInitialized = true;
-        })
-        .catch(() => {
-          // Graceful fallback: contact page has direct link
-        });
-    };
-
-    // Defer initialization until the main thread is idle or on first touch/interaction
-    if (typeof window !== "undefined") {
-      const interactionEvents = ["touchstart", "scroll", "pointerdown", "keydown"];
-      const onUserInteraction = () => {
-        interactionEvents.forEach((e) => window.removeEventListener(e, onUserInteraction));
-        init();
-      };
-
-      interactionEvents.forEach((e) =>
-        window.addEventListener(e, onUserInteraction, { once: true, passive: true })
-      );
-
-      // Idle fallback after 3s if no interaction occurs
-      const win = window as unknown as {
-        requestIdleCallback?: (cb: () => void, opts: { timeout: number }) => number;
-        cancelIdleCallback?: (id: number) => void;
-      };
-
-      if (typeof win.requestIdleCallback === "function") {
-        idleId = win.requestIdleCallback(init, { timeout: 3000 });
-      } else {
-        timeoutId = setTimeout(init, 3000);
-      }
-
-      return () => {
-        interactionEvents.forEach((e) => window.removeEventListener(e, onUserInteraction));
-        if (timeoutId) clearTimeout(timeoutId);
-        if (idleId && typeof win.cancelIdleCallback === "function") {
-          win.cancelIdleCallback(idleId);
-        }
-      };
-    }
-  }, []);
-
-  return null;
+  return (
+    <a
+      href={CALENDLY_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Book an Appointment"
+      title="Book an Appointment"
+      className="fixed bottom-6 sm:bottom-[72px] lg:bottom-[78px] right-5 z-35 flex h-[52px] w-[52px] sm:h-auto sm:w-auto items-center justify-center rounded-full bg-[#0069ff] text-white shadow-lg shadow-blue-500/30 transition-all duration-200 hover:scale-105 hover:bg-[#0052cc] active:scale-95 sm:px-4 sm:py-2.5"
+    >
+      <Calendar size={22} className="shrink-0 text-white" aria-hidden="true" />
+      <span className="hidden sm:inline text-xs sm:text-sm font-semibold whitespace-nowrap pl-2">
+        Book Appointment
+      </span>
+    </a>
+  );
 };
 
 export default CalendlyBadge;
-
