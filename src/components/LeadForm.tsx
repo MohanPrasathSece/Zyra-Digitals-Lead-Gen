@@ -151,6 +151,14 @@ const LeadForm = ({
           form_name: "contact_form",
           lead_type: "website_enquiry",
         });
+
+        // Track Lead conversion on Meta Pixel (Facebook Pixel)
+        if (typeof window.fbq === "function") {
+          window.fbq("track", "Lead", {
+            content_name: "contact_form",
+            content_category: "website_enquiry",
+          });
+        }
       }
 
       if (formRef.current) formRef.current.reset();
