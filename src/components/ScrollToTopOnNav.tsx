@@ -1,10 +1,9 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 declare global {
   interface Window {
     dataLayer?: Record<string, unknown>[];
-    fbq?: (...args: unknown[]) => void;
   }
 }
 
@@ -17,7 +16,6 @@ const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffec
 
 const ScrollToTopOnNav = () => {
   const { pathname, search, hash } = useLocation();
-  const isFirstRender = useRef(true);
 
   useIsomorphicLayoutEffect(() => {
     // If navigating to an in-page anchor hash (e.g. #get-quote)
@@ -60,14 +58,6 @@ const ScrollToTopOnNav = () => {
         page_location: window.location.href,
         page_title: document.title,
       });
-    }
-
-    // Track Meta Pixel (Facebook Pixel) PageView on client-side route changes
-    // (Skip initial render to avoid double-firing alongside index.html's base snippet)
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-    } else if (typeof window !== "undefined" && typeof window.fbq === "function") {
-      window.fbq("track", "PageView");
     }
   }, [pathname, search]);
 
